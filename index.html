@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Mustafa & Tasneem — Wedding Invitation</title>
+  <meta name="description" content="Official Wedding Invitation of Mustafa & Tasneem. An elegant, interactive Dawoodi Bohra wedding celebration in royal lavender and gold." />
+  
+  <!-- Favicon & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Ambient Audio Player -->
+  <audio id="bg-audio" loop preload="auto">
+    <source src="assets/music.mp3" type="audio/mp3">
+  </audio>
+
+  <!-- Floating Audio Equalizer Control -->
+  <button id="music-toggle" class="floating-music-btn" aria-label="Toggle Background Music" title="Play / Pause Music">
+    <div class="eq-bars">
+      <span class="bar bar-1"></span>
+      <span class="bar bar-2"></span>
+      <span class="bar bar-3"></span>
+      <span class="bar bar-4"></span>
+    </div>
+    <span class="music-label">Music</span>
+  </button>
+
+  <!-- Canvas Background for Floating Lavender Petals & Gold Shimmer -->
+  <canvas id="petal-canvas"></canvas>
+
+  <!-- Main Container -->
+  <main class="app-viewport">
+
+    <!-- ==============================================
+         1. 3D INTERACTIVE ENVELOPE (LANDING SCREEN)
+         ============================================== -->
+    <section id="envelope-screen" class="envelope-screen">
+      <div class="envelope-wrapper">
+        <div class="envelope-ambient-glow"></div>
+        
+        <div class="envelope-intro-text">
+          <span class="sub-heading-top">Auspicious Wedding Announcement</span>
+          <h1 class="envelope-couple-title">Mustafa <span>&</span> Tasneem</h1>
+          <p class="envelope-hint-text">You are cordially invited to celebrate our wedding</p>
+        </div>
+
+        <!-- The 3D Envelope Box -->
+        <div class="envelope-3d" id="envelope-box">
+          <div class="envelope-back"></div>
+          
+          <!-- Letter Card peeking inside -->
+          <div class="envelope-letter-preview">
+            <div class="letter-gold-crest">
+              <img src="assets/seal.jpg" alt="Seal Crest" class="preview-mini-seal" />
+            </div>
+            <p class="letter-preview-text">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+            <p class="letter-preview-names">Mustafa &amp; Tasneem</p>
+          </div>
+
+          <!-- Bottom & Side Flaps -->
+          <div class="envelope-flap flap-left"></div>
+          <div class="envelope-flap flap-right"></div>
+          <div class="envelope-flap flap-bottom"></div>
+
+          <!-- Top Foldable Flap -->
+          <div class="envelope-flap flap-top" id="top-flap"></div>
+
+          <!-- 3D Gold Wax Seal (Interactive Button) -->
+          <div class="wax-seal-container" id="wax-seal">
+            <div class="seal-pulse-glow"></div>
+            <img src="assets/seal.jpg" alt="Gold Wax Seal" class="wax-seal-img" />
+            <div class="seal-tap-prompt">
+              <span class="tap-icon">✨</span>
+              <span class="tap-text">TAP TO OPEN</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="envelope-footer-note">
+          <p>Tap the golden seal to open your invitation</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         2. INVITATION EXPERIENCE (SLIDES UP ON OPEN)
+         ============================================== -->
+    <section id="invitation-screen" class="invitation-screen hidden">
+
+      <!-- Hero Header with Bespoke Calligraphy Logo -->
+      <header class="invite-hero">
+        <div class="ornate-bismillah">
+          <p class="arabic-bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+          <div class="bismillah-divider">
+            <span class="divider-line"></span>
+            <span class="divider-diamond">✦</span>
+            <span class="divider-line"></span>
+          </div>
+        </div>
+
+        <!-- Custom Masterpiece Arabic Calligraphy Logo -->
+        <div class="hero-logo-frame">
+          <div class="logo-glow-halo"></div>
+          <div class="logo-inner-wrapper">
+            <img src="assets/logo.jpg" alt="Mustafa & Tasneem Arabic Calligraphy Logo" class="couple-arabic-logo" />
+          </div>
+        </div>
+
+        <div class="hero-titles">
+          <span class="cursive-sub">Together with their families</span>
+          <h2 class="couple-names-gold">Mustafa &amp; Tasneem</h2>
+          <p class="wedding-invite-callout">Request the honor of your presence and prayers to celebrate their union in marriage</p>
+        </div>
+      </header>
+
+      <!-- Interactive "Scratch-to-Reveal" Date Card -->
+      <section class="scratch-card-section">
+        <div class="luxury-card-box scratch-container">
+          <div class="card-ornament top-center">❖</div>
+          <span class="section-eyebrow">Auspicious Date</span>
+          <h3 class="card-title">Scratch to Reveal</h3>
+          <p class="scratch-instructions">Rub the golden shimmer card below with your finger or cursor to reveal the wedding date!</p>
+
+          <div class="scratch-wrapper">
+            <!-- Hidden Content under the scratch foil -->
+            <div class="scratch-reveal-content" id="revealed-date-content">
+              <div class="revealed-badge">
+                <span class="badge-sparkle">✨</span>
+                <span class="badge-tag">SAVE THE DATE</span>
+                <span class="badge-sparkle">✨</span>
+              </div>
+              <div class="date-display-grid">
+                <div class="date-col">
+                  <span class="date-num">14</span>
+                  <span class="date-label">DECEMBER</span>
+                </div>
+                <div class="date-separator">✦</div>
+                <div class="date-col">
+                  <span class="date-num">2026</span>
+                  <span class="date-label">SUNDAY</span>
+                </div>
+              </div>
+              <p class="revealed-hijri">24 Jumada al-Ula 1447 H</p>
+              <div class="add-cal-btn-wrap">
+                <button id="add-to-cal-btn" class="btn-gold-action">
+                  <span class="btn-icon">📅</span> Add to Calendar
+                </button>
+              </div>
+            </div>
+
+            <!-- HTML5 Scratch Canvas -->
+            <canvas id="scratch-canvas" class="scratch-canvas" width="340" height="210"></canvas>
+          </div>
+
+          <div class="scratch-progress-wrap">
+            <div class="scratch-progress-bar" id="scratch-progress"></div>
+            <span class="scratch-hint" id="scratch-hint">Scratch at least 50% to unveil completely!</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Formal Dawoodi Bohra Traditional Invitation Card (Lisan al-Dawat & English) -->
+      <section class="traditional-card-section">
+        <div class="traditional-parchment">
+          <div class="parchment-border">
+            <div class="corner-flourish tl"></div>
+            <div class="corner-flourish tr"></div>
+            <div class="corner-flourish bl"></div>
+            <div class="corner-flourish br"></div>
+
+            <div class="parchment-content">
+              <p class="arabic-hamd">الْحَمْدُ لِلَّهِ تَعَالَى وَبِفَضْلِهِ وَإِحْسَانِهِ</p>
+              <p class="arabic-salawat">اللهم صل على محمد وعلى آل محمد الأطهار، والأئمة الأبرار، ودعاة الحق الأخيار</p>
+              
+              <div class="dua-invocation-box">
+                <p class="lisan-text">
+                  الله سبحانه نا فضل و كرم سي، اني ائمة طاهرين ع، و دعاة مطلقين رض، اني المولی اجل المرتضی بالحق سيدنا فخر الدين الشهيد رض، اني خاصة الداعي الأجل الحي المقدس سيدنا محمد برهان الدين رض، نا وسيلة سي، انوارنا نعم الوارث سيدنا عالي قدر مفضل سيف الدين ط ع نا دعا مبارك ني بركة سي
+                </p>
+                <p class="lisan-highlight">ہماری فرزند ني شادي</p>
+              </div>
+
+              <!-- Groom and Bride in traditional honors -->
+              <div class="couple-traditional-grid">
+                <div class="person-card groom-card">
+                  <span class="person-title">الولد الأحَبّ</span>
+                  <h4 class="person-name">مُصْطَفَى</h4>
+                  <p class="person-english">Mustafa</p>
+                  <p class="person-parentage">Son of Mr. &amp; Mrs. Fakhruddin Bhai</p>
+                </div>
+
+                <div class="wedding-knot-seal">
+                  <span class="knot-gold-ring">💍</span>
+                  <span class="knot-urdu">ن شادي</span>
+                </div>
+
+                <div class="person-card bride-card">
+                  <span class="person-title">البنت العزيزة</span>
+                  <h4 class="person-name">تَسْنِيم</h4>
+                  <p class="person-english">Tasneem</p>
+                  <p class="person-parentage">Daughter of Mr. &amp; Mrs. Shabbir Bhai</p>
+                </div>
+              </div>
+
+              <div class="nikah-sharaf-box">
+                <p class="lisan-bold-center">
+                  عقد النكاح نو شرف آقا مولىٰ سيدنا عالي قدر مفضل سيف الدين ط.ع. نا دست مبارك پر ملو نصيب تهيو چھے
+                </p>
+                <p class="english-translation">
+                  By the grace of Allah Ta’ala and with the Raza Mubarak and Dua of His Holiness Syedna Mufaddal Saifuddin (TUS), we cordially invite you to celebrate this blessed milestone with us.
+                </p>
+              </div>
+
+              <p class="duas-request">
+                ہماری خوشي ني مسرة ما شامل تھوا واسطے آپ نے مع الإكرام اذن پيش كريئے چھے، برائے كرم تشريف لاوي انوارنا بركات ما ہماری خوشي ما اضافو كريئے۔
+              </p>
+
+              <div class="parchment-signature">
+                <span class="sign-line">عبيد سيدنا المنعام ط ع وامائه</span>
+                <p class="family-sign">Fakhruddin Family &amp; Shabbir Family</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Live Real-Time Countdown -->
+      <section class="countdown-section">
+        <div class="luxury-card-box countdown-box">
+          <span class="section-eyebrow">The Countdown</span>
+          <h3 class="card-title">Counting Down to Forever</h3>
+          
+          <div class="timer-grid" id="countdown-timer">
+            <div class="timer-item">
+              <span class="time-digit" id="cd-days">00</span>
+              <span class="time-label">DAYS</span>
+            </div>
+            <div class="timer-colon">:</div>
+            <div class="timer-item">
+              <span class="time-digit" id="cd-hours">00</span>
+              <span class="time-label">HOURS</span>
+            </div>
+            <div class="timer-colon">:</div>
+            <div class="timer-item">
+              <span class="time-digit" id="cd-minutes">00</span>
+              <span class="time-label">MINUTES</span>
+            </div>
+            <div class="timer-colon">:</div>
+            <div class="timer-item">
+              <span class="time-digit" id="cd-seconds">00</span>
+              <span class="time-label">SECONDS</span>
+            </div>
+          </div>
+
+          <p class="timer-subtext">Until Mustafa &amp; Tasneem say "Qabiltu" in eternal togetherness ✨</p>
+        </div>
+      </section>
+
+      <!-- Program Timeline & Auspicious Rusumat -->
+      <section class="timeline-section">
+        <div class="timeline-header">
+          <span class="section-eyebrow">Sacred Ceremonies</span>
+          <h3 class="section-main-title">Auspicious Rusumat &amp; Events</h3>
+          <p class="timeline-desc">Join us across the joyful celebrations, prayers, and festivities</p>
+        </div>
+
+        <div class="events-timeline">
+
+          <!-- 1. Manak Thamb -->
+          <div class="timeline-card">
+            <div class="event-marker">
+              <span class="marker-number">01</span>
+            </div>
+            <div class="event-details">
+              <div class="event-badge">Pre-Wedding Sacred Ritual</div>
+              <h4 class="event-title">માણેક થંભ (Manak Thamb)</h4>
+              <p class="event-meaning">Auspicious installation of the sacred pillar to welcome blessings, health, and prosperity.</p>
+              <div class="event-meta">
+                <span class="meta-item"><i class="meta-icon">🗓️</i> Friday, 12th December 2026</span>
+                <span class="meta-item"><i class="meta-icon">⏰</i> 10:00 AM onwards</span>
+                <span class="meta-item"><i class="meta-icon">📍</i> Saifee Villa, Malabar Hill, Mumbai</span>
+              </div>
+              <a href="https://maps.google.com/?q=Saifee+Villa+Mumbai" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
+            </div>
+          </div>
+
+          <!-- 2. Mandvo & Peethi -->
+          <div class="timeline-card">
+            <div class="event-marker">
+              <span class="marker-number">02</span>
+            </div>
+            <div class="event-details">
+              <div class="event-badge">Haldi &amp; Canopy Songs</div>
+              <h4 class="event-title">માંડવો અને પીઠી (Mandvo &amp; Peethi)</h4>
+              <p class="event-meaning">Blessing the ceremonial wedding canopy with aromatic turmeric, auspicious songs, and Madeh.</p>
+              <div class="event-meta">
+                <span class="meta-item"><i class="meta-icon">🗓️</i> Friday, 12th December 2026</span>
+                <span class="meta-item"><i class="meta-icon">⏰</i> 04:30 PM</span>
+                <span class="meta-item"><i class="meta-icon">📍</i> Royal Emerald Courtyard, Mumbai</span>
+              </div>
+              <a href="https://maps.google.com/?q=Mumbai" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
+            </div>
+          </div>
+
+          <!-- 3. Mama Mosala & Kanthi -->
+          <div class="timeline-card">
+            <div class="event-marker">
+              <span class="marker-number">03</span>
+            </div>
+            <div class="event-details">
+              <div class="event-badge">Family Tradition</div>
+              <h4 class="event-title">મામા મોસાળું અને કંઠી (Mama Mosala &amp; Kanthi)</h4>
+              <p class="event-meaning">Ceremonial presentation of festive bridal jewelry, gifts, and honors from maternal uncles.</p>
+              <div class="event-meta">
+                <span class="meta-item"><i class="meta-icon">🗓️</i> Saturday, 13th December 2026</span>
+                <span class="meta-item"><i class="meta-icon">⏰</i> 06:30 PM</span>
+                <span class="meta-item"><i class="meta-icon">📍</i> Lavender Garden Terrace, Mumbai</span>
+              </div>
+              <a href="https://maps.google.com/?q=Mumbai" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
+            </div>
+          </div>
+
+          <!-- 4. Darees & Majlis -->
+          <div class="timeline-card">
+            <div class="event-marker">
+              <span class="marker-number">04</span>
+            </div>
+            <div class="event-details">
+              <div class="event-badge">Spiritual Gathering</div>
+              <h4 class="event-title">دريْس ومجلس (Darees &amp; Majlis)</h4>
+              <p class="event-meaning">Recitation of the Holy Quran, zikr, praises, and seeking barakaat prior to the Nikah.</p>
+              <div class="event-meta">
+                <span class="meta-item"><i class="meta-icon">🗓️</i> Sunday, 14th December 2026</span>
+                <span class="meta-item"><i class="meta-icon">⏰</i> 11:00 AM</span>
+                <span class="meta-item"><i class="meta-icon">📍</i> Al-Masjid al-Saifee Markaz, Mumbai</span>
+              </div>
+              <a href="https://maps.google.com/?q=Saifee+Masjid+Mumbai" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
+            </div>
+          </div>
+
+          <!-- 5. Nikah Ceremony & Procession -->
+          <div class="timeline-card featured-event">
+            <div class="event-marker">
+              <span class="marker-number highlight">05</span>
+            </div>
+            <div class="event-details">
+              <div class="event-badge gold-badge">عقد النكاح المبارك</div>
+              <h4 class="event-title">عقد النكاح (Aqd al-Nikah &amp; Zafaf)</h4>
+              <p class="event-meaning">Solemnization of marriage under the pious Raza Mubarak of Syedna Mufaddal Saifuddin (TUS), followed by the grand wedding procession.</p>
+              <div class="event-meta">
+                <span class="meta-item"><i class="meta-icon">🗓️</i> Sunday, 14th December 2026</span>
+                <span class="meta-item"><i class="meta-icon">⏰</i> 01:30 PM Sharp</span>
+                <span class="meta-item"><i class="meta-icon">📍</i> Grand Saifee Darbar Hall, Mumbai</span>
+              </div>
+              <a href="https://maps.google.com/?q=Mumbai" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
+            </div>
+          </div>
+
+          <!-- 6. Khushi nu Jaman -->
+          <div class="timeline-card">
+            <div class="event-marker">
+              <span class="marker-number">06</span>
+            </div>
+            <div class="event-details">
+              <div class="event-badge">Traditional Bohra Feast</div>
+              <h4 class="event-title">ખુશીનું જમણ (Khushi nu Jaman)</h4>
+              <p class="event-meaning">Traditional communal feast served in the Thaal, beginning with Namak, Sodanna, Halwa, royal savories &amp; Biryani.</p>
+              <div class="event-meta">
+                <span class="meta-item"><i class="meta-icon">🗓️</i> Sunday, 14th December 2026</span>
+                <span class="meta-item"><i class="meta-icon">⏰</i> 07:30 PM onwards</span>
+                <span class="meta-item"><i class="meta-icon">📍</i> The Crystal Ballroom, Grand Hyatt, Mumbai</span>
+              </div>
+              <a href="https://maps.google.com/?q=Grand+Hyatt+Mumbai" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
+            </div>
+          </div>
+
+          <!-- 7. Reception Gala -->
+          <div class="timeline-card">
+            <div class="event-marker">
+              <span class="marker-number">07</span>
+            </div>
+            <div class="event-details">
+              <div class="event-badge">Evening Gala</div>
+              <h4 class="event-title">Walima &amp; Reception</h4>
+              <p class="event-meaning">An enchanting evening of congratulations, photos, and joy under starry chandeliers.</p>
+              <div class="event-meta">
+                <span class="meta-item"><i class="meta-icon">🗓️</i> Monday, 15th December 2026</span>
+                <span class="meta-item"><i class="meta-icon">⏰</i> 08:00 PM</span>
+                <span class="meta-item"><i class="meta-icon">📍</i> St. Regis Grand Astral Hall, Mumbai</span>
+              </div>
+              <a href="https://maps.google.com/?q=St+Regis+Mumbai" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Libaas al-Anwar / Dress Code Section -->
+      <section class="dresscode-section">
+        <div class="luxury-card-box dresscode-box">
+          <span class="section-eyebrow">Etiquette &amp; Attire</span>
+          <h3 class="card-title">Libaas al-Anwar (Dress Code)</h3>
+          <p class="dresscode-intro">We kindly encourage our honorable guests to grace the occasion in traditional Dawoodi Bohra attire:</p>
+
+          <div class="dresscode-grid">
+            <div class="attire-col">
+              <div class="attire-icon">👔</div>
+              <h4 class="attire-title">Gents</h4>
+              <p class="attire-spec">Traditional White Saya Kurta &amp; Golden embroidered Topi with festive Shawl.</p>
+            </div>
+            <div class="attire-divider"></div>
+            <div class="attire-col">
+              <div class="attire-icon">🌸</div>
+              <h4 class="attire-title">Ladies</h4>
+              <p class="attire-spec">Traditional Graceful Rida (Soft lavender, lilac, blush, and gold shades warmly welcomed).</p>
+            </div>
+          </div>
+
+          <div class="color-palette-swatches">
+            <span class="swatch-label">Theme Palette Inspiration:</span>
+            <div class="swatches-row">
+              <span class="swatch s1" title="Misty Lavender"></span>
+              <span class="swatch s2" title="Royal Lilac"></span>
+              <span class="swatch s3" title="Pure Ivory Pearl"></span>
+              <span class="swatch s4" title="Warm Gold Foil"></span>
+              <span class="swatch s5" title="Deep Plum"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Digital RSVP & Mubaraki Dua Guestbook -->
+      <section class="rsvp-section" id="rsvp-section">
+        <div class="luxury-card-box rsvp-box">
+          <span class="section-eyebrow">Respond &amp; Bless</span>
+          <h3 class="card-title">RSVP &amp; Mubaraki Dua</h3>
+          <p class="rsvp-subtext">Your presence and prayers will make our celebration complete. Please confirm your attendance below:</p>
+
+          <form id="rsvp-form" class="rsvp-form">
+            <div class="form-group">
+              <label for="guest-name">Full Name *</label>
+              <input type="text" id="guest-name" required placeholder="e.g. Mufaddal Bhai / Fatema Ben" />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group half">
+                <label for="guest-phone">Phone / WhatsApp *</label>
+                <input type="tel" id="guest-phone" required placeholder="+91 98765 43210" />
+              </div>
+              <div class="form-group half">
+                <label for="guest-count">Number of Guests</label>
+                <select id="guest-count">
+                  <option value="1">1 Person</option>
+                  <option value="2" selected>2 Persons</option>
+                  <option value="3">3 Persons</option>
+                  <option value="4">4 Persons</option>
+                  <option value="5+">Family (5+ Persons)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="attendance-choice">Will you be attending?</label>
+              <div class="radio-pill-group">
+                <label class="radio-pill">
+                  <input type="radio" name="attendance" value="Joyfully Attending" checked />
+                  <span>🎉 Joyfully Attending</span>
+                </label>
+                <label class="radio-pill">
+                  <input type="radio" name="attendance" value="Regretfully Cannot" />
+                  <span>🕊️ Sending Dua From Afar</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="guest-message">Mubaraki Wish / Dua for the Couple</label>
+              <textarea id="guest-message" rows="3" placeholder="Write your heartfelt congratulations, dua, or warm wishes here..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit-rsvp" id="submit-rsvp-btn">
+              <span class="btn-text">Send RSVP &amp; Mubaraki</span>
+              <span class="btn-sparkle">✨</span>
+            </button>
+          </form>
+
+          <div id="rsvp-feedback" class="rsvp-feedback hidden">
+            <div class="feedback-icon">💐</div>
+            <h4>Mubarak! Your RSVP has been received!</h4>
+            <p>Shukran for your warm prayers and response. We look forward to celebrating with you!</p>
+          </div>
+
+          <!-- Live Mubaraki & Wishes Wall -->
+          <div class="wishes-board">
+            <div class="wishes-title-bar">
+              <span class="wishes-crown">👑</span>
+              <h4>Warm Wishes &amp; Dua Board</h4>
+            </div>
+            <div class="wishes-list" id="wishes-list">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer / Traditional Salutations -->
+      <footer class="invite-footer">
+        <div class="footer-seal-emblem">
+          <img src="assets/seal.jpg" alt="Wax Seal Emblem" class="footer-mini-seal" />
+        </div>
+        <h4 class="footer-couple-name">Mustafa &amp; Tasneem</h4>
+        <p class="footer-salutation">عبيد سيدنا المنعام ط ع وامائه</p>
+        <p class="footer-year">2026 • With Dua &amp; Gratitude</p>
+        <div class="footer-back-to-top">
+          <button id="back-to-top-btn" class="back-to-top-link">↑ Back to Top</button>
+        </div>
+      </footer>
+
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
