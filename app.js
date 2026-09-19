@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCalendarAction();
   initRsvpAndGuestbook();
   initBackToTop();
+  initStoryScrollSpy();
 });
 
 /* ==========================================================================
@@ -48,7 +49,6 @@ function initFloatingParticles() {
       rotSpeed: (Math.random() - 0.5) * 2,
       opacity: Math.random() * 0.6 + 0.3,
       isGold: isGold,
-      // For lavender petals, shape factor
       tilt: Math.random() * 10 - 5,
       tiltSpeed: Math.random() * 0.05 + 0.01,
       color: isGold
@@ -74,13 +74,11 @@ function initFloatingParticles() {
       ctx.rotate((p.rotation * Math.PI) / 180);
 
       if (p.isGold) {
-        // Gold shimmer speck
         ctx.fillStyle = p.color + p.opacity + ')';
         ctx.beginPath();
         ctx.arc(0, 0, p.radius, 0, Math.PI * 2);
         ctx.fill();
       } else {
-        // Soft delicate lavender petal
         ctx.fillStyle = p.color + p.opacity + ')';
         ctx.beginPath();
         ctx.ellipse(0, 0, p.radius, p.radius * 0.55, (p.tilt * Math.PI) / 180, 0, Math.PI * 2);
@@ -89,7 +87,6 @@ function initFloatingParticles() {
 
       ctx.restore();
 
-      // Reset if off screen
       if (p.y > height + 20 || p.x < -20 || p.x > width + 20) {
         particles[i] = createParticle(false);
       }
@@ -102,7 +99,7 @@ function initFloatingParticles() {
 }
 
 /* ==========================================================================
-   2. 3D ENVELOPE OPENING MECHANICS
+   2. 3D ENVELOPE OPENING MECHANICS & SOFT LIGHT REVEAL
    ========================================================================== */
 function initEnvelopeExperience() {
   const waxSeal = document.getElementById('wax-seal');
@@ -112,10 +109,16 @@ function initEnvelopeExperience() {
   const bgAudio = document.getElementById('bg-audio');
   const musicToggle = document.getElementById('music-toggle');
   const lightPortal = document.getElementById('light-portal');
+  const storyNav = document.getElementById('story-nav');
 
   if (!waxSeal || !envelopeBox) return;
 
-  waxSeal.addEventListener('click', () => {
+  let hasTriggered = false;
+
+  const handleOpen = () => {
+    if (hasTriggered) return;
+    hasTriggered = true;
+
     // 1. Play background music
     if (bgAudio) {
       bgAudio.play().then(() => {
@@ -125,11 +128,11 @@ function initEnvelopeExperience() {
       });
     }
 
-    // 2. Activate radiant golden rays and intense glow on seal
+    // 2. Activate radiant golden rays and gentle glow on seal
     waxSeal.classList.add('glowing');
     createSealBurst(waxSeal);
 
-    // 3. Center seam cracks open with brilliant golden light beam
+    // 3. Center seam cracks open with soft warm champagne beam
     setTimeout(() => {
       envelopeBox.classList.add('light-active');
     }, 250);
@@ -139,18 +142,19 @@ function initEnvelopeExperience() {
       envelopeBox.classList.add('open');
     }, 550);
 
-    // 5. Expand golden light portal to flood the screen
+    // 5. Expand soft ethereal light portal
     setTimeout(() => {
       if (lightPortal) lightPortal.classList.add('active');
     }, 950);
 
-    // 6. Smoothly transition to the main invitation experience
+    // 6. Transition smoothly to the main invitation story
     setTimeout(() => {
       envelopeScreen.classList.add('hidden');
       inviteScreen.classList.remove('hidden');
-      window.scrollTo({ top: 0 });
+      if (storyNav) storyNav.classList.add('visible');
+      window.scrollTo({ top: 0, behavior: 'instant' });
 
-      // Fade out the golden light portal to reveal the card
+      // Fade out soft light portal to unveil Chapter I
       setTimeout(() => {
         if (lightPortal) {
           lightPortal.style.transition = 'opacity 1s ease';
@@ -160,8 +164,16 @@ function initEnvelopeExperience() {
           }, 1000);
         }
         triggerGoldConfetti();
-      }, 300);
-    }, 1600);
+      }, 250);
+    }, 1500);
+  };
+
+  waxSeal.addEventListener('click', handleOpen);
+  waxSeal.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleOpen();
+    }
   });
 }
 
@@ -598,3 +610,50 @@ function initBackToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
+
+/* ==========================================================================
+   9. STORYTELLER BOOK PARALLAX SCROLL SPY & CHAPTER NAVIGATION
+   ========================================================================== */
+function initStoryScrollSpy() {
+  const navDots = document.querySelectorAll('.story-nav-dot');
+  const chapters = document.querySelectorAll('.story-chapter');
+
+  if (navDots.length === 0 || chapters.length === 0) return;
+
+  // Handle dot clicks for smooth jumping
+  navDots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = dot.getAttribute('href');
+      const targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  // IntersectionObserver to highlight active chapter
+  const observerOptions = {
+    root: null,
+    rootMargin: '-20% 0px -50% 0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navDots.forEach(dot => {
+          if (dot.getAttribute('href') === `#${id}`) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      }
+    });
+  }, observerOptions);
+
+  chapters.forEach(chapter => observer.observe(chapter));
+}
+
