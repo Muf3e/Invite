@@ -5,7 +5,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initFloatingParticles();
-  initArchMotionCanvas();
   initEnvelopeExperience();
   initAudioPlayer();
   initScratchCard();
@@ -15,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initBackToTop();
   initStoryScrollSpy();
   initParallaxDepth();
-  initArchScrollPrompt();
 });
 
 /* ==========================================================================
@@ -272,6 +270,64 @@ function initFloatingParticles() {
 /* ==========================================================================
    2. 3D ENVELOPE OPENING MECHANICS & SOFT LIGHT REVEAL
    ========================================================================== */
+/* Soft Special Sound Effect on Wax Seal Tap (Web Audio API synthesis) */
+function playWaxSealSound() {
+  try {
+    const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtxClass) return;
+    const audioCtx = new AudioCtxClass();
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+    const t = audioCtx.currentTime;
+
+    // 1. Soft Wax Break / Parchment Rustle (Gentle filtered noise burst)
+    const bufferSize = audioCtx.sampleRate * 0.09;
+    const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+    const output = noiseBuffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      output[i] = (Math.random() * 2 - 1) * Math.exp(-i / (audioCtx.sampleRate * 0.016));
+    }
+    const whiteNoise = audioCtx.createBufferSource();
+    whiteNoise.buffer = noiseBuffer;
+
+    const filter = audioCtx.createBiquadFilter();
+    filter.type = 'bandpass';
+    filter.frequency.setValueAtTime(1150, t);
+    filter.Q.setValueAtTime(2.8, t);
+
+    const noiseGain = audioCtx.createGain();
+    noiseGain.gain.setValueAtTime(0.25, t);
+    noiseGain.gain.exponentialRampToValueAtTime(0.001, t + 0.08);
+
+    whiteNoise.connect(filter);
+    filter.connect(noiseGain);
+    noiseGain.connect(audioCtx.destination);
+    whiteNoise.start(t);
+
+    // 2. Soft Celestial Golden Chime (Warm royal harmonics: C6, E6, G6, B6, D7)
+    const chimeFreqs = [1046.50, 1318.51, 1567.98, 1975.53, 2349.32];
+    chimeFreqs.forEach((freq, idx) => {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, t + idx * 0.032);
+
+      const noteStart = t + idx * 0.032;
+      gain.gain.setValueAtTime(0.0001, noteStart);
+      gain.gain.linearRampToValueAtTime(0.075 / (idx * 0.4 + 1), noteStart + 0.018);
+      gain.gain.exponentialRampToValueAtTime(0.0001, noteStart + 1.35);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(noteStart);
+      osc.stop(noteStart + 1.4);
+    });
+  } catch (err) {
+    console.log('Wax seal audio effect:', err);
+  }
+}
+
 function initEnvelopeExperience() {
   const waxSeal = document.getElementById('wax-seal');
   const envelopeBox = document.getElementById('envelope-box');
@@ -290,8 +346,6 @@ function initEnvelopeExperience() {
     envelopeScreen.classList.add('hidden');
     inviteScreen.classList.remove('hidden');
     if (storyNav) storyNav.classList.add('visible');
-    const walkVideo = document.getElementById('couple-walk-video');
-    if (walkVideo) walkVideo.play().catch(() => {});
   }
 
   let hasTriggered = false;
@@ -300,7 +354,10 @@ function initEnvelopeExperience() {
     if (hasTriggered) return;
     hasTriggered = true;
 
-    // 1. Play background music
+    // 1. Play Soft Special Wax Seal Unseal Audio Sound Effect
+    playWaxSealSound();
+
+    // 2. Play ambient background music smoothly
     if (bgAudio) {
       bgAudio.play().then(() => {
         if (musicToggle) musicToggle.classList.add('playing');
@@ -309,40 +366,31 @@ function initEnvelopeExperience() {
       });
     }
 
-    // 2. Activate radiant golden rays and gentle glow on seal
+    // 3. Activate radiant golden rays and gentle glow on seal
     waxSeal.classList.add('glowing');
     createSealBurst(waxSeal);
 
-    // 3. Center seam cracks open with soft warm champagne beam
+    // 4. Center seam cracks open with soft warm champagne beam
     setTimeout(() => {
       envelopeBox.classList.add('light-active');
     }, 250);
 
-    // 4. Open flaps in 3D perspective
+    // 5. Open flaps in 3D perspective
     setTimeout(() => {
       envelopeBox.classList.add('open');
     }, 550);
 
-    // 5. Expand soft ethereal light portal
+    // 6. Expand soft ethereal light portal
     setTimeout(() => {
       if (lightPortal) lightPortal.classList.add('active');
     }, 950);
 
-    // 6. Transition smoothly to the main invitation story
+    // 7. Transition smoothly to the main invitation story
     setTimeout(() => {
       envelopeScreen.classList.add('hidden');
       inviteScreen.classList.remove('hidden');
       if (storyNav) storyNav.classList.add('visible');
       window.scrollTo({ top: 0, behavior: 'instant' });
-
-      // Autoplay couple walking video seamlessly
-      const walkVideo = document.getElementById('couple-walk-video');
-      if (walkVideo) {
-        walkVideo.play().catch(err => console.log('Video autoplay:', err));
-      }
-
-      // Re-trigger motion canvas resize
-      window.dispatchEvent(new Event('resize'));
 
       // Fade out soft light portal to unveil Chapter I
       setTimeout(() => {
@@ -864,249 +912,73 @@ function initStoryScrollSpy() {
 }
 
 /* ==========================================================================
-   10. LIVING MOTION GRAPHICS CANVAS INSIDE HERO ARCHWAY
-   ========================================================================== */
-function initArchMotionCanvas() {
-  const canvas = document.getElementById('arch-motion-canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const parent = canvas.parentElement;
-
-  let width = (canvas.width = parent.clientWidth || 380);
-  let height = (canvas.height = parent.clientHeight || 480);
-
-  const handleResize = () => {
-    if (!parent) return;
-    width = canvas.width = parent.clientWidth || 380;
-    height = canvas.height = parent.clientHeight || 480;
-  };
-
-  window.addEventListener('resize', handleResize);
-
-  // Sparkles (rising gold dust) & Petals (swirling down)
-  const sparkles = [];
-  const sparkleCount = 38;
-  for (let i = 0; i < sparkleCount; i++) {
-    sparkles.push({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      r: Math.random() * 2.2 + 0.8,
-      speedY: -(Math.random() * 0.9 + 0.3),
-      speedX: (Math.random() - 0.5) * 0.5,
-      opacity: Math.random() * 0.7 + 0.3,
-      twinkleSpeed: Math.random() * 0.04 + 0.015,
-      phase: Math.random() * Math.PI * 2
-    });
-  }
-
-  const petals = [];
-  const petalCount = 18;
-  for (let i = 0; i < petalCount; i++) {
-    petals.push({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      rx: Math.random() * 5 + 3,
-      ry: Math.random() * 3 + 2,
-      speedY: Math.random() * 0.8 + 0.4,
-      speedX: (Math.random() - 0.5) * 0.7,
-      rotation: Math.random() * 360,
-      rotSpeed: (Math.random() - 0.5) * 1.5,
-      opacity: Math.random() * 0.6 + 0.3,
-      color: Math.random() > 0.5 ? 'rgba(230, 190, 215,' : 'rgba(200, 175, 235,'
-    });
-  }
-
-  // Soft bokeh spheres
-  const bokehs = [];
-  for (let i = 0; i < 8; i++) {
-    bokehs.push({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      r: Math.random() * 25 + 15,
-      pulse: Math.random() * Math.PI * 2,
-      pulseSpeed: Math.random() * 0.02 + 0.01
-    });
-  }
-
-  function renderArchMotion() {
-    ctx.clearRect(0, 0, width, height);
-
-    // 1. Soft golden bokeh in background
-    for (let i = 0; i < bokehs.length; i++) {
-      const b = bokehs[i];
-      b.pulse += b.pulseSpeed;
-      const alpha = 0.08 + 0.06 * Math.sin(b.pulse);
-      ctx.fillStyle = `rgba(255, 235, 150, ${alpha})`;
-      ctx.beginPath();
-      ctx.arc(b.x, b.y, b.r + Math.sin(b.pulse) * 4, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    // 2. Rising Golden Sparkles
-    for (let i = 0; i < sparkles.length; i++) {
-      const s = sparkles[i];
-      s.y += s.speedY;
-      s.x += s.speedX + Math.sin(s.phase) * 0.3;
-      s.phase += s.twinkleSpeed;
-
-      const currentAlpha = Math.max(0.1, s.opacity * (0.6 + 0.4 * Math.sin(s.phase)));
-
-      ctx.fillStyle = `rgba(255, 245, 180, ${currentAlpha})`;
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Tiny white star center
-      if (s.r > 1.8) {
-        ctx.fillStyle = `rgba(255, 255, 255, ${currentAlpha * 0.9})`;
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r * 0.5, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      if (s.y < -10) {
-        s.y = height + 10;
-        s.x = Math.random() * width;
-      }
-    }
-
-    // 3. Falling Flower Petals
-    for (let i = 0; i < petals.length; i++) {
-      const p = petals[i];
-      p.y += p.speedY;
-      p.x += p.speedX + Math.sin(p.rotation * 0.02) * 0.4;
-      p.rotation += p.rotSpeed;
-
-      ctx.save();
-      ctx.translate(p.x, p.y);
-      ctx.rotate((p.rotation * Math.PI) / 180);
-      ctx.fillStyle = `${p.color} ${p.opacity})`;
-      ctx.beginPath();
-      ctx.ellipse(0, 0, p.rx, p.ry, 0, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
-
-      if (p.y > height + 15 || p.x < -15 || p.x > width + 15) {
-        p.y = -15;
-        p.x = Math.random() * width;
-      }
-    }
-
-    requestAnimationFrame(renderArchMotion);
-  }
-
-  renderArchMotion();
-}
-
-/* ==========================================================================
-   11. INTERACTIVE 3D PARALLAX ON HERO ARCHWAY & WALKING COUPLE
+   10. SMOOTH PARALLAX DEPTH & TACTILE 3D INTERACTION ON CARDS
    ========================================================================== */
 function initParallaxDepth() {
-  const archCard = document.getElementById('archway-card');
-  const heroStage = document.getElementById('hero-archway-stage');
-  const walkVideo = document.getElementById('couple-walk-video');
-  const lanternLeft = document.getElementById('lantern-left');
-  const lanternRight = document.getElementById('lantern-right');
+  const cards = document.querySelectorAll('.parchment-card-luxury, .luxury-card-box, .timeline-card, .calligraphy-monogram-block');
+  const romanNumerals = document.querySelectorAll('.chapter-roman');
 
-  if (!archCard || !heroStage) return;
+  let ticking = false;
 
-  // Desktop Mouse Parallax
-  heroStage.addEventListener('mousemove', (e) => {
-    const rect = heroStage.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
+  const onScroll = () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const viewportHeight = window.innerHeight;
 
-    const rotX = -(y / (rect.height / 2)) * 5;
-    const rotY = (x / (rect.width / 2)) * 5;
+        cards.forEach((card) => {
+          const rect = card.getBoundingClientRect();
+          // Distance from viewport vertical center
+          const distCenter = (rect.top + rect.height / 2) - (viewportHeight / 2);
+          // Subtle, luxurious parallax translation (-14px to +14px)
+          const translateY = Math.max(-16, Math.min(16, -distCenter * 0.035));
+          card.style.transform = `translateY(${translateY.toFixed(1)}px)`;
+        });
 
-    archCard.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale(1.01)`;
+        romanNumerals.forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          const distCenter = (rect.top + rect.height / 2) - (viewportHeight / 2);
+          const translateY = Math.max(-20, Math.min(20, -distCenter * 0.05));
+          el.style.transform = `translateY(${translateY.toFixed(1)}px)`;
+        });
 
-    if (walkVideo) {
-      walkVideo.style.transform = `scale(1.05) translate(${(rotY * -1.8).toFixed(1)}px, ${(rotX * -1.8).toFixed(1)}px)`;
+        ticking = false;
+      });
+      ticking = true;
     }
+  };
 
-    if (lanternLeft) {
-      lanternLeft.style.transform = `translateX(${(rotY * 0.8).toFixed(1)}px)`;
-    }
-    if (lanternRight) {
-      lanternRight.style.transform = `translateX(${(rotY * 0.8).toFixed(1)}px)`;
-    }
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Interactive 3D Subtle Tilt on Luxury Cards for Mouse Hover
+  cards.forEach((card) => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+
+      const rotX = -(y / (rect.height / 2)) * 3;
+      const rotY = (x / (rect.width / 2)) * 3;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale(1.008)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+    });
   });
 
-  // Global Mouse Parallax on Living Motion Background
-  const bgAurora = document.getElementById('aurora-ambient-mesh');
-  const bgLattice = document.getElementById('sacred-geometry-lattice');
-  const bgLight = document.getElementById('volumetric-light-shafts');
-
-  window.addEventListener('mousemove', (e) => {
-    const normX = (e.clientX / window.innerWidth - 0.5) * 2;
-    const normY = (e.clientY / window.innerHeight - 0.5) * 2;
-    if (bgAurora) bgAurora.style.transform = `translate(${(normX * 12).toFixed(1)}px, ${(normY * 10).toFixed(1)}px)`;
-    if (bgLattice) bgLattice.style.transform = `translate(${(normX * -22).toFixed(1)}px, ${(normY * -18).toFixed(1)}px)`;
-    if (bgLight) bgLight.style.transform = `translate(${(normX * 30).toFixed(1)}px, ${(normY * 24).toFixed(1)}px)`;
-  }, { passive: true });
-
-  heroStage.addEventListener('mouseleave', () => {
-    archCard.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
-    if (walkVideo) {
-      walkVideo.style.transform = 'scale(1) translate(0px, 0px)';
-    }
-    if (lanternLeft) lanternLeft.style.transform = 'none';
-    if (lanternRight) lanternRight.style.transform = 'none';
-  });
-
-  // Mobile Gyroscope Parallax
+  // Mobile Gyroscope Subtle Tilt
   if (window.DeviceOrientationEvent) {
     window.addEventListener('deviceorientation', (e) => {
       if (e.gamma !== null && e.beta !== null) {
-        const rotY = Math.max(-8, Math.min(8, e.gamma / 3));
-        const rotX = Math.max(-8, Math.min(8, (e.beta - 45) / 3));
-        archCard.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
-
-        if (walkVideo) {
-          walkVideo.style.transform = `scale(1.04) translate(${(rotY * -1.5).toFixed(1)}px, ${(rotX * -1.5).toFixed(1)}px)`;
-        }
-
-        if (bgLattice) bgLattice.style.transform = `translate(${(rotY * -3).toFixed(1)}px, ${(rotX * -3).toFixed(1)}px)`;
-        if (bgAurora) bgAurora.style.transform = `translate(${(rotY * 2).toFixed(1)}px, ${(rotX * 2).toFixed(1)}px)`;
+        const rotY = Math.max(-5, Math.min(5, e.gamma / 6));
+        const rotX = Math.max(-5, Math.min(5, (e.beta - 45) / 6));
+        cards.forEach((card) => {
+          card.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(1)}deg) rotateY(${rotY.toFixed(1)}deg)`;
+        });
       }
     }, { passive: true });
   }
-
-  // Scroll Parallax on Video and Living Background
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    if (scrollY < 800 && walkVideo) {
-      walkVideo.style.transform = `translateY(${scrollY * 0.15}px)`;
-    }
-    if (bgLattice) {
-      bgLattice.style.transform = `translateY(${(scrollY * 0.08).toFixed(1)}px)`;
-    }
-    if (bgAurora) {
-      bgAurora.style.transform = `translateY(${(scrollY * 0.035).toFixed(1)}px)`;
-    }
-  }, { passive: true });
-}
-
-/* ==========================================================================
-   12. ARCH SCROLL PROMPT NAVIGATION
-   ========================================================================== */
-function initArchScrollPrompt() {
-  const prompt = document.getElementById('arch-scroll-prompt');
-  const target = document.getElementById('chapter-invitation');
-  if (!prompt || !target) return;
-
-  const doScroll = () => {
-    target.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  prompt.addEventListener('click', doScroll);
-  prompt.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      doScroll();
-    }
-  });
 }
 
 

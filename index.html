@@ -30,14 +30,7 @@
     <span class="music-label">Music</span>
   </button>
 
-  <!-- Living Motion Graphic & Parallax Dynamic Background -->
-  <div class="living-motion-background" id="living-motion-bg" aria-hidden="true">
-    <div class="aurora-ambient-mesh" id="aurora-ambient-mesh"></div>
-    <div class="sacred-geometry-lattice" id="sacred-geometry-lattice"></div>
-    <div class="volumetric-light-shafts" id="volumetric-light-shafts"></div>
-  </div>
-
-  <!-- Canvas Background for Floating Lavender Petals, Bokeh Orbs & Golden Stardust -->
+  <!-- Steady Ambient Canvas for Floating Lavender Petals, Bokeh Orbs & Golden Stardust -->
   <canvas id="petal-canvas"></canvas>
 
   <!-- Side Storyteller Chapter Navigation (Parallax Book) -->
@@ -112,22 +105,6 @@
         </svg>
         <div class="soft-center-beam" id="center-light-beam"></div>
 
-        <!-- Inner Card Preview revealed as flaps fold open (matching reference video) -->
-        <div class="envelope-inner-card" id="envelope-inner-card" aria-hidden="true">
-          <div class="inner-card-embossed-frame">
-            <div class="inner-card-arch-window">
-              <img src="assets/couple_walking.jpg" alt="Mustafa &amp; Tasneem Walking" class="inner-card-couple-img" />
-              <div class="inner-card-sunbeam-glow"></div>
-            </div>
-            <div class="inner-card-header-preview">
-              <span class="inner-card-welcome">Welcome to the</span>
-              <h3 class="inner-card-ceremony">Nikkah Ceremony</h3>
-              <span class="inner-card-of">of</span>
-              <h2 class="inner-card-names">Mustafa <span>&amp;</span> Tasneem</h2>
-            </div>
-          </div>
-        </div>
-
         <!-- Envelope Flap Layers: 4 Authentic Triangular Flaps Meeting at Center -->
         <div class="envelope-panel panel-bottom" id="panel-bottom">
           <div class="flap-embossed-flourish bouquet-bottom"></div>
@@ -188,134 +165,15 @@
           <p class="bismillah-trans">In the name of Allah, the Most Beneficent, the Most Merciful</p>
         </div>
 
-        <!-- Grand Mughal Archway Stage with Swaying Lanterns & Walking Couple Video -->
-        <div class="hero-archway-container" id="hero-archway-stage">
-          
-          <!-- Hanging Ornate Lanterns with Living Sway -->
-          <div class="hanging-lantern lantern-left" id="lantern-left">
-            <div class="lantern-chain"></div>
-            <div class="lantern-body">
-              <div class="lantern-flame-glow"></div>
-              <svg viewBox="0 0 60 105" class="lantern-svg" aria-hidden="true">
-                <defs>
-                  <linearGradient id="lanternGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#FFF4D0"/>
-                    <stop offset="30%" stop-color="#E5C368"/>
-                    <stop offset="70%" stop-color="#B88A28"/>
-                    <stop offset="100%" stop-color="#735212"/>
-                  </linearGradient>
-                  <radialGradient id="lanternGlassGlow" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stop-color="#FFFDF2" stop-opacity="1"/>
-                    <stop offset="40%" stop-color="#FFE082" stop-opacity="0.95"/>
-                    <stop offset="80%" stop-color="#FFB300" stop-opacity="0.8"/>
-                    <stop offset="100%" stop-color="#E65100" stop-opacity="0.5"/>
-                  </radialGradient>
-                </defs>
-                <!-- Suspension loop & finial -->
-                <circle cx="30" cy="6" r="4" fill="none" stroke="url(#lanternGoldGrad)" stroke-width="2"/>
-                <path d="M28 10 L32 10 L30 16 Z" fill="url(#lanternGoldGrad)"/>
-                <!-- Ornate Dome Cap -->
-                <path d="M16 28 C16 18, 24 16, 30 16 C36 16, 44 18, 44 28 Z" fill="url(#lanternGoldGrad)" stroke="#523908" stroke-width="0.8"/>
-                <rect x="14" y="28" width="32" height="4" rx="2" fill="url(#lanternGoldGrad)" stroke="#523908" stroke-width="0.8"/>
-                <!-- Glowing Amber Glass Cylinder -->
-                <path d="M17 32 L43 32 L40 76 L20 76 Z" fill="url(#lanternGlassGlow)"/>
-                <!-- Filigree Lattice Overlay -->
-                <path d="M17 32 L43 32 L40 76 L20 76 Z" fill="none" stroke="url(#lanternGoldGrad)" stroke-width="1.2"/>
-                <path d="M30 32 L30 76 M20 46 L40 46 M18 60 L42 60" stroke="#7A5612" stroke-width="0.9" opacity="0.75"/>
-                <path d="M22 32 L38 76 M38 32 L22 76" stroke="#946B18" stroke-width="0.8" opacity="0.6"/>
-                <!-- Lower Taper & Base -->
-                <path d="M20 76 L40 76 L34 90 L26 90 Z" fill="url(#lanternGoldGrad)" stroke="#523908" stroke-width="0.8"/>
-                <!-- Droplet Pendant -->
-                <circle cx="30" cy="95" r="3" fill="url(#lanternGoldGrad)" stroke="#523908" stroke-width="0.8"/>
-                <path d="M30 98 L30 104" stroke="url(#lanternGoldGrad)" stroke-width="1.5"/>
-              </svg>
-            </div>
-          </div>
-
-          <div class="hanging-lantern lantern-right" id="lantern-right">
-            <div class="lantern-chain"></div>
-            <div class="lantern-body">
-              <div class="lantern-flame-glow"></div>
-              <svg viewBox="0 0 60 105" class="lantern-svg" aria-hidden="true">
-                <!-- Suspension loop & finial -->
-                <circle cx="30" cy="6" r="4" fill="none" stroke="url(#lanternGoldGrad)" stroke-width="2"/>
-                <path d="M28 10 L32 10 L30 16 Z" fill="url(#lanternGoldGrad)"/>
-                <!-- Ornate Dome Cap -->
-                <path d="M16 28 C16 18, 24 16, 30 16 C36 16, 44 18, 44 28 Z" fill="url(#lanternGoldGrad)" stroke="#523908" stroke-width="0.8"/>
-                <rect x="14" y="28" width="32" height="4" rx="2" fill="url(#lanternGoldGrad)" stroke="#523908" stroke-width="0.8"/>
-                <!-- Glowing Amber Glass Cylinder -->
-                <path d="M17 32 L43 32 L40 76 L20 76 Z" fill="url(#lanternGlassGlow)"/>
-                <!-- Filigree Lattice Overlay -->
-                <path d="M17 32 L43 32 L40 76 L20 76 Z" fill="none" stroke="url(#lanternGoldGrad)" stroke-width="1.2"/>
-                <path d="M30 32 L30 76 M20 46 L40 46 M18 60 L42 60" stroke="#7A5612" stroke-width="0.9" opacity="0.75"/>
-                <path d="M22 32 L38 76 M38 32 L22 76" stroke="#946B18" stroke-width="0.8" opacity="0.6"/>
-                <!-- Lower Taper & Base -->
-                <path d="M20 76 L40 76 L34 90 L26 90 Z" fill="url(#lanternGoldGrad)" stroke="#523908" stroke-width="0.8"/>
-                <!-- Droplet Pendant -->
-                <circle cx="30" cy="95" r="3" fill="url(#lanternGoldGrad)" stroke="#523908" stroke-width="0.8"/>
-                <path d="M30 98 L30 104" stroke="url(#lanternGoldGrad)" stroke-width="1.5"/>
-              </svg>
-            </div>
-          </div>
-
-          <!-- Archway Scenic Window -->
-          <div class="archway-frame-card" id="archway-card">
-            
-            <!-- Arch Floral Corner Bouquets (Matching Reference Video timeline_10) -->
-            <div class="arch-floral-corner arch-corner-left" aria-hidden="true">
-              <img src="assets/floral_corner.png" alt="" class="arch-corner-img" />
-            </div>
-            <div class="arch-floral-corner arch-corner-right" aria-hidden="true">
-              <img src="assets/floral_corner.png" alt="" class="arch-corner-img" />
-            </div>
-
-            <!-- Arch Header Text (Exact styling from reference video) -->
-            <div class="arch-invitation-heading">
-              <span class="arch-script-welcome">Welcome to the</span>
-              <h2 class="arch-ceremony-title">Nikkah Ceremony</h2>
-              <span class="arch-of-script">of</span>
-              <h1 class="arch-couple-title">Mustafa <span>&amp;</span> Tasneem</h1>
-            </div>
-
-            <!-- The Scenic Walking Couple Stage -->
-            <div class="arch-scenic-window" id="arch-scenic-window">
-              
-              <!-- Video / Living Motion Graphic Layer -->
-              <div class="walking-video-wrap" id="walking-video-wrap">
-                <video class="couple-walk-video" id="couple-walk-video" autoplay loop muted playsinline poster="assets/couple_walking.jpg">
-                  <source src="assets/couple_walking.mp4" type="video/mp4" />
-                </video>
-                <img src="assets/couple_walking.jpg" alt="Mustafa &amp; Tasneem Walking" class="couple-walk-fallback" />
-              </div>
-
-              <!-- Radiant Golden Sunbeam Glow -->
-              <div class="arch-sunbeam-glow"></div>
-
-              <!-- Living Motion Graphic Canvas (Rising Gold Dust, Floating Petals, Bokeh) -->
-              <canvas id="arch-motion-canvas" class="arch-motion-canvas"></canvas>
-
-              <!-- Archway Ornate Floral Crest & Border Overlay -->
-              <div class="arch-floral-overlay"></div>
-            </div>
-
-            <!-- Scroll Down Indicator (Exact like reference video) -->
-            <div class="arch-scroll-prompt" id="arch-scroll-prompt" role="button" tabindex="0" aria-label="Scroll to next chapter">
-              <span class="scroll-label">Scroll down</span>
-              <span class="scroll-chevron">⌵</span>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- Custom Masterpiece Arabic Calligraphy Logo & Formal Introduction -->
+        <!-- Chapter I Ornate Monogram Presentation (Full-bleed royal glassmorphism, no white patch) -->
         <div class="calligraphy-monogram-block">
           <div class="logo-aura-glow"></div>
           <div class="logo-inner-badge" style="background: transparent; border: none; box-shadow: none;">
-            <img src="assets/rosette_logo.png" alt="Mustafa &amp; Tasneem Arabic Calligraphy Rosette Medallion" class="couple-arabic-logo" style="object-fit: contain; filter: drop-shadow(0 4px 12px rgba(212, 175, 55, 0.5));" />
+            <img src="assets/rosette_logo.png" alt="Mustafa &amp; Tasneem Arabic Calligraphy Rosette Medallion" class="couple-arabic-logo" style="object-fit: contain; filter: drop-shadow(0 6px 22px rgba(212, 175, 55, 0.65));" />
           </div>
           <div class="couple-names-header">
             <span class="cursive-prefix">Together with their families</span>
-            <h2 class="couple-primary-names">Mustafa &amp; Tasneem</h2>
+            <h1 class="couple-primary-names">Mustafa &amp; Tasneem</h1>
             <p class="couple-tagline">Celebrate with us as we embark on this sacred journey of companionship and barakat.</p>
           </div>
         </div>

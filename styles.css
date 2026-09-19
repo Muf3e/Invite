@@ -57,11 +57,13 @@ html {
 }
 
 body {
-  background-color: #150D21;
+  background-color: #140c20;
   background-image: 
-    radial-gradient(circle at 15% 20%, rgba(178, 159, 224, 0.15) 0%, transparent 45%),
-    radial-gradient(circle at 85% 80%, rgba(212, 175, 55, 0.12) 0%, transparent 45%),
-    radial-gradient(circle at 50% 50%, #1D112E 0%, #0F0819 100%);
+    radial-gradient(circle at 18% 20%, rgba(162, 132, 219, 0.14) 0%, transparent 45%),
+    radial-gradient(circle at 82% 80%, rgba(212, 175, 55, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, #1a0e2a 0%, #0d0615 100%);
+  background-attachment: fixed;
+  background-size: cover;
   color: var(--text-dark);
   font-family: var(--font-serif);
   min-height: 100vh;
@@ -71,84 +73,7 @@ body {
   justify-content: center;
 }
 
-/* Dynamic Living Motion Graphic & Parallax Background */
-.living-motion-background {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.aurora-ambient-mesh {
-  position: absolute;
-  inset: -25%;
-  width: 150%;
-  height: 150%;
-  background: 
-    radial-gradient(ellipse at 20% 20%, rgba(142, 68, 173, 0.25) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 25%, rgba(212, 175, 55, 0.20) 0%, transparent 45%),
-    radial-gradient(ellipse at 35% 85%, rgba(106, 44, 160, 0.24) 0%, transparent 55%),
-    radial-gradient(ellipse at 85% 85%, rgba(245, 222, 152, 0.16) 0%, transparent 45%),
-    radial-gradient(circle at 50% 50%, #170E28 0%, #0A0512 100%);
-  animation: auroraMeshBreathe 22s infinite ease-in-out alternate;
-  filter: blur(50px);
-  will-change: transform;
-}
-
-@keyframes auroraMeshBreathe {
-  0% { transform: scale(1) translate(0, 0) rotate(0deg); }
-  50% { transform: scale(1.08) translate(-2%, 3%) rotate(2deg); }
-  100% { transform: scale(1.04) translate(3%, -2%) rotate(-1.5deg); }
-}
-
-.sacred-geometry-lattice {
-  position: absolute;
-  inset: -15%;
-  width: 130%;
-  height: 130%;
-  opacity: 0.085;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23D4AF37' stroke-width='0.8'%3E%3Cpolygon points='40,0 80,40 40,80 0,40'/%3E%3Crect x='11.72' y='11.72' width='56.57' height='56.57' transform='rotate(45 40 40)'/%3E%3Ccircle cx='40' cy='40' r='16' stroke-width='0.6'/%3E%3Ccircle cx='40' cy='40' r='28' stroke-width='0.6' stroke-dasharray='2,3'/%3E%3Cpath d='M0,0 L80,80 M80,0 L0,80' stroke-width='0.4' stroke-opacity='0.5'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: 80px 80px;
-  animation: latticeMotionDrift 70s linear infinite;
-  will-change: transform;
-}
-
-@keyframes latticeMotionDrift {
-  0% { transform: translateY(0px) rotate(0deg); }
-  100% { transform: translateY(80px) rotate(1deg); }
-}
-
-.volumetric-light-shafts {
-  position: absolute;
-  inset: -30%;
-  width: 160%;
-  height: 160%;
-  background: repeating-linear-gradient(
-    -35deg,
-    transparent 0%,
-    transparent 14%,
-    rgba(255, 245, 210, 0.03) 18%,
-    transparent 24%,
-    transparent 38%,
-    rgba(212, 175, 55, 0.035) 43%,
-    transparent 49%
-  );
-  mix-blend-mode: screen;
-  animation: lightShaftSway 28s infinite ease-in-out alternate;
-  pointer-events: none;
-  filter: blur(12px);
-}
-
-@keyframes lightShaftSway {
-  0% { transform: translateX(-4%) translateY(0); opacity: 0.5; }
-  50% { transform: translateX(3%) translateY(-2%); opacity: 0.95; }
-  100% { transform: translateX(-1%) translateY(2%); opacity: 0.6; }
-}
-
-/* Petal & Soft Bokeh Canvas */
+/* Steady Ambient Petal & Soft Bokeh Canvas */
 #petal-canvas {
   position: fixed;
   top: 0;
@@ -325,12 +250,13 @@ body {
 
 @media (min-width: 768px) {
   .fullscreen-envelope-container {
-    position: relative;
-    width: min(90vw, 480px);
-    height: min(92vh, 800px);
-    border-radius: 28px;
-    box-shadow: 0 25px 80px rgba(10, 5, 20, 0.75), 0 0 50px rgba(212, 175, 55, 0.35);
-    border: 2px solid rgba(212, 175, 55, 0.55);
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
   }
 }
 
@@ -471,113 +397,6 @@ body {
   background-position: center left;
   background-size: contain;
   filter: drop-shadow(2px 0 8px rgba(70, 50, 30, 0.14));
-}
-
-/* Inner Card inside Envelope Pocket (Matches Reference Video) */
-.envelope-inner-card {
-  position: absolute;
-  width: min(88vw, 420px);
-  height: min(78vh, 640px);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.92);
-  z-index: 1;
-  background: linear-gradient(180deg, #FCFAF6 0%, #F5EFE4 100%);
-  border-radius: 20px;
-  box-shadow: 0 12px 45px rgba(25, 10, 35, 0.35), 0 0 0 1.5px rgba(212, 175, 55, 0.45);
-  overflow: hidden;
-  opacity: 0.95;
-  transition: transform 1.25s cubic-bezier(0.25, 1, 0.3, 1), opacity 0.9s ease, box-shadow 1.2s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 24px 18px;
-  pointer-events: none;
-}
-
-.fullscreen-envelope-container.open .envelope-inner-card {
-  transform: translate(-50%, -50%) scale(1.02);
-  opacity: 1;
-  box-shadow: 0 25px 70px rgba(25, 10, 35, 0.6), 0 0 45px rgba(212, 175, 55, 0.7);
-}
-
-.inner-card-embossed-frame {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid rgba(212, 175, 55, 0.35);
-  border-radius: 14px;
-  padding: 18px 12px;
-  background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.9) 0%, rgba(247, 241, 230, 0.6) 100%);
-  position: relative;
-}
-
-.inner-card-header-preview {
-  text-align: center;
-  margin-top: 10px;
-  z-index: 2;
-}
-
-.inner-card-welcome {
-  font-family: var(--font-cursive);
-  font-size: 1.15rem;
-  color: var(--gold-dark);
-  display: block;
-}
-
-.inner-card-ceremony {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  color: var(--lavender-royal);
-  margin: 2px 0;
-  letter-spacing: 1px;
-}
-
-.inner-card-of {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  display: block;
-}
-
-.inner-card-names {
-  font-family: 'Great Vibes', var(--font-script), cursive;
-  font-size: 1.85rem;
-  color: var(--lavender-royal);
-  margin-top: 2px;
-  line-height: 1.2;
-}
-
-.inner-card-names span {
-  color: var(--gold-primary);
-  font-size: 1.7rem;
-}
-
-.inner-card-arch-window {
-  width: 90%;
-  height: 60%;
-  border-radius: 120px 120px 10px 10px;
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0 8px 24px rgba(35, 20, 50, 0.25), 0 0 0 2px rgba(212, 175, 55, 0.5);
-}
-
-.inner-card-couple-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 30%;
-}
-
-.inner-card-sunbeam-glow {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 50% 25%, rgba(255, 240, 180, 0.35) 0%, transparent 70%);
-  pointer-events: none;
 }
 
 /* Flap Panels filling the full screen with authentic 3D unfolding & gold satin lining */
@@ -1104,257 +923,13 @@ body {
   filter: drop-shadow(0 4px 10px rgba(45, 20, 70, 0.35));
 }
 
-/* Archway Outer Frame Card */
-.archway-frame-card {
-  position: relative;
-  background: linear-gradient(180deg, #FFFFFF 0%, #FAF8FD 100%);
-  border-radius: 200px 200px 20px 20px;
-  border: 1.5px solid rgba(212, 175, 55, 0.45);
-  box-shadow: 
-    0 22px 55px rgba(25, 10, 45, 0.35),
-    0 0 35px rgba(212, 175, 55, 0.22);
-  padding: 38px 18px 22px;
-  text-align: center;
-  overflow: hidden;
-  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-/* Arch Floral Corner Bouquets (Matching Reference Video timeline_10) */
-.arch-floral-corner {
-  position: absolute;
-  top: -4px;
-  width: 95px;
-  height: 95px;
-  pointer-events: none;
-  z-index: 5;
-}
-
-.arch-corner-left {
-  left: -4px;
-}
-
-.arch-corner-right {
-  right: -4px;
-  transform: scaleX(-1);
-}
-
-.arch-corner-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-  filter: drop-shadow(0 4px 10px rgba(45, 20, 60, 0.22));
-}
-
-/* Header Text (Exact styling from reference video) */
-.arch-invitation-heading {
-  margin-bottom: 12px;
-  padding: 18px 36px 0;
-  position: relative;
-  z-index: 2;
-}
-
-.arch-script-welcome {
-  font-family: var(--font-script);
-  font-size: 1.85rem;
-  color: var(--gold-dark);
-  display: block;
-  line-height: 1.2;
-}
-
-.arch-ceremony-title {
-  font-family: var(--font-display);
-  font-size: 1.45rem;
-  letter-spacing: 1.4px;
-  color: var(--lavender-royal);
-  margin: 3px 0 2px;
-  text-transform: uppercase;
-}
-
-.arch-of-script {
-  font-family: var(--font-script);
-  font-size: 1.4rem;
-  color: var(--gold-dark);
-  display: block;
-  margin: 1px 0;
-}
-
-.arch-couple-title {
-  font-family: 'Great Vibes', var(--font-script), cursive;
-  font-size: 2.35rem;
-  color: var(--lavender-royal);
-  margin: 4px 0 10px;
-  letter-spacing: 0.5px;
-  line-height: 1.2;
-}
-
-.arch-couple-title span {
-  font-family: 'Great Vibes', var(--font-script), cursive;
-  font-size: 2.1rem;
-  color: var(--gold-primary);
-}
-
-/* Archway Scenic Window */
-.arch-scenic-window {
-  position: relative;
-  width: 100%;
-  height: 480px;
-  border-radius: 170px 170px 14px 14px;
-  overflow: hidden;
-  border: 2px solid rgba(212, 175, 55, 0.45);
-  box-shadow: 
-    inset 0 0 35px rgba(45, 20, 70, 0.25),
-    0 10px 25px rgba(40, 20, 60, 0.15);
-  background: #FDF9F3;
-}
-
-@media (max-width: 480px) {
-  .arch-scenic-window {
-    height: 420px;
-    border-radius: 145px 145px 12px 12px;
-  }
-  .archway-frame-card {
-    border-radius: 170px 170px 16px 16px;
-    padding: 30px 12px 18px;
-  }
-  .hanging-lantern {
-    width: 30px;
-    top: -10px;
-  }
-  .hanging-lantern.lantern-left {
-    left: 2px;
-  }
-  .hanging-lantern.lantern-right {
-    right: 2px;
-  }
-  .arch-invitation-heading {
-    padding: 10px 28px 0;
-    margin-bottom: 10px;
-  }
-  .arch-script-welcome {
-    font-size: 1.6rem;
-  }
-  .arch-ceremony-title {
-    font-size: 1.25rem;
-    letter-spacing: 1px;
-    white-space: nowrap;
-  }
-  .arch-couple-title {
-    font-size: 2rem;
-  }
-}
-
-/* Video / Living Motion Graphic Wrap */
-.walking-video-wrap {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.couple-walk-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center bottom;
-  display: block;
-  will-change: transform;
-}
-
-.couple-walk-fallback {
-  display: none;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center bottom;
-}
-
-/* Radiant Golden Sunbeam Glow */
-.arch-sunbeam-glow {
-  position: absolute;
-  top: 25%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 235, 140, 0.6) 0%, rgba(255, 200, 80, 0.25) 45%, transparent 72%);
-  filter: blur(22px);
-  pointer-events: none;
-  mix-blend-mode: screen;
-  animation: sunbeamPulse 4s infinite ease-in-out;
-}
-
-@keyframes sunbeamPulse {
-  0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(0.95); }
-  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
-}
-
-/* Dedicated Canvas for Floating Gold Stardust & Petals inside Arch */
-.arch-motion-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 3;
-}
-
-/* Arch Top Floral Filigree Overlay */
-.arch-floral-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 90px;
-  pointer-events: none;
-  z-index: 4;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 90' fill='none'%3E%3Cpath d='M200 45 C150 15, 70 20, 0 45 L0 0 L400 0 L400 45 C330 20, 250 15, 200 45 Z' fill='rgba(255,255,255,0.3)'/%3E%3Cpath d='M200 45 Q150 12 0 45 M200 45 Q250 12 400 45' stroke='%23D4AF37' stroke-width='1.5' fill='none' opacity='0.8'/%3E%3Ccircle cx='200' cy='32' r='6' fill='%23D4AF37' opacity='0.9'/%3E%3Ccircle cx='170' cy='28' r='3.5' fill='%23D4AF37' opacity='0.7'/%3E%3Ccircle cx='230' cy='28' r='3.5' fill='%23D4AF37' opacity='0.7'/%3E%3C/svg%3E");
-  background-size: 100% 100%;
-}
-
-/* Scroll Down Prompt Button (Exact styling from reference video) */
-.arch-scroll-prompt {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-  margin-top: 14px;
-  cursor: pointer;
-  color: var(--gold-dark);
-  text-decoration: none;
-  transition: transform 0.2s ease;
-}
-
-.arch-scroll-prompt:hover {
-  transform: translateY(2px);
-}
-
-.scroll-label {
-  font-family: var(--font-script);
-  font-size: 1.45rem;
-  color: var(--gold-dark);
-  letter-spacing: 0.5px;
-}
-
-.scroll-chevron {
-  font-size: 1.2rem;
-  line-height: 1;
-  color: var(--gold-primary);
-  animation: bounceChevron 1.8s infinite ease-in-out;
-}
-
-@keyframes bounceChevron {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(4px); }
-}
-
-/* Monogram Logo Showcase */
+/* Chapter I Monogram Presentation */
 .calligraphy-monogram-block {
   text-align: center;
   position: relative;
-  margin-top: 10px;
+  margin: 15px auto 40px;
+  max-width: 960px;
+  padding: 20px 14px;
 }
 
 .logo-aura-glow {
@@ -1375,23 +950,24 @@ body {
   height: 220px;
   margin: 0 auto 16px;
   border-radius: 50%;
-  overflow: hidden;
+  overflow: visible;
   position: relative;
-  border: 2px solid rgba(212, 175, 55, 0.5);
-  box-shadow: 0 10px 30px rgba(45, 20, 75, 0.18);
-  background: var(--ivory-white);
+  border: none;
+  box-shadow: none;
+  background: transparent;
 }
 
 .couple-arabic-logo {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 24px rgba(212, 175, 55, 0.65));
 }
 
 .cursive-prefix {
   font-family: var(--font-script);
-  font-size: 1.55rem;
-  color: var(--lavender-deep);
+  font-size: 1.85rem;
+  color: var(--gold-light);
   display: block;
 }
 
@@ -1417,16 +993,14 @@ body {
 
 /* CHAPTER II: Traditional Bohra Parchment (Fullscreen Glassmorphism) */
 .parchment-card-luxury {
-  background: rgba(26, 14, 40, 0.78);
+  background: rgba(26, 14, 40, 0.85);
   border-radius: 28px;
   padding: 12px;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55), 0 0 35px rgba(212, 175, 55, 0.18);
   border: 1.5px solid rgba(212, 175, 55, 0.45);
   background-image: 
-    radial-gradient(circle at top center, rgba(212, 175, 55, 0.12) 0%, transparent 60%),
-    url('assets/arch_bg.jpg');
-  background-size: cover;
-  background-position: center;
+    radial-gradient(circle at top center, rgba(212, 175, 55, 0.15) 0%, transparent 65%),
+    radial-gradient(circle at bottom center, rgba(162, 132, 219, 0.1) 0%, transparent 65%);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   max-width: 960px;
