@@ -317,21 +317,33 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  perspective: 1200px;
+  perspective: 1400px;
   overflow: hidden;
-  background: radial-gradient(circle at 50% 45%, #EBE4F7 0%, #D8CEF0 50%, #BBA9E3 100%);
+  background: radial-gradient(circle at 50% 45%, #FAF7F2 0%, #EFE8DB 50%, #E2D7C5 100%);
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.8s ease;
 }
 
-/* Embossed damask luxury paper */
+@media (min-width: 768px) {
+  .fullscreen-envelope-container {
+    position: relative;
+    width: min(90vw, 480px);
+    height: min(92vh, 800px);
+    border-radius: 28px;
+    box-shadow: 0 25px 80px rgba(10, 5, 20, 0.75), 0 0 50px rgba(212, 175, 55, 0.35);
+    border: 2px solid rgba(212, 175, 55, 0.55);
+  }
+}
+
+/* Embossed luxury paper */
 .envelope-full-bg {
   position: absolute;
   inset: 0;
-  background-color: #E8E0F7;
+  background-color: #FAF8F2;
   background-image: 
-    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.5) 0%, transparent 60%),
-    radial-gradient(#CBB9E8 1.2px, transparent 1.2px);
-  background-size: 100% 100%, 20px 20px;
-  opacity: 0.9;
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.6) 0%, transparent 60%),
+    radial-gradient(rgba(212, 175, 55, 0.15) 1px, transparent 1px);
+  background-size: 100% 100%, 18px 18px;
+  opacity: 0.95;
 }
 
 /* Authentic Envelope Seam Lines & Golden Burst Rays (Mathematically Exact Across All Screens) */
@@ -397,147 +409,68 @@ body {
   opacity: 1;
 }
 
-/* Flap Panels filling the full screen with staggered 3D unfolding */
-.envelope-panel {
-  position: absolute;
-  overflow: hidden;
-}
-
-.panel-top {
-  transition: transform 1.1s cubic-bezier(0.25, 1, 0.3, 1), opacity 0.85s ease;
-}
-
-.panel-left,
-.panel-right {
-  transition: transform 1.15s cubic-bezier(0.25, 1, 0.3, 1) 0.1s, opacity 0.85s ease 0.1s;
-}
-
-.panel-bottom {
-  transition: transform 1.15s cubic-bezier(0.25, 1, 0.3, 1) 0.16s, opacity 0.85s ease 0.16s;
-}
-
-/* Bottom Triangle Flap (pointing upward to center) */
-.panel-bottom {
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 50%;
-  clip-path: polygon(50% 0, 100% 100%, 0 100%);
-  background: linear-gradient(0deg, #D6C8F2 0%, #E8DCF9 100%);
-  border-top: 1.5px solid rgba(212, 175, 55, 0.45);
-  transform-origin: bottom center;
-  z-index: 2;
-  filter: drop-shadow(0 -8px 24px rgba(45, 20, 70, 0.2));
-}
-
-/* Left Triangle Flap (pointing rightward to center) */
-.panel-left {
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 50%;
-  clip-path: polygon(0 0, 100% 50%, 0 100%);
-  background: linear-gradient(135deg, #F3EEFB 0%, #E2D7F7 100%);
-  border-right: 1.5px solid rgba(212, 175, 55, 0.45);
-  box-shadow: 8px 0 28px rgba(45, 20, 70, 0.18);
-  transform-origin: left center;
-  z-index: 3;
-}
-
-/* Right Triangle Flap (pointing leftward to center) */
-.panel-right {
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 50%;
-  clip-path: polygon(100% 0, 0 50%, 100% 100%);
-  background: linear-gradient(225deg, #F3EEFB 0%, #E2D7F7 100%);
-  border-left: 1.5px solid rgba(212, 175, 55, 0.45);
-  box-shadow: -8px 0 28px rgba(45, 20, 70, 0.18);
-  transform-origin: right center;
-  z-index: 3;
-}
-
-/* Top Triangle Flap (pointing downward to center) */
-.panel-top {
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 50%;
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  background: linear-gradient(180deg, #FAF7FE 0%, #EBE3FA 100%);
-  border-bottom: 1.5px solid rgba(212, 175, 55, 0.5);
-  transform-origin: top center;
-  z-index: 4;
-  filter: drop-shadow(0 10px 25px rgba(40, 20, 60, 0.25));
-}
-
-/* Embossed Floral Flourishes on Envelope Flaps */
+/* Authentic Blind-Embossed 3D Paper Relief Flourishes on Envelope Flaps (Matching Reference Video) */
 .flap-embossed-flourish {
   position: absolute;
   pointer-events: none;
   background-repeat: no-repeat;
-  opacity: 0.9;
-  transition: filter 0.6s ease;
+  opacity: 0.96;
+  transition: filter 0.6s ease, transform 0.6s ease;
 }
 
 .fullscreen-envelope-container.light-active .flap-embossed-flourish {
-  filter: drop-shadow(0 0 10px rgba(255, 235, 140, 0.9)) brightness(1.3) !important;
+  filter: drop-shadow(0 0 12px rgba(255, 235, 140, 0.9)) brightness(1.2) !important;
 }
 
-/* Top Flap Floral Bouquet */
+/* Top Flap Embossed Floral Bouquet */
 .bouquet-top {
-  top: 24px;
+  top: 12px;
   left: 50%;
   transform: translateX(-50%);
-  width: 260px;
-  height: 140px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 140' fill='none'%3E%3Ccircle cx='130' cy='65' r='20' fill='rgba(255,255,255,0.92)' stroke='%23E8DCF8' stroke-width='1.5' filter='drop-shadow(0 2px 4px rgba(90,60,120,0.25))'/%3E%3Cpath d='M120 58 C124 50, 136 50, 140 58 C144 68, 116 68, 120 58 Z' fill='%23FAF6FE' stroke='%23D4AF37' stroke-width='1.3'/%3E%3Cpath d='M115 65 C115 56, 145 56, 145 65 C145 76, 115 76, 115 65 Z' fill='none' stroke='%23E2D4F5' stroke-width='1.5'/%3E%3Ccircle cx='130' cy='65' r='5' fill='%23D4AF37' opacity='0.9'/%3E%3Ccircle cx='96' cy='72' r='14' fill='rgba(255,255,255,0.85)' stroke='%23E8DCF8' stroke-width='1.2' filter='drop-shadow(0 2px 3px rgba(90,60,120,0.2))'/%3E%3Cpath d='M88 68 C92 62, 102 62, 104 68 C108 76, 84 76, 88 68 Z' fill='%23FAF6FE' stroke='%23D4AF37' stroke-width='1.1'/%3E%3Ccircle cx='164' cy='72' r='14' fill='rgba(255,255,255,0.85)' stroke='%23E8DCF8' stroke-width='1.2' filter='drop-shadow(0 2px 3px rgba(90,60,120,0.2))'/%3E%3Cpath d='M156 68 C160 62, 170 62, 172 68 C176 76, 152 76, 156 68 Z' fill='%23FAF6FE' stroke='%23D4AF37' stroke-width='1.1'/%3E%3Cpath d='M130 45 C125 25, 110 18, 95 24 C108 32, 118 36, 124 45 Z' fill='rgba(255,255,255,0.85)' stroke='%23D4AF37' stroke-width='1.2'/%3E%3Cpath d='M130 45 C135 25, 150 18, 165 24 C152 32, 142 36, 136 45 Z' fill='rgba(255,255,255,0.85)' stroke='%23D4AF37' stroke-width='1.2'/%3E%3Cpath d='M82 72 C62 65, 45 74, 35 88 C50 88, 65 82, 78 76 Z' fill='rgba(255,255,255,0.8)' stroke='%23D4AF37' stroke-width='1.1'/%3E%3Cpath d='M178 72 C198 65, 215 74, 225 88 C210 88, 195 82, 182 76 Z' fill='rgba(255,255,255,0.8)' stroke='%23D4AF37' stroke-width='1.1'/%3E%3Cpath d='M110 82 Q90 100 70 95 Q60 90 65 80 Q72 82 75 90' stroke='%23D4AF37' stroke-width='1.3' fill='none' opacity='0.85'/%3E%3Cpath d='M150 82 Q170 100 190 95 Q200 90 195 80 Q188 82 185 90' stroke='%23D4AF37' stroke-width='1.3' fill='none' opacity='0.85'/%3E%3Ccircle cx='65' cy='80' r='2.5' fill='%23D4AF37'/%3E%3Ccircle cx='195' cy='80' r='2.5' fill='%23D4AF37'/%3E%3C/svg%3E");
-  background-position: center;
+  width: min(82%, 360px);
+  height: 200px;
+  background-image: url('assets/embossed_bouquet.png');
+  background-position: top center;
   background-size: contain;
-  animation: foilShimmerSweep 6s infinite ease-in-out;
+  filter: drop-shadow(0 4px 10px rgba(70, 50, 30, 0.16));
 }
 
-/* Bottom Flap Floral Bouquet */
+/* Bottom Flap Embossed Floral Bouquet (Pointed Upwards) */
 .bouquet-bottom {
-  bottom: 24px;
+  bottom: 12px;
   left: 50%;
   transform: translateX(-50%) rotate(180deg);
-  width: 260px;
-  height: 140px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 140' fill='none'%3E%3Ccircle cx='130' cy='65' r='20' fill='rgba(255,255,255,0.92)' stroke='%23E8DCF8' stroke-width='1.5' filter='drop-shadow(0 2px 4px rgba(90,60,120,0.25))'/%3E%3Cpath d='M120 58 C124 50, 136 50, 140 58 C144 68, 116 68, 120 58 Z' fill='%23FAF6FE' stroke='%23D4AF37' stroke-width='1.3'/%3E%3Cpath d='M115 65 C115 56, 145 56, 145 65 C145 76, 115 76, 115 65 Z' fill='none' stroke='%23E2D4F5' stroke-width='1.5'/%3E%3Ccircle cx='130' cy='65' r='5' fill='%23D4AF37' opacity='0.9'/%3E%3Ccircle cx='96' cy='72' r='14' fill='rgba(255,255,255,0.85)' stroke='%23E8DCF8' stroke-width='1.2' filter='drop-shadow(0 2px 3px rgba(90,60,120,0.2))'/%3E%3Cpath d='M88 68 C92 62, 102 62, 104 68 C108 76, 84 76, 88 68 Z' fill='%23FAF6FE' stroke='%23D4AF37' stroke-width='1.1'/%3E%3Ccircle cx='164' cy='72' r='14' fill='rgba(255,255,255,0.85)' stroke='%23E8DCF8' stroke-width='1.2' filter='drop-shadow(0 2px 3px rgba(90,60,120,0.2))'/%3E%3Cpath d='M156 68 C160 62, 170 62, 172 68 C176 76, 152 76, 156 68 Z' fill='%23FAF6FE' stroke='%23D4AF37' stroke-width='1.1'/%3E%3Cpath d='M130 45 C125 25, 110 18, 95 24 C108 32, 118 36, 124 45 Z' fill='rgba(255,255,255,0.85)' stroke='%23D4AF37' stroke-width='1.2'/%3E%3Cpath d='M130 45 C135 25, 150 18, 165 24 C152 32, 142 36, 136 45 Z' fill='rgba(255,255,255,0.85)' stroke='%23D4AF37' stroke-width='1.2'/%3E%3Cpath d='M82 72 C62 65, 45 74, 35 88 C50 88, 65 82, 78 76 Z' fill='rgba(255,255,255,0.8)' stroke='%23D4AF37' stroke-width='1.1'/%3E%3Cpath d='M178 72 C198 65, 215 74, 225 88 C210 88, 195 82, 182 76 Z' fill='rgba(255,255,255,0.8)' stroke='%23D4AF37' stroke-width='1.1'/%3E%3Cpath d='M110 82 Q90 100 70 95 Q60 90 65 80 Q72 82 75 90' stroke='%23D4AF37' stroke-width='1.3' fill='none' opacity='0.85'/%3E%3Cpath d='M150 82 Q170 100 190 95 Q200 90 195 80 Q188 82 185 90' stroke='%23D4AF37' stroke-width='1.3' fill='none' opacity='0.85'/%3E%3Ccircle cx='65' cy='80' r='2.5' fill='%23D4AF37'/%3E%3Ccircle cx='195' cy='80' r='2.5' fill='%23D4AF37'/%3E%3C/svg%3E");
-  background-position: center;
+  width: min(82%, 360px);
+  height: 200px;
+  background-image: url('assets/embossed_bouquet.png');
+  background-position: top center;
   background-size: contain;
-  animation: foilShimmerSweep 6s infinite ease-in-out 1.5s;
+  filter: drop-shadow(0 -4px 10px rgba(70, 50, 30, 0.16));
 }
 
-/* Left & Right Flap Trailing Climbing Rose Vines */
+/* Left & Right Flap Embossed Trailing Rose Vines */
 .vine-left {
-  top: 10%;
-  left: 20px;
-  width: 140px;
-  height: 80%;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 450' fill='none'%3E%3Cpath d='M20 20 Q70 120 40 225 Q80 330 30 430' stroke='%23FAF6FF' stroke-width='2.2' fill='none' filter='drop-shadow(1px 1.5px 2px rgba(110,80,140,0.3))'/%3E%3Cpath d='M20 20 Q70 120 40 225 Q80 330 30 430' stroke='%23D4AF37' stroke-width='1' fill='none' opacity='0.8'/%3E%3Ccircle cx='55' cy='110' r='14' fill='rgba(255,255,255,0.6)' stroke='%23EADCF8' stroke-width='1.5'/%3E%3Ccircle cx='55' cy='110' r='6' fill='%23D4AF37' opacity='0.8'/%3E%3Ccircle cx='42' cy='225' r='16' fill='rgba(255,255,255,0.6)' stroke='%23EADCF8' stroke-width='1.5'/%3E%3Ccircle cx='42' cy='225' r='7' fill='%23D4AF37' opacity='0.8'/%3E%3Ccircle cx='65' cy='330' r='12' fill='rgba(255,255,255,0.6)' stroke='%23EADCF8' stroke-width='1.5'/%3E%3Ccircle cx='65' cy='330' r='5' fill='%23D4AF37' opacity='0.8'/%3E%3Cpath d='M35 110 Q20 100 25 90 Q38 90 35 110' fill='%23D4AF37' opacity='0.75'/%3E%3Cpath d='M50 230 Q35 220 40 210 Q53 210 50 230' fill='%23D4AF37' opacity='0.75'/%3E%3Cpath d='M75 330 Q90 320 85 310 Q72 310 75 330' fill='%23D4AF37' opacity='0.75'/%3E%3C/svg%3E");
-  background-size: contain;
+  top: 50%;
+  left: 6px;
+  transform: translateY(-50%);
+  width: min(32%, 140px);
+  height: 82%;
+  background-image: url('assets/embossed_vine.png');
   background-position: center left;
-  animation: foilShimmerSweep 7s infinite ease-in-out 0.8s;
+  background-size: contain;
+  filter: drop-shadow(2px 0 8px rgba(70, 50, 30, 0.14));
 }
 
 .vine-right {
-  top: 10%;
-  right: 20px;
-  width: 140px;
-  height: 80%;
-  transform: scaleX(-1);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 450' fill='none'%3E%3Cpath d='M20 20 Q70 120 40 225 Q80 330 30 430' stroke='%23FAF6FF' stroke-width='2.2' fill='none' filter='drop-shadow(1px 1.5px 2px rgba(110,80,140,0.3))'/%3E%3Cpath d='M20 20 Q70 120 40 225 Q80 330 30 430' stroke='%23D4AF37' stroke-width='1' fill='none' opacity='0.8'/%3E%3Ccircle cx='55' cy='110' r='14' fill='rgba(255,255,255,0.6)' stroke='%23EADCF8' stroke-width='1.5'/%3E%3Ccircle cx='55' cy='110' r='6' fill='%23D4AF37' opacity='0.8'/%3E%3Ccircle cx='42' cy='225' r='16' fill='rgba(255,255,255,0.6)' stroke='%23EADCF8' stroke-width='1.5'/%3E%3Ccircle cx='42' cy='225' r='7' fill='%23D4AF37' opacity='0.8'/%3E%3Ccircle cx='65' cy='330' r='12' fill='rgba(255,255,255,0.6)' stroke='%23EADCF8' stroke-width='1.5'/%3E%3Ccircle cx='65' cy='330' r='5' fill='%23D4AF37' opacity='0.8'/%3E%3Cpath d='M35 110 Q20 100 25 90 Q38 90 35 110' fill='%23D4AF37' opacity='0.75'/%3E%3Cpath d='M50 230 Q35 220 40 210 Q53 210 50 230' fill='%23D4AF37' opacity='0.75'/%3E%3Cpath d='M75 330 Q90 320 85 310 Q72 310 75 330' fill='%23D4AF37' opacity='0.75'/%3E%3C/svg%3E");
-  background-size: contain;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%) scaleX(-1);
+  width: min(32%, 140px);
+  height: 82%;
+  background-image: url('assets/embossed_vine.png');
   background-position: center left;
-  animation: foilShimmerSweep 7s infinite ease-in-out 2.2s;
-}
-
-@keyframes foilShimmerSweep {
-  0%, 100% { filter: drop-shadow(1px 1.5px 2px rgba(110,80,140,0.3)) brightness(1); }
-  50% { filter: drop-shadow(1px 2px 5px rgba(255,235,140,0.7)) brightness(1.15); }
+  background-size: contain;
+  filter: drop-shadow(2px 0 8px rgba(70, 50, 30, 0.14));
 }
 
 /* Inner Card inside Envelope Pocket (Matches Reference Video) */
@@ -612,16 +545,16 @@ body {
 }
 
 .inner-card-names {
-  font-family: var(--font-display);
-  font-size: 1.45rem;
+  font-family: 'Great Vibes', var(--font-script), cursive;
+  font-size: 1.85rem;
   color: var(--lavender-royal);
   margin-top: 2px;
+  line-height: 1.2;
 }
 
 .inner-card-names span {
   color: var(--gold-primary);
-  font-family: var(--font-cursive);
-  font-size: 1.6rem;
+  font-size: 1.7rem;
 }
 
 .inner-card-arch-window {
@@ -1000,10 +933,7 @@ body {
    ========================================================================== */
 .invitation-screen {
   padding: 0 0 80px 0;
-  background: var(--parchment-bg);
-  background-image: 
-    radial-gradient(ellipse at 50% 0%, rgba(215, 203, 240, 0.25) 0%, transparent 70%),
-    radial-gradient(ellipse at 50% 100%, rgba(212, 175, 55, 0.1) 0%, transparent 60%);
+  background: transparent;
   animation: fadeInStory 1.2s var(--smooth-ease) forwards;
 }
 
@@ -1029,25 +959,28 @@ body {
 
 .chapter-roman {
   font-family: var(--font-sans);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--gold-dark);
+  color: var(--gold-light);
   font-weight: 700;
   display: block;
 }
 
 .chapter-title {
   font-family: var(--font-display);
-  font-size: 1.6rem;
-  color: var(--lavender-royal);
+  font-size: 1.85rem;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   margin: 4px 0 8px;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
 }
 
 .chapter-subtitle {
-  font-size: 0.9rem;
-  color: var(--text-muted);
+  font-size: 0.95rem;
+  color: #D0C2EA;
   font-style: italic;
   max-width: 320px;
   margin: 0 auto;
@@ -1080,17 +1013,17 @@ body {
 
 .arabic-bismillah {
   font-family: var(--font-arabic);
-  font-size: 1.7rem;
+  font-size: 1.85rem;
   line-height: 1.3;
-  color: var(--gold-dark);
-  filter: drop-shadow(0 1px 2px rgba(212, 175, 55, 0.25));
+  color: #F8E298;
+  filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.45));
 }
 
 .bismillah-trans {
   font-family: var(--font-serif);
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   font-style: italic;
-  color: var(--text-muted);
+  color: #D6C8F2;
   margin-top: 4px;
 }
 
@@ -1178,25 +1111,52 @@ body {
   border-radius: 200px 200px 20px 20px;
   border: 1.5px solid rgba(212, 175, 55, 0.45);
   box-shadow: 
-    0 18px 45px rgba(50, 25, 75, 0.12),
-    0 0 25px rgba(212, 175, 55, 0.16);
-  padding: 30px 18px 22px;
+    0 22px 55px rgba(25, 10, 45, 0.35),
+    0 0 35px rgba(212, 175, 55, 0.22);
+  padding: 38px 18px 22px;
   text-align: center;
   overflow: hidden;
   transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
+/* Arch Floral Corner Bouquets (Matching Reference Video timeline_10) */
+.arch-floral-corner {
+  position: absolute;
+  top: -4px;
+  width: 95px;
+  height: 95px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.arch-corner-left {
+  left: -4px;
+}
+
+.arch-corner-right {
+  right: -4px;
+  transform: scaleX(-1);
+}
+
+.arch-corner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 4px 10px rgba(45, 20, 60, 0.22));
+}
+
 /* Header Text (Exact styling from reference video) */
 .arch-invitation-heading {
-  margin-bottom: 14px;
-  padding: 0 38px;
+  margin-bottom: 12px;
+  padding: 18px 36px 0;
   position: relative;
   z-index: 2;
 }
 
 .arch-script-welcome {
   font-family: var(--font-script);
-  font-size: 1.65rem;
+  font-size: 1.85rem;
   color: var(--gold-dark);
   display: block;
   line-height: 1.2;
@@ -1204,32 +1164,33 @@ body {
 
 .arch-ceremony-title {
   font-family: var(--font-display);
-  font-size: 1.35rem;
-  letter-spacing: 1.2px;
+  font-size: 1.45rem;
+  letter-spacing: 1.4px;
   color: var(--lavender-royal);
-  margin: 2px 0 3px;
+  margin: 3px 0 2px;
   text-transform: uppercase;
 }
 
 .arch-of-script {
   font-family: var(--font-script);
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   color: var(--gold-dark);
   display: block;
   margin: 1px 0;
 }
 
 .arch-couple-title {
-  font-family: var(--font-display);
-  font-size: 1.55rem;
-  color: var(--lavender-deep);
+  font-family: 'Great Vibes', var(--font-script), cursive;
+  font-size: 2.35rem;
+  color: var(--lavender-royal);
   margin: 4px 0 10px;
   letter-spacing: 0.5px;
+  line-height: 1.2;
 }
 
 .arch-couple-title span {
-  font-family: var(--font-script);
-  font-size: 1.9rem;
+  font-family: 'Great Vibes', var(--font-script), cursive;
+  font-size: 2.1rem;
   color: var(--gold-primary);
 }
 
@@ -1254,7 +1215,7 @@ body {
   }
   .archway-frame-card {
     border-radius: 170px 170px 16px 16px;
-    padding: 22px 12px 18px;
+    padding: 30px 12px 18px;
   }
   .hanging-lantern {
     width: 30px;
@@ -1267,19 +1228,19 @@ body {
     right: 2px;
   }
   .arch-invitation-heading {
-    padding: 0 34px;
+    padding: 10px 28px 0;
     margin-bottom: 10px;
   }
   .arch-script-welcome {
-    font-size: 1.45rem;
+    font-size: 1.6rem;
   }
   .arch-ceremony-title {
-    font-size: 1.2rem;
-    letter-spacing: 0.8px;
+    font-size: 1.25rem;
+    letter-spacing: 1px;
     white-space: nowrap;
   }
   .arch-couple-title {
-    font-size: 1.4rem;
+    font-size: 2rem;
   }
 }
 

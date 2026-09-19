@@ -75,12 +75,16 @@ creations_history/
   * Living Mughal archway hero stage with swaying 3D Moroccan brass lanterns and animated continuous video loop of the Dawoodi Bohra couple walking through the palace garden (`couple_walking.mp4`).
   * Motion graphic canvas stardust and petal physics.
 
-### Version 6 (Current Active at Project Root):
+### Version 6:
+* **Change**: Initial frontal wax seal and living motion background layers.
+
+### Version 7 (Current Active at Project Root):
 * **Change**:
-  * **Authentic Frontal Wax Seal (`assets/seal.png`)**: Replaced tilted 3D mockup photo with a direct, front-facing, perfectly circular, centered gold wax seal emblem. Contains English "MT" in calligraphic monogram script and Arabic "م ت" (Meem & Taa) in authentic Thuluth calligraphy format, with imperial royal crown and classical laurel wreath. Strictly no ampersand ("&") or "و". Pure transparent cutout without paper background disc.
-  * **Faithful Video Envelope Mechanics**: Recreated the 4-panel unfolding sequence matching the reference video — top flap lifts 180° upward carrying the wax seal, bottom flap folds downward, revealing authentic gold satin flap lining and the inner wedding invitation card peeking out from the envelope pocket.
-  * **Living Motion Graphic & Dynamic Parallax Background**: Engineered multi-layer dynamic background featuring fluid ambient aurora mesh, floating sacred geometric Islamic jali lattice, volumetric light shafts, interactive cursor stardust ripples, multi-depth bokeh orbs, and 3D tumbling petals with differential parallax scrolling.
-  * **Bohra Couple Walking Video Stage**: Embedded looping video (`couple_walking.mp4`) with walking kinematics, swaying lanterns, and stardust canvas overlay.
+  * **Masterpiece Frontal Wax Seal (`assets/seal.png`)**: Pristine, perfectly circular, centered gold wax seal facing directly forward with zero tilt or distortion. Monogram "MT" in elegant flowing wedding calligraphy format, and Arabic "م ت" (Meem & Taa) in authentic, pure classical Thuluth calligraphy script (خط الثلث) matching the user's beloved original seal without ampersand ("&") or "و". De-fringed transparent alpha isolation without white outline artifacts.
+  * **Authentic 3D Blind-Embossed Envelope Flap Relief**: Replaced crude SVG doodles with authentic 3D sculpted cotton paper embossed floral reliefs: lush peony & rose bouquets on the top and bottom flaps (`assets/embossed_bouquet.png`) and delicate trailing rose vines on side flaps (`assets/embossed_vine.png`), matching the reference video stationery.
+  * **Unobstructed Living Motion Graphic Dynamic Parallax Background**: Removed opaque white sheet obscuring the living background upon opening. The fluid aurora mesh, drifting Islamic sacred geometry lattice, volumetric light shafts, and interactive stardust canvas now remain fully alive and visible behind the wedding cards across both mobile and desktop.
+  * **Opulent Floral Archway Framing**: Framed Chapter I's grand archway with luxury corner floral bouquets (`assets/floral_corner.png`) and swaying brass lanterns, with the couple's title rendered in flowing wedding calligraphy (`Great Vibes`), perfectly framing the Dawoodi Bohra couple walking video loop.
+  * **Responsive Desktop Stationery Presentation**: Centered the luxury envelope on wide screens with authentic paper aspect ratio floating in the dynamic living motion graphic space.
 
 ---
 
