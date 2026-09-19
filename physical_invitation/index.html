@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mustafa &amp; Tasneem — Physical Wedding Invitation Suite (Print Ready)</title>
+  <link rel="stylesheet" href="print_styles.css" />
+</head>
+<body>
+
+  <!-- ==============================================
+       SCREEN CONTROL BAR (Hidden on Paper Print)
+       ============================================== -->
+  <header class="print-controls-bar">
+    <div class="controls-brand">
+      <span class="brand-icon">📜</span>
+      <div class="brand-text">
+        <h1>Mustafa &amp; Tasneem — Physical Print Suite</h1>
+        <p>300 DPI CMYK Ready • International Tri-Fold &amp; Easel Board</p>
+      </div>
+    </div>
+
+    <div class="controls-actions">
+      <!-- Live Guest Personalization Input -->
+      <div class="guest-input-wrap">
+        <label for="guest-name-input">To:</label>
+        <input type="text" id="guest-name-input" placeholder="Type Guest / Family Name..." value="Mufaddal Bhai &amp; Family" />
+      </div>
+
+      <button id="toggle-guides-btn" class="btn-ctrl btn-outline" title="Toggle fold &amp; trim guidelines for print shop">
+        ✂️ Toggle Guides
+      </button>
+
+      <button onclick="window.print()" class="btn-ctrl btn-print" title="Print to paper or save as high-res PDF">
+        🖨️ Print / Save as PDF
+      </button>
+
+      <a href="../index.html" class="btn-ctrl btn-outline" style="text-decoration:none;" title="Return to Digital Invitation">
+        ✨ Digital Invite
+      </a>
+    </div>
+  </header>
+
+  <!-- View Switcher Tabs -->
+  <nav class="view-tabs" aria-label="Print Suite Navigation">
+    <button class="tab-btn active" data-tab="all" onclick="switchView('all', this)">All Print Sheets</button>
+    <button class="tab-btn" data-tab="inside" onclick="switchView('inside', this)">Sheet 1: Inside 3-Panel Spread</button>
+    <button class="tab-btn" data-tab="outside" onclick="switchView('outside', this)">Sheet 2: Outside Cover Spread</button>
+    <button class="tab-btn" data-tab="easel" onclick="switchView('easel', this)">Sheet 3: Ceremony Easel Board</button>
+  </nav>
+
+  <main class="print-workspace">
+
+    <!-- ==============================================
+         SHEET 1: INSIDE TRI-FOLD SPREAD (3 PANELS)
+         Size: 297mm x 210mm (A4 Landscape)
+         ============================================== -->
+    <section class="print-sheet trifold-sheet" id="sheet-inside">
+      
+      <!-- Fold & Crease Guidelines -->
+      <div class="fold-guide f1">
+        <span class="fold-indicator">CREASE FOLD 99mm</span>
+      </div>
+      <div class="fold-guide f2">
+        <span class="fold-indicator">CREASE FOLD 198mm</span>
+      </div>
+
+      <!-- PANEL 1: LEFT FLAP (Manak Thamb & Mosala) -->
+      <div class="trifold-panel panel-left-flap">
+        <div class="panel-arch-box">
+          <div class="arch-header-ornament">❖</div>
+          <h3 class="panel-category-title">Sacred Rusumat</h3>
+
+          <!-- Manak Thamb -->
+          <div class="event-item-block">
+            <div class="event-name-arabic">مانك تھامبھ</div>
+            <div class="event-name-eng">Manak Thamb</div>
+            <div class="event-meta-line">Thursday, 13th Nov 2025 • 8:00 AM</div>
+            <div class="event-meta-line">Groom's Residence, Mumbai</div>
+            <div class="invitees-badge-row">
+              <span class="inv-tag">Gents</span>
+              <span class="inv-tag">Ladies</span>
+            </div>
+          </div>
+
+          <!-- Mama Mosala & Peethi -->
+          <div class="event-item-block">
+            <div class="event-name-arabic">ماما موسالا ورسم پيٹھی</div>
+            <div class="event-name-eng">Mama Mosala &amp; Peethi</div>
+            <div class="event-meta-line">Thursday, 13th Nov 2025 • 10:30 AM</div>
+            <div class="event-meta-line">Saifee Community Hall</div>
+            <div class="invitees-badge-row">
+              <span class="inv-tag">Gents</span>
+              <span class="inv-tag">Ladies</span>
+            </div>
+          </div>
+
+          <!-- Henna Mehendi -->
+          <div class="event-item-block">
+            <div class="event-name-arabic">رسم مہندي</div>
+            <div class="event-name-eng">Mehndi Celebration</div>
+            <div class="event-meta-line">Thursday Evening • 7:00 PM</div>
+            <div class="invitees-badge-row">
+              <span class="inv-tag">Ladies Only</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL 2: CENTER MAIN PANEL (Raza, Nikah & Jaman) -->
+      <div class="trifold-panel panel-center-main">
+        <div class="grand-mughal-centerpiece">
+          
+          <div class="center-top-group">
+            <div class="center-bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+            <p class="center-raza-call">
+              By the benign grace of Allah Ta'ala, Wasila-e Panjetan Paak (AS), and the pious Raza Mubarak &amp; Dua of His Holiness
+              <strong>Syedna Mufaddal Saifuddin (TUS)</strong>, we cordially invite you to celebrate the wedding of our beloved children:
+            </p>
+          </div>
+
+          <!-- Hanging Rosette Medallion Logo -->
+          <div class="center-hanging-pendant">
+            <img src="../assets/rosette_logo.png" alt="Mustafa &amp; Tasneem Islamic Rosette Logo" />
+          </div>
+
+          <div class="couple-names-headline">
+            <span class="groom-bride-big">Mustafa</span>
+            <span class="weds-amp">weds</span>
+            <span class="groom-bride-big">Tasneem</span>
+          </div>
+
+          <!-- Nikah Highlights -->
+          <div class="nikah-details-highlight">
+            <div class="nikah-title-bold">Aqd al-Nikah &amp; Khushi nu Jaman</div>
+            <div class="nikah-date-line">FRIDAY, 14TH NOVEMBER 2025</div>
+            <div class="nikah-venue-line">Saifee Masjid &amp; Badri Palace Grounds, Mumbai</div>
+            <div class="nikah-venue-line" style="font-size:0.75rem; color:#8C733E; margin-top:2px;">
+              Nikah Ceremony: 5:00 PM • Khushi nu Jaman to follow
+            </div>
+          </div>
+
+          <div class="center-family-signature">
+            <span class="sign-warm-regards">With Warmest Regards &amp; Prayers</span>
+            <div class="sign-families">Fakhruddin Family &amp; Shabbir Family</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PANEL 3: RIGHT FLAP (Darees, Jaman & Walima) -->
+      <div class="trifold-panel panel-right-flap">
+        <div class="panel-arch-box">
+          <div class="arch-header-ornament">❖</div>
+          <h3 class="panel-category-title">Celebrations</h3>
+
+          <!-- Darees Shareef -->
+          <div class="event-item-block">
+            <div class="event-name-arabic">دريس شريف وبَرَكَات</div>
+            <div class="event-name-eng">Darees &amp; Majlis</div>
+            <div class="event-meta-line">Friday Morning • 10:00 AM</div>
+            <div class="event-meta-line">Saifee Mahal Courtyard</div>
+            <div class="invitees-badge-row">
+              <span class="inv-tag">All Guests</span>
+            </div>
+          </div>
+
+          <!-- Khushi nu Jaman -->
+          <div class="event-item-block">
+            <div class="event-name-arabic">خوشي نو جمن</div>
+            <div class="event-name-eng">Khushi nu Jaman</div>
+            <div class="event-meta-line">Friday Evening • 7:30 PM</div>
+            <div class="event-meta-line">Badri Banquet Pavilion</div>
+            <div class="invitees-badge-row">
+              <span class="inv-tag">All Guests</span>
+            </div>
+          </div>
+
+          <!-- Walima Reception -->
+          <div class="event-item-block">
+            <div class="event-name-arabic">وليمة العرس</div>
+            <div class="event-name-eng">Walima Reception</div>
+            <div class="event-meta-line">Saturday, 15th Nov 2025 • 8:00 PM</div>
+            <div class="event-meta-line">The Grand Regal Ballroom</div>
+            <div class="invitees-badge-row">
+              <span class="inv-tag">Gents &amp; Ladies</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==============================================
+         SHEET 2: OUTSIDE TRI-FOLD SPREAD
+         Size: 297mm x 210mm (A4 Landscape)
+         Flap 1: Inside Fold Flap
+         Flap 2: Back Panel (Closing Dua & Monogram)
+         Flap 3: Front Cover (Mughal Arch & 'To' line)
+         ============================================== -->
+    <section class="print-sheet trifold-sheet trifold-outside-sheet" id="sheet-outside">
+      
+      <!-- Fold & Crease Guidelines -->
+      <div class="fold-guide f1">
+        <span class="fold-indicator">CREASE FOLD 99mm</span>
+      </div>
+      <div class="fold-guide f2">
+        <span class="fold-indicator">CREASE FOLD 198mm</span>
+      </div>
+
+      <!-- OUTSIDE PANEL 1: Inside Fold Flap (Hospitality & Dress Code) -->
+      <div class="trifold-panel panel-left-flap">
+        <div class="panel-arch-box" style="justify-content:space-around;">
+          <div class="arch-header-ornament">❖</div>
+          <h3 class="panel-category-title">Hospitality &amp; Libaas</h3>
+          <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.45; font-style:italic;">
+            "Your presence and warm prayers will illuminate our celebration and bring barakat to the newly united couple."
+          </p>
+
+          <div style="margin:8px 0; border-top:1px dashed var(--border-gold); padding-top:8px;">
+            <div style="font-family:'Cinzel Decorative',serif; font-size:0.75rem; color:var(--gold-dark); font-weight:700;">Traditional Attire</div>
+            <p style="font-size:0.78rem; color:var(--text-dark); margin-top:3px;">
+              <strong>Gents:</strong> Saya Kurta &amp; Bohra Topi<br/>
+              <strong>Ladies:</strong> Festive Rida
+            </p>
+          </div>
+
+          <div style="margin-top:auto; font-size:0.75rem; color:var(--gold-dark); font-family:'Amiri',serif;">
+            اللهم بارك لهما وبارك عليهما واجمع بينهما في خير
+          </div>
+        </div>
+      </div>
+
+      <!-- OUTSIDE PANEL 2: Back Cover (Central Panel on Outside) -->
+      <div class="trifold-panel panel-center-main">
+        <div class="grand-mughal-centerpiece" style="justify-content:center; gap:16px;">
+          <div class="center-hanging-pendant" style="width:72px; height:72px;">
+            <img src="../assets/rosette_logo.png" alt="Logo" />
+          </div>
+
+          <div style="font-family:'Amiri',serif; font-size:1.3rem; color:var(--gold-dark); font-weight:700;">
+            عبيد سيدنا المنعام ط ع وامائه
+          </div>
+
+          <p style="font-size:0.88rem; color:var(--text-muted); font-style:italic; max-width:85%; margin:0 auto; line-height:1.5;">
+            ہماری خوشي ني مسرة ما شامل تھوا واسطے آپ نے مع الإكرام اذن پيش كريئے چھے، برائے كرم تشريف لاوي انوارنا بركات ما ہماری خوشي ما اضافو كريئے۔
+          </p>
+
+          <div style="margin-top:10px;">
+            <div class="sign-families" style="font-size:0.85rem;">Fakhruddin Family &amp; Shabbir Family</div>
+            <div style="font-size:0.75rem; color:var(--text-muted); font-family:'Montserrat',sans-serif; margin-top:2px;">RSVP: +91 98765 43210</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OUTSIDE PANEL 3: FRONT COVER (Main Outer Cover of the Folded Card) -->
+      <div class="trifold-panel cover-front-panel">
+        <div class="cover-front-box">
+          
+          <div>
+            <div class="center-bismillah" style="font-size:1.05rem;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+            <div class="cover-eyebrow" style="margin-top:4px;">Wedding Invitation</div>
+          </div>
+
+          <!-- Prominent Rosette Medallion Logo -->
+          <div class="cover-pendant-logo">
+            <img src="../assets/rosette_logo.png" alt="Mustafa &amp; Tasneem Rosette Medallion" />
+          </div>
+
+          <div>
+            <div class="cover-couple-title">Mustafa &amp; Tasneem</div>
+            <div class="cover-date-banner">Friday, 14th November 2025</div>
+          </div>
+
+          <!-- Live Personalized Guest Name Field -->
+          <div class="cover-guest-personalization">
+            <span class="cover-to-label">To:</span>
+            <span class="cover-guest-name-print" id="print-guest-name-display">Mufaddal Bhai &amp; Family</span>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==============================================
+         SHEET 3: CEREMONY WELCOME EASEL BOARD
+         Size: 270mm x 360mm (High-Res 3:4 Aspect Ratio)
+         Inspired by: Instagram @designedbysakinah
+         ============================================== -->
+    <section class="print-sheet easel-sheet" id="sheet-easel">
+      <div class="easel-inner-card">
+        
+        <div>
+          <div class="easel-bismillah-top">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+          <div class="easel-welcome-sub">Welcome to the</div>
+          <div class="easel-ceremony-word">Wedding Ceremony of</div>
+        </div>
+
+        <!-- Rosette Medallion Hero -->
+        <div class="easel-rosette-hero">
+          <img src="../assets/rosette_logo.png" alt="Mustafa &amp; Tasneem Medallion Logo" />
+        </div>
+
+        <div class="easel-couple-giant">Mustafa &amp; Tasneem</div>
+
+        <!-- Date & Venue -->
+        <div class="easel-date-venue-bar">
+          <div class="easel-date-text">Friday, 14th November 2025</div>
+          <div class="easel-venue-text">Saifee Masjid &amp; Badri Palace Grounds, Mumbai</div>
+        </div>
+
+        <div class="easel-closing-duas">
+          بِالْيُمْنِ وَالْبَرَكَاتِ • بِرِضَا سَيِّدِنَا ط ع
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // Live Guest Personalization Synchronization
+    const guestInput = document.getElementById('guest-name-input');
+    const guestDisplay = document.getElementById('print-guest-name-display');
+
+    if (guestInput && guestDisplay) {
+      guestInput.addEventListener('input', (e) => {
+        guestDisplay.textContent = e.target.value.trim() || '_______________________';
+      });
+    }
+
+    // Toggle Crease and Fold Guidelines
+    let guidesVisible = true;
+    const toggleBtn = document.getElementById('toggle-guides-btn');
+    toggleBtn.addEventListener('click', () => {
+      guidesVisible = !guidesVisible;
+      const guides = document.querySelectorAll('.fold-guide');
+      guides.forEach(g => g.style.display = guidesVisible ? 'block' : 'none');
+      toggleBtn.textContent = guidesVisible ? '✂️ Hide Guides' : '✂️ Show Guides';
+    });
+
+    // View Switching Tabs
+    function switchView(tab, element) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      const targetBtn = element || document.querySelector(`.tab-btn[data-tab="${tab}"]`);
+      if (targetBtn) targetBtn.classList.add('active');
+
+      const sInside = document.getElementById('sheet-inside');
+      const sOutside = document.getElementById('sheet-outside');
+      const sEasel = document.getElementById('sheet-easel');
+
+      if (tab === 'inside') {
+        sInside.style.display = 'grid';
+        sOutside.style.display = 'none';
+        sEasel.style.display = 'none';
+      } else if (tab === 'outside') {
+        sInside.style.display = 'none';
+        sOutside.style.display = 'grid';
+        sEasel.style.display = 'none';
+      } else if (tab === 'easel') {
+        sInside.style.display = 'none';
+        sOutside.style.display = 'none';
+        sEasel.style.display = 'block';
+      } else {
+        sInside.style.display = 'grid';
+        sOutside.style.display = 'grid';
+        sEasel.style.display = 'block';
+      }
+    }
+  </script>
+
+</body>
+</html>

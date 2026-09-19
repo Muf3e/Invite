@@ -1,0 +1,690 @@
+/* =========================================================
+   PHYSICAL PRINTING STYLESHEET (300 DPI VECTOR & CMYK OPTIMIZED)
+   Design Inspired by:
+   - Instagram @batulhuzefa (Tri-fold Gatefold Mughal Garden Card)
+   - Instagram @designedbysakinah (Ceremony Welcome Easel Board)
+   - Instagram @elegant_khatt (Hanging Islamic Rosette Medallion Logo)
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --gold-foil: #C5A059;
+  --gold-dark: #9A7B38;
+  --gold-light: #DFCA8D;
+  --sage-bg: #E8F0EC;
+  --ivory-paper: #FCFAF6;
+  --plum-accent: #3A1D4A;
+  --text-dark: #2C241D;
+  --text-muted: #6B5E52;
+  --border-gold: rgba(197, 160, 89, 0.65);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Cormorant Garamond', serif;
+  background-color: #ECE7DF;
+  color: var(--text-dark);
+  -webkit-font-smoothing: antialiased;
+  padding: 20px 0;
+}
+
+/* =========================================
+   SCREEN CONTROL BAR (Hidden during @media print)
+   ========================================= */
+.print-controls-bar {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: rgba(35, 18, 56, 0.95);
+  backdrop-filter: blur(12px);
+  color: #FAF5FF;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  margin-bottom: 24px;
+  border-bottom: 1.5px solid rgba(212, 175, 55, 0.4);
+}
+
+.controls-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  font-size: 1.6rem;
+}
+
+.brand-text h1 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.1rem;
+  color: #F8E298;
+  letter-spacing: 1px;
+}
+
+.brand-text p {
+  font-size: 0.78rem;
+  color: #D6BDFA;
+}
+
+.controls-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.guest-input-wrap {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  border-radius: 8px;
+  padding: 4px 10px;
+}
+
+.guest-input-wrap label {
+  font-size: 0.75rem;
+  color: #F8E298;
+  margin-right: 8px;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.guest-input-wrap input {
+  background: transparent;
+  border: none;
+  color: #FFF;
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.25rem;
+  width: 220px;
+}
+
+.guest-input-wrap input:focus {
+  outline: none;
+}
+
+.btn-ctrl {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-print {
+  background: linear-gradient(135deg, #FBF6E9 0%, #D4AF37 50%, #AA7C11 100%);
+  color: #1A0E28;
+  box-shadow: 0 2px 10px rgba(212, 175, 55, 0.4);
+}
+
+.btn-print:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.6);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid rgba(212, 175, 55, 0.6);
+  color: #F8E298;
+}
+
+.btn-outline:hover {
+  background: rgba(212, 175, 55, 0.15);
+}
+
+/* Tab Navigation */
+.view-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.tab-btn {
+  padding: 8px 20px;
+  background: #FFF;
+  border: 1px solid #D8CFC4;
+  border-radius: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-btn.active, .tab-btn:hover {
+  background: var(--plum-accent);
+  color: #F8E298;
+  border-color: var(--gold-foil);
+}
+
+/* =========================================
+   SHEET WRAPPER & PHYSICAL PAGE DIMENSIONS
+   ========================================= */
+.print-workspace {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+}
+
+.print-sheet {
+  background: #FFF;
+  position: relative;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  margin-bottom: 20px;
+  page-break-after: always;
+}
+
+/* Tri-Fold Flat Size: A4 Landscape (297mm x 210mm) */
+.trifold-sheet {
+  width: 297mm;
+  height: 210mm;
+  display: grid;
+  grid-template-columns: 99mm 99mm 99mm;
+  position: relative;
+  overflow: hidden;
+  background-image: url('../assets/print_botanical_bg.jpg');
+  background-size: cover;
+  background-position: center bottom;
+}
+
+/* Welcome Board Easel Size: Standard 3:4 Aspect Ratio (270mm x 360mm) */
+.easel-sheet {
+  width: 270mm;
+  height: 360mm;
+  position: relative;
+  overflow: hidden;
+  background-image: url('../assets/print_cover_frame.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Fold Lines Guidelines (screen inspection) */
+.fold-guide {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  border-left: 1px dashed rgba(197, 160, 89, 0.7);
+  z-index: 50;
+  pointer-events: none;
+}
+.fold-guide.f1 { left: 99mm; }
+.fold-guide.f2 { left: 198mm; }
+
+.fold-indicator {
+  position: absolute;
+  top: 4px;
+  transform: translateX(-50%);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 8px;
+  color: var(--gold-dark);
+  background: rgba(255, 255, 255, 0.85);
+  padding: 1px 4px;
+  border-radius: 2px;
+  letter-spacing: 0.5px;
+}
+
+/* =========================================
+   TRI-FOLD INSIDE SPREAD (3 PANELS)
+   ========================================= */
+.trifold-panel {
+  height: 100%;
+  padding: 14mm 8mm 12mm;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+}
+
+/* Panel 1: Left Flap (Manak Thamb & Mosala) */
+.panel-left-flap {
+  border-right: 1px solid rgba(197, 160, 89, 0.2);
+}
+
+.panel-arch-box {
+  background: rgba(252, 250, 246, 0.94);
+  border: 1px solid var(--border-gold);
+  border-radius: 12px 12px 6px 6px;
+  padding: 14px 10px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 4px 14px rgba(60, 40, 20, 0.06);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.arch-header-ornament {
+  font-size: 0.9rem;
+  color: var(--gold-foil);
+  margin-bottom: 2px;
+}
+
+.panel-category-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.95rem;
+  color: var(--plum-accent);
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(197, 160, 89, 0.35);
+  padding-bottom: 4px;
+}
+
+.event-item-block {
+  margin: 6px 0;
+  padding: 6px 4px;
+  border-bottom: 0.5px dashed rgba(197, 160, 89, 0.4);
+}
+.event-item-block:last-child {
+  border-bottom: none;
+}
+
+.event-name-arabic {
+  font-family: 'Amiri', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--gold-dark);
+  line-height: 1.2;
+}
+
+.event-name-eng {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--plum-accent);
+  letter-spacing: 0.3px;
+}
+
+.event-meta-line {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  margin: 2px 0;
+  font-weight: 500;
+}
+
+.invitees-badge-row {
+  display: inline-flex;
+  gap: 6px;
+  margin-top: 3px;
+}
+
+.inv-tag {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.52rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 1px 6px;
+  border-radius: 8px;
+  background: #EFECE6;
+  border: 0.5px solid var(--border-gold);
+  color: var(--text-dark);
+}
+
+/* Panel 2: Center Main Panel (Raza, Nikah, Grand Arch) */
+.panel-center-main {
+  padding: 10mm 6mm 10mm;
+}
+
+.grand-mughal-centerpiece {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1.5px solid var(--gold-foil);
+  border-radius: 40px 40px 8px 8px;
+  padding: 16px 12px 14px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 6px 20px rgba(60, 40, 20, 0.1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.center-bismillah {
+  font-family: 'Amiri', serif;
+  font-size: 1.25rem;
+  color: var(--gold-dark);
+  line-height: 1.3;
+}
+
+.center-raza-call {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.35;
+  margin: 4px 0 6px;
+}
+
+.center-hanging-pendant {
+  width: 78px;
+  height: 78px;
+  margin: 4px auto 8px;
+  filter: drop-shadow(0 3px 8px rgba(197, 160, 89, 0.4));
+}
+
+.center-hanging-pendant img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.couple-names-headline {
+  margin: 4px 0;
+}
+
+.groom-bride-big {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.85rem;
+  color: var(--plum-accent);
+  line-height: 1.15;
+  display: block;
+}
+
+.weds-amp {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--gold-dark);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: block;
+  margin: 1px 0;
+}
+
+.nikah-details-highlight {
+  border-top: 1px solid rgba(197, 160, 89, 0.35);
+  border-bottom: 1px solid rgba(197, 160, 89, 0.35);
+  padding: 5px 0;
+  margin: 4px 0;
+}
+
+.nikah-title-bold {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.82rem;
+  color: var(--gold-dark);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.nikah-date-line {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  letter-spacing: 0.5px;
+  margin: 2px 0;
+}
+
+.nikah-venue-line {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.center-family-signature {
+  margin-top: 4px;
+}
+
+.sign-warm-regards {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.72rem;
+  font-style: italic;
+  color: var(--gold-dark);
+}
+
+.sign-families {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.75rem;
+  color: var(--plum-accent);
+  font-weight: 700;
+  margin-top: 1px;
+}
+
+/* Panel 3: Right Flap (Darees, Jaman, Walima) */
+.panel-right-flap {
+  border-left: 1px solid rgba(197, 160, 89, 0.2);
+}
+
+/* =========================================
+   TRI-FOLD OUTSIDE SPREAD
+   Panel 1: Inside Flap Fold
+   Panel 2: Back Panel (Bismillah & Dua)
+   Panel 3: Front Cover (Mughal Arch, Logo & 'To' Line)
+   ========================================= */
+.trifold-outside-sheet {
+  background-image: url('../assets/print_botanical_bg.jpg');
+}
+
+.cover-front-panel {
+  padding: 14mm 8mm 12mm;
+  display: flex;
+  flex-direction: column;
+}
+
+.cover-front-box {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1.5px solid var(--gold-foil);
+  border-radius: 28px 28px 8px 8px;
+  padding: 16px 12px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(60, 40, 20, 0.12);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cover-eyebrow {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.78rem;
+  letter-spacing: 2px;
+  color: var(--gold-dark);
+  text-transform: uppercase;
+}
+
+.cover-pendant-logo {
+  width: 78px;
+  height: 78px;
+  margin: 6px auto;
+  filter: drop-shadow(0 3px 6px rgba(197, 160, 89, 0.4));
+}
+.cover-pendant-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cover-couple-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.1rem;
+  color: var(--plum-accent);
+  line-height: 1.1;
+}
+
+.cover-date-banner {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  color: var(--gold-dark);
+  font-weight: 600;
+  margin: 4px 0 10px;
+  text-transform: uppercase;
+}
+
+.cover-guest-personalization {
+  margin-top: auto;
+  padding: 10px 8px 6px;
+  border-top: 1px solid rgba(197, 160, 89, 0.35);
+  text-align: left;
+}
+
+.cover-to-label {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.2rem;
+  color: var(--gold-dark);
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.cover-guest-name-print {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.35rem;
+  color: var(--plum-accent);
+  border-bottom: 1px solid var(--border-gold);
+  display: inline-block;
+  width: calc(100% - 35px);
+  padding-left: 6px;
+  line-height: 1.2;
+}
+
+/* =========================================
+   WELCOME CEREMONY EASEL BOARD (A3 / 3:4)
+   ========================================= */
+.easel-inner-card {
+  position: absolute;
+  top: 24mm;
+  left: 18mm;
+  right: 18mm;
+  bottom: 24mm;
+  background: #FCFAF6;
+  border: 2px solid var(--gold-foil);
+  border-radius: 36px 36px 12px 12px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  box-shadow: 0 10px 35px rgba(60, 40, 20, 0.22);
+}
+
+.easel-bismillah-top {
+  font-family: 'Amiri', serif;
+  font-size: 1.8rem;
+  color: var(--gold-dark);
+  font-weight: 700;
+}
+
+.easel-welcome-sub {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.15rem;
+  letter-spacing: 3px;
+  color: var(--gold-dark);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.easel-ceremony-word {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+.easel-rosette-hero {
+  width: 165px;
+  height: 165px;
+  margin: 15px auto;
+  filter: drop-shadow(0 6px 14px rgba(197, 160, 89, 0.45));
+}
+.easel-rosette-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.easel-couple-giant {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3.8rem;
+  color: var(--plum-accent);
+  line-height: 1.1;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.easel-date-venue-bar {
+  border-top: 1.5px solid var(--border-gold);
+  border-bottom: 1.5px solid var(--border-gold);
+  padding: 10px 24px;
+  margin: 12px 0 8px;
+  width: 90%;
+}
+
+.easel-date-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--gold-dark);
+  text-transform: uppercase;
+}
+
+.easel-venue-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.easel-closing-duas {
+  font-family: 'Amiri', serif;
+  font-size: 1.1rem;
+  color: var(--gold-dark);
+}
+
+/* =========================================
+   @MEDIA PRINT DIRECTIVES (High-Precision Output)
+   ========================================= */
+@media print {
+  body {
+    background: transparent !important;
+    padding: 0 !important;
+  }
+
+  .print-controls-bar,
+  .view-tabs,
+  .fold-guide {
+    display: none !important;
+  }
+
+  .print-workspace {
+    gap: 0 !important;
+  }
+
+  .print-sheet {
+    box-shadow: none !important;
+    margin: 0 !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  @page {
+    size: A4 landscape;
+    margin: 0;
+  }
+}
