@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   1. FLOATING LAVENDER PETALS & GOLD DUST PARTICLES
+   1. LIVING MOTION GRAPHIC PARTICLES & DYNAMIC PARALLAX CANVAS
    ========================================================================== */
 function initFloatingParticles() {
   const canvas = document.getElementById('petal-canvas');
@@ -28,71 +28,239 @@ function initFloatingParticles() {
   let width = (canvas.width = window.innerWidth);
   let height = (canvas.height = window.innerHeight);
 
+  let mouseX = width / 2;
+  let mouseY = height / 2;
+  let scrollY = window.scrollY;
+  let lastScrollY = scrollY;
+  let scrollVelocity = 0;
+
   window.addEventListener('resize', () => {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
   });
 
-  const particleCount = 35;
-  const particles = [];
+  window.addEventListener('scroll', () => {
+    scrollY = window.scrollY;
+    scrollVelocity = (scrollY - lastScrollY) * 0.3;
+    lastScrollY = scrollY;
+  }, { passive: true });
 
-  for (let i = 0; i < particleCount; i++) {
-    particles.push(createParticle(true));
+  // Interactive Cursor & Touch Trail
+  const interactiveSparks = [];
+  const addSparks = (x, y, count = 2) => {
+    mouseX = x;
+    mouseY = y;
+    for (let i = 0; i < count; i++) {
+      if (interactiveSparks.length > 60) interactiveSparks.shift();
+      const angle = Math.random() * Math.PI * 2;
+      const speed = Math.random() * 2 + 0.5;
+      interactiveSparks.push({
+        x: x,
+        y: y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        life: 1.0,
+        decay: Math.random() * 0.03 + 0.02,
+        size: Math.random() * 3 + 1.5,
+        color: Math.random() > 0.3 ? '212, 175, 55' : '255, 235, 170'
+      });
+    }
+  };
+
+  window.addEventListener('mousemove', (e) => addSparks(e.clientX, e.clientY, 1), { passive: true });
+  window.addEventListener('touchmove', (e) => {
+    if (e.touches && e.touches[0]) addSparks(e.touches[0].clientX, e.touches[0].clientY, 2);
+  }, { passive: true });
+
+  // 1. Bokeh Orbs (deep ambient glow)
+  const bokehCount = 14;
+  const bokehs = [];
+  for (let i = 0; i < bokehCount; i++) {
+    bokehs.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      radius: Math.random() * 45 + 25,
+      speedY: -(Math.random() * 0.4 + 0.15),
+      speedX: (Math.random() - 0.5) * 0.3,
+      baseOpacity: Math.random() * 0.12 + 0.06,
+      phase: Math.random() * Math.PI * 2,
+      pulseSpeed: Math.random() * 0.02 + 0.01,
+      isGold: Math.random() > 0.45
+    });
   }
 
-  function createParticle(randomY = false) {
-    const isGold = Math.random() > 0.65;
+  // 2. Botanical Tumbling Petals & Blossoms
+  const petalCount = 28;
+  const petals = [];
+  for (let i = 0; i < petalCount; i++) {
+    petals.push(createPetal(true));
+  }
+
+  function createPetal(randomY = false) {
+    const isGoldLeaf = Math.random() > 0.72;
+    const isJasmine = !isGoldLeaf && Math.random() > 0.5;
     return {
       x: Math.random() * width,
-      y: randomY ? Math.random() * height : -20,
-      radius: isGold ? Math.random() * 2 + 1 : Math.random() * 6 + 3,
-      speedX: (Math.random() - 0.5) * 0.8,
-      speedY: Math.random() * 1.2 + 0.5,
-      rotation: Math.random() * 360,
-      rotSpeed: (Math.random() - 0.5) * 2,
-      opacity: Math.random() * 0.6 + 0.3,
-      isGold: isGold,
-      tilt: Math.random() * 10 - 5,
-      tiltSpeed: Math.random() * 0.05 + 0.01,
-      color: isGold
-        ? 'rgba(212, 175, 55, '
-        : Math.random() > 0.5
-        ? 'rgba(178, 159, 224, '
-        : 'rgba(215, 203, 240, '
+      y: randomY ? Math.random() * height : -30,
+      size: Math.random() * 9 + 7,
+      speedX: (Math.random() - 0.5) * 0.9,
+      speedY: Math.random() * 1.3 + 0.6,
+      rotZ: Math.random() * Math.PI * 2,
+      rotSpeedZ: (Math.random() - 0.5) * 0.035,
+      tiltY: Math.random() * Math.PI * 2,
+      tiltSpeedY: Math.random() * 0.04 + 0.015,
+      swayPhase: Math.random() * Math.PI * 2,
+      swaySpeed: Math.random() * 0.025 + 0.01,
+      opacity: Math.random() * 0.45 + 0.4,
+      type: isGoldLeaf ? 'gold' : isJasmine ? 'jasmine' : 'lavender'
     };
+  }
+
+  // 3. Shimmering Stardust
+  const stardustCount = 38;
+  const stardust = [];
+  for (let i = 0; i < stardustCount; i++) {
+    stardust.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      size: Math.random() * 2.2 + 0.8,
+      speedY: -(Math.random() * 0.3 + 0.1),
+      twinklePhase: Math.random() * Math.PI * 2,
+      twinkleSpeed: Math.random() * 0.05 + 0.02,
+      baseAlpha: Math.random() * 0.5 + 0.3
+    });
   }
 
   function render() {
     ctx.clearRect(0, 0, width, height);
 
-    for (let i = 0; i < particles.length; i++) {
-      const p = particles[i];
-      p.x += p.speedX;
-      p.y += p.speedY;
-      p.rotation += p.rotSpeed;
-      p.tilt += p.tiltSpeed;
+    // Damping scroll velocity
+    scrollVelocity *= 0.92;
+
+    // 1. Render Bokeh
+    for (let i = 0; i < bokehs.length; i++) {
+      const b = bokehs[i];
+      b.y += b.speedY - scrollVelocity * 0.1;
+      b.x += b.speedX;
+      b.phase += b.pulseSpeed;
+
+      const alpha = b.baseOpacity * (0.8 + 0.2 * Math.sin(b.phase));
+      const grad = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.radius);
+      if (b.isGold) {
+        grad.addColorStop(0, `rgba(235, 195, 90, ${alpha * 1.2})`);
+        grad.addColorStop(0.6, `rgba(212, 175, 55, ${alpha * 0.6})`);
+        grad.addColorStop(1, 'rgba(212, 175, 55, 0)');
+      } else {
+        grad.addColorStop(0, `rgba(186, 160, 235, ${alpha * 1.3})`);
+        grad.addColorStop(0.6, `rgba(142, 95, 205, ${alpha * 0.5})`);
+        grad.addColorStop(1, 'rgba(142, 95, 205, 0)');
+      }
+
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, b.radius, 0, Math.PI * 2);
+      ctx.fill();
+
+      if (b.y < -b.radius) b.y = height + b.radius;
+      if (b.y > height + b.radius) b.y = -b.radius;
+      if (b.x < -b.radius) b.x = width + b.radius;
+      if (b.x > width + b.radius) b.x = -b.radius;
+    }
+
+    // 2. Render Stardust
+    for (let i = 0; i < stardust.length; i++) {
+      const s = stardust[i];
+      s.y += s.speedY - scrollVelocity * 0.15;
+      s.twinklePhase += s.twinkleSpeed;
+      const alpha = Math.max(0.1, s.baseAlpha + Math.sin(s.twinklePhase) * 0.35);
+
+      ctx.fillStyle = `rgba(255, 240, 180, ${alpha})`;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Subtle cross glimmer
+      if (alpha > 0.65) {
+        ctx.strokeStyle = `rgba(255, 255, 220, ${(alpha - 0.65) * 1.5})`;
+        ctx.lineWidth = 0.8;
+        ctx.beginPath();
+        ctx.moveTo(s.x - s.size * 2, s.y);
+        ctx.lineTo(s.x + s.size * 2, s.y);
+        ctx.moveTo(s.x, s.y - s.size * 2);
+        ctx.lineTo(s.x, s.y + s.size * 2);
+        ctx.stroke();
+      }
+
+      if (s.y < -10) s.y = height + 10;
+      if (s.y > height + 10) s.y = -10;
+    }
+
+    // 3. Render Tumbling Petals
+    for (let i = 0; i < petals.length; i++) {
+      const p = petals[i];
+      p.swayPhase += p.swaySpeed;
+      p.rotZ += p.rotSpeedZ;
+      p.tiltY += p.tiltSpeedY;
+
+      const swayX = Math.sin(p.swayPhase) * 1.5;
+      p.x += p.speedX + swayX;
+      p.y += p.speedY + scrollVelocity * 0.25;
+
+      const scaleY = Math.cos(p.tiltY); // 3D tumble flip
+      const petalW = p.size;
+      const petalH = p.size * 1.45;
 
       ctx.save();
       ctx.translate(p.x, p.y);
-      ctx.rotate((p.rotation * Math.PI) / 180);
+      ctx.rotate(p.rotZ);
+      ctx.scale(1, Math.abs(scaleY) * 0.85 + 0.15);
 
-      if (p.isGold) {
-        ctx.fillStyle = p.color + p.opacity + ')';
-        ctx.beginPath();
-        ctx.arc(0, 0, p.radius, 0, Math.PI * 2);
-        ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(0, -petalH * 0.6);
+      ctx.bezierCurveTo(petalW * 0.8, -petalH * 0.3, petalW * 0.7, petalH * 0.4, 0, petalH * 0.6);
+      ctx.bezierCurveTo(-petalW * 0.7, petalH * 0.4, -petalW * 0.8, -petalH * 0.3, 0, -petalH * 0.6);
+      ctx.closePath();
+
+      if (p.type === 'gold') {
+        ctx.fillStyle = `rgba(212, 175, 55, ${p.opacity * 0.85})`;
+        ctx.strokeStyle = `rgba(255, 235, 140, ${p.opacity * 0.6})`;
+        ctx.lineWidth = 0.6;
+        ctx.stroke();
+      } else if (p.type === 'jasmine') {
+        ctx.fillStyle = `rgba(255, 250, 240, ${p.opacity * 0.9})`;
+        ctx.strokeStyle = `rgba(240, 225, 200, ${p.opacity * 0.5})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
       } else {
-        ctx.fillStyle = p.color + p.opacity + ')';
-        ctx.beginPath();
-        ctx.ellipse(0, 0, p.radius, p.radius * 0.55, (p.tilt * Math.PI) / 180, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.fillStyle = `rgba(188, 168, 232, ${p.opacity * 0.75})`;
+        ctx.strokeStyle = `rgba(225, 212, 248, ${p.opacity * 0.5})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
       }
+      ctx.fill();
 
       ctx.restore();
 
-      if (p.y > height + 20 || p.x < -20 || p.x > width + 20) {
-        particles[i] = createParticle(false);
+      if (p.y > height + 40) {
+        petals[i] = createPetal(false);
       }
+    }
+
+    // 4. Render Interactive Cursor Trail Sparks
+    for (let i = interactiveSparks.length - 1; i >= 0; i--) {
+      const sp = interactiveSparks[i];
+      sp.x += sp.vx;
+      sp.y += sp.vy;
+      sp.life -= sp.decay;
+      if (sp.life <= 0) {
+        interactiveSparks.splice(i, 1);
+        continue;
+      }
+
+      ctx.fillStyle = `rgba(${sp.color}, ${sp.life * 0.85})`;
+      ctx.beginPath();
+      ctx.arc(sp.x, sp.y, sp.size * sp.life, 0, Math.PI * 2);
+      ctx.fill();
     }
 
     requestAnimationFrame(render);
@@ -865,6 +1033,19 @@ function initParallaxDepth() {
     }
   });
 
+  // Global Mouse Parallax on Living Motion Background
+  const bgAurora = document.getElementById('aurora-ambient-mesh');
+  const bgLattice = document.getElementById('sacred-geometry-lattice');
+  const bgLight = document.getElementById('volumetric-light-shafts');
+
+  window.addEventListener('mousemove', (e) => {
+    const normX = (e.clientX / window.innerWidth - 0.5) * 2;
+    const normY = (e.clientY / window.innerHeight - 0.5) * 2;
+    if (bgAurora) bgAurora.style.transform = `translate(${(normX * 12).toFixed(1)}px, ${(normY * 10).toFixed(1)}px)`;
+    if (bgLattice) bgLattice.style.transform = `translate(${(normX * -22).toFixed(1)}px, ${(normY * -18).toFixed(1)}px)`;
+    if (bgLight) bgLight.style.transform = `translate(${(normX * 30).toFixed(1)}px, ${(normY * 24).toFixed(1)}px)`;
+  }, { passive: true });
+
   heroStage.addEventListener('mouseleave', () => {
     archCard.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
     if (walkVideo) {
@@ -885,15 +1066,24 @@ function initParallaxDepth() {
         if (walkVideo) {
           walkVideo.style.transform = `scale(1.04) translate(${(rotY * -1.5).toFixed(1)}px, ${(rotX * -1.5).toFixed(1)}px)`;
         }
+
+        if (bgLattice) bgLattice.style.transform = `translate(${(rotY * -3).toFixed(1)}px, ${(rotX * -3).toFixed(1)}px)`;
+        if (bgAurora) bgAurora.style.transform = `translate(${(rotY * 2).toFixed(1)}px, ${(rotX * 2).toFixed(1)}px)`;
       }
     }, { passive: true });
   }
 
-  // Scroll Parallax on Video
+  // Scroll Parallax on Video and Living Background
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
     if (scrollY < 800 && walkVideo) {
       walkVideo.style.transform = `translateY(${scrollY * 0.15}px)`;
+    }
+    if (bgLattice) {
+      bgLattice.style.transform = `translateY(${(scrollY * 0.08).toFixed(1)}px)`;
+    }
+    if (bgAurora) {
+      bgAurora.style.transform = `translateY(${(scrollY * 0.035).toFixed(1)}px)`;
     }
   }, { passive: true });
 }

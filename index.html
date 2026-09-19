@@ -30,7 +30,14 @@
     <span class="music-label">Music</span>
   </button>
 
-  <!-- Canvas Background for Floating Lavender Petals & Soft Golden Bokeh -->
+  <!-- Living Motion Graphic & Parallax Dynamic Background -->
+  <div class="living-motion-background" id="living-motion-bg" aria-hidden="true">
+    <div class="aurora-ambient-mesh" id="aurora-ambient-mesh"></div>
+    <div class="sacred-geometry-lattice" id="sacred-geometry-lattice"></div>
+    <div class="volumetric-light-shafts" id="volumetric-light-shafts"></div>
+  </div>
+
+  <!-- Canvas Background for Floating Lavender Petals, Bokeh Orbs & Golden Stardust -->
   <canvas id="petal-canvas"></canvas>
 
   <!-- Side Storyteller Chapter Navigation (Parallax Book) -->
@@ -104,6 +111,22 @@
           <line x1="50" y1="50" x2="100" y2="100" stroke="url(#seamRayBurstBR)" class="seam-burst-ray" vector-effect="non-scaling-stroke"/>
         </svg>
         <div class="soft-center-beam" id="center-light-beam"></div>
+
+        <!-- Inner Card Preview revealed as flaps fold open (matching reference video) -->
+        <div class="envelope-inner-card" id="envelope-inner-card" aria-hidden="true">
+          <div class="inner-card-embossed-frame">
+            <div class="inner-card-arch-window">
+              <img src="assets/couple_walking.jpg" alt="Mustafa &amp; Tasneem Walking" class="inner-card-couple-img" />
+              <div class="inner-card-sunbeam-glow"></div>
+            </div>
+            <div class="inner-card-header-preview">
+              <span class="inner-card-welcome">Welcome to the</span>
+              <h3 class="inner-card-ceremony">Nikkah Ceremony</h3>
+              <span class="inner-card-of">of</span>
+              <h2 class="inner-card-names">Mustafa <span>&amp;</span> Tasneem</h2>
+            </div>
+          </div>
+        </div>
 
         <!-- Envelope Flap Layers: 4 Authentic Triangular Flaps Meeting at Center -->
         <div class="envelope-panel panel-bottom" id="panel-bottom">

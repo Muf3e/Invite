@@ -71,6 +71,83 @@ body {
   justify-content: center;
 }
 
+/* Dynamic Living Motion Graphic & Parallax Background */
+.living-motion-background {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.aurora-ambient-mesh {
+  position: absolute;
+  inset: -25%;
+  width: 150%;
+  height: 150%;
+  background: 
+    radial-gradient(ellipse at 20% 20%, rgba(142, 68, 173, 0.25) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 25%, rgba(212, 175, 55, 0.20) 0%, transparent 45%),
+    radial-gradient(ellipse at 35% 85%, rgba(106, 44, 160, 0.24) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 85%, rgba(245, 222, 152, 0.16) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, #170E28 0%, #0A0512 100%);
+  animation: auroraMeshBreathe 22s infinite ease-in-out alternate;
+  filter: blur(50px);
+  will-change: transform;
+}
+
+@keyframes auroraMeshBreathe {
+  0% { transform: scale(1) translate(0, 0) rotate(0deg); }
+  50% { transform: scale(1.08) translate(-2%, 3%) rotate(2deg); }
+  100% { transform: scale(1.04) translate(3%, -2%) rotate(-1.5deg); }
+}
+
+.sacred-geometry-lattice {
+  position: absolute;
+  inset: -15%;
+  width: 130%;
+  height: 130%;
+  opacity: 0.085;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23D4AF37' stroke-width='0.8'%3E%3Cpolygon points='40,0 80,40 40,80 0,40'/%3E%3Crect x='11.72' y='11.72' width='56.57' height='56.57' transform='rotate(45 40 40)'/%3E%3Ccircle cx='40' cy='40' r='16' stroke-width='0.6'/%3E%3Ccircle cx='40' cy='40' r='28' stroke-width='0.6' stroke-dasharray='2,3'/%3E%3Cpath d='M0,0 L80,80 M80,0 L0,80' stroke-width='0.4' stroke-opacity='0.5'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 80px 80px;
+  animation: latticeMotionDrift 70s linear infinite;
+  will-change: transform;
+}
+
+@keyframes latticeMotionDrift {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(80px) rotate(1deg); }
+}
+
+.volumetric-light-shafts {
+  position: absolute;
+  inset: -30%;
+  width: 160%;
+  height: 160%;
+  background: repeating-linear-gradient(
+    -35deg,
+    transparent 0%,
+    transparent 14%,
+    rgba(255, 245, 210, 0.03) 18%,
+    transparent 24%,
+    transparent 38%,
+    rgba(212, 175, 55, 0.035) 43%,
+    transparent 49%
+  );
+  mix-blend-mode: screen;
+  animation: lightShaftSway 28s infinite ease-in-out alternate;
+  pointer-events: none;
+  filter: blur(12px);
+}
+
+@keyframes lightShaftSway {
+  0% { transform: translateX(-4%) translateY(0); opacity: 0.5; }
+  50% { transform: translateX(3%) translateY(-2%); opacity: 0.95; }
+  100% { transform: translateX(-1%) translateY(2%); opacity: 0.6; }
+}
+
 /* Petal & Soft Bokeh Canvas */
 #petal-canvas {
   position: fixed;
@@ -463,29 +540,219 @@ body {
   50% { filter: drop-shadow(1px 2px 5px rgba(255,235,140,0.7)) brightness(1.15); }
 }
 
+/* Inner Card inside Envelope Pocket (Matches Reference Video) */
+.envelope-inner-card {
+  position: absolute;
+  width: min(88vw, 420px);
+  height: min(78vh, 640px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.92);
+  z-index: 1;
+  background: linear-gradient(180deg, #FCFAF6 0%, #F5EFE4 100%);
+  border-radius: 20px;
+  box-shadow: 0 12px 45px rgba(25, 10, 35, 0.35), 0 0 0 1.5px rgba(212, 175, 55, 0.45);
+  overflow: hidden;
+  opacity: 0.95;
+  transition: transform 1.25s cubic-bezier(0.25, 1, 0.3, 1), opacity 0.9s ease, box-shadow 1.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 24px 18px;
+  pointer-events: none;
+}
+
+.fullscreen-envelope-container.open .envelope-inner-card {
+  transform: translate(-50%, -50%) scale(1.02);
+  opacity: 1;
+  box-shadow: 0 25px 70px rgba(25, 10, 35, 0.6), 0 0 45px rgba(212, 175, 55, 0.7);
+}
+
+.inner-card-embossed-frame {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 14px;
+  padding: 18px 12px;
+  background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.9) 0%, rgba(247, 241, 230, 0.6) 100%);
+  position: relative;
+}
+
+.inner-card-header-preview {
+  text-align: center;
+  margin-top: 10px;
+  z-index: 2;
+}
+
+.inner-card-welcome {
+  font-family: var(--font-cursive);
+  font-size: 1.15rem;
+  color: var(--gold-dark);
+  display: block;
+}
+
+.inner-card-ceremony {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--lavender-royal);
+  margin: 2px 0;
+  letter-spacing: 1px;
+}
+
+.inner-card-of {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  display: block;
+}
+
+.inner-card-names {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  color: var(--lavender-royal);
+  margin-top: 2px;
+}
+
+.inner-card-names span {
+  color: var(--gold-primary);
+  font-family: var(--font-cursive);
+  font-size: 1.6rem;
+}
+
+.inner-card-arch-window {
+  width: 90%;
+  height: 60%;
+  border-radius: 120px 120px 10px 10px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(35, 20, 50, 0.25), 0 0 0 2px rgba(212, 175, 55, 0.5);
+}
+
+.inner-card-couple-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.inner-card-sunbeam-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 25%, rgba(255, 240, 180, 0.35) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Flap Panels filling the full screen with authentic 3D unfolding & gold satin lining */
+.envelope-panel {
+  position: absolute;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+.panel-top {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  background: linear-gradient(180deg, #FAF7F2 0%, #EDE5D8 100%);
+  border-bottom: 1.5px solid rgba(212, 175, 55, 0.55);
+  transform-origin: top center;
+  z-index: 4;
+  filter: drop-shadow(0 10px 25px rgba(40, 20, 60, 0.25));
+  transition: transform 1.2s cubic-bezier(0.25, 1, 0.3, 1), opacity 0.85s ease;
+}
+
+.panel-top::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #C6922C 0%, #F5DE98 45%, #D4AF37 75%, #AA7C11 100%);
+  transform: rotateX(180deg);
+  backface-visibility: hidden;
+  box-shadow: inset 0 0 30px rgba(170, 124, 17, 0.5);
+}
+
+.panel-bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  background: linear-gradient(0deg, #EDE5D8 0%, #FAF6EE 100%);
+  border-top: 1.5px solid rgba(212, 175, 55, 0.5);
+  transform-origin: bottom center;
+  z-index: 2;
+  filter: drop-shadow(0 -8px 24px rgba(45, 20, 70, 0.2));
+  transition: transform 1.25s cubic-bezier(0.25, 1, 0.3, 1) 0.1s, opacity 0.85s ease 0.1s;
+}
+
+.panel-bottom::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, #C6922C 0%, #F5DE98 45%, #D4AF37 75%, #AA7C11 100%);
+  transform: rotateX(180deg);
+  backface-visibility: hidden;
+  box-shadow: inset 0 0 30px rgba(170, 124, 17, 0.5);
+}
+
+.panel-left {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  background: linear-gradient(135deg, #F9F5EC 0%, #E8DFCE 100%);
+  border-right: 1.5px solid rgba(212, 175, 55, 0.45);
+  box-shadow: 8px 0 28px rgba(45, 20, 70, 0.18);
+  transform-origin: left center;
+  z-index: 3;
+  transition: transform 1.2s cubic-bezier(0.25, 1, 0.3, 1) 0.05s, opacity 0.85s ease 0.05s;
+}
+
+.panel-right {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+  background: linear-gradient(225deg, #F9F5EC 0%, #E8DFCE 100%);
+  border-left: 1.5px solid rgba(212, 175, 55, 0.45);
+  box-shadow: -8px 0 28px rgba(45, 20, 70, 0.18);
+  transform-origin: right center;
+  z-index: 3;
+  transition: transform 1.2s cubic-bezier(0.25, 1, 0.3, 1) 0.05s, opacity 0.85s ease 0.05s;
+}
+
 /* State when envelope opens (Exact mechanics matching reference video) */
 .fullscreen-envelope-container.open .panel-top {
-  transform: perspective(1400px) rotateX(95deg) translateY(-50px);
-  opacity: 0;
+  transform: perspective(1400px) rotateX(175deg);
+  opacity: 0.2;
 }
 
 .fullscreen-envelope-container.open .panel-left {
-  transform: perspective(1400px) rotateY(-90deg) translateX(-30px);
-  opacity: 0;
+  transform: perspective(1400px) rotateY(-170deg);
+  opacity: 0.15;
 }
 
 .fullscreen-envelope-container.open .panel-right {
-  transform: perspective(1400px) rotateY(90deg) translateX(30px);
-  opacity: 0;
+  transform: perspective(1400px) rotateY(170deg);
+  opacity: 0.15;
 }
 
 .fullscreen-envelope-container.open .panel-bottom {
-  transform: perspective(1400px) rotateX(-95deg) translateY(50px);
-  opacity: 0;
+  transform: perspective(1400px) rotateX(-175deg);
+  opacity: 0.2;
 }
 
 .fullscreen-envelope-container.open .wax-seal-macro-wrap {
-  transform: translate(-50%, -120%) scale(0.9);
+  transform: translate(-50%, -190%) scale(0.88) rotate(-4deg);
   opacity: 0;
   pointer-events: none;
 }

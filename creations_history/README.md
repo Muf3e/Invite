@@ -68,12 +68,19 @@ creations_history/
   * Replaced opaque cards with royal dark translucent glassmorphism (`rgba(26, 14, 40, 0.78)`).
   * Added Google Sheets RSVP webhook integration (`google-apps-script/Code.gs`).
 
-### Version 5 (Current Active at Project Root):
+### Version 5:
 * **Change**:
   * Replaced the seal with an authentic 3D cutout seal (`assets/seal.png`) with organic melted edges and zero artificial paper mockup background.
   * 4-panel envelope opening mechanics with SVG seams, corner-to-center diagonal fold lines, and smooth champagne light portal.
   * Living Mughal archway hero stage with swaying 3D Moroccan brass lanterns and animated continuous video loop of the Dawoodi Bohra couple walking through the palace garden (`couple_walking.mp4`).
   * Motion graphic canvas stardust and petal physics.
+
+### Version 6 (Current Active at Project Root):
+* **Change**:
+  * **Authentic Frontal Wax Seal (`assets/seal.png`)**: Replaced tilted 3D mockup photo with a direct, front-facing, perfectly circular, centered gold wax seal emblem. Contains English "MT" in calligraphic monogram script and Arabic "م ت" (Meem & Taa) in authentic Thuluth calligraphy format, with imperial royal crown and classical laurel wreath. Strictly no ampersand ("&") or "و". Pure transparent cutout without paper background disc.
+  * **Faithful Video Envelope Mechanics**: Recreated the 4-panel unfolding sequence matching the reference video — top flap lifts 180° upward carrying the wax seal, bottom flap folds downward, revealing authentic gold satin flap lining and the inner wedding invitation card peeking out from the envelope pocket.
+  * **Living Motion Graphic & Dynamic Parallax Background**: Engineered multi-layer dynamic background featuring fluid ambient aurora mesh, floating sacred geometric Islamic jali lattice, volumetric light shafts, interactive cursor stardust ripples, multi-depth bokeh orbs, and 3D tumbling petals with differential parallax scrolling.
+  * **Bohra Couple Walking Video Stage**: Embedded looping video (`couple_walking.mp4`) with walking kinematics, swaying lanterns, and stardust canvas overlay.
 
 ---
 
