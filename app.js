@@ -111,6 +111,7 @@ function initEnvelopeExperience() {
   const inviteScreen = document.getElementById('invitation-screen');
   const bgAudio = document.getElementById('bg-audio');
   const musicToggle = document.getElementById('music-toggle');
+  const lightPortal = document.getElementById('light-portal');
 
   if (!waxSeal || !envelopeBox) return;
 
@@ -124,29 +125,43 @@ function initEnvelopeExperience() {
       });
     }
 
-    // 2. Animate wax seal cracking and breaking away
-    waxSeal.style.transition = 'transform 0.5s ease, opacity 0.4s ease';
-    waxSeal.style.transform = 'translate(-50%, -50%) scale(1.35)';
-    waxSeal.style.opacity = '0';
+    // 2. Activate radiant golden rays and intense glow on seal
+    waxSeal.classList.add('glowing');
+    createSealBurst(waxSeal);
 
-    // 3. Open top envelope flap in 3D
+    // 3. Center seam cracks open with brilliant golden light beam
     setTimeout(() => {
-      envelopeBox.classList.add('open');
-      createSealBurst(waxSeal);
+      envelopeBox.classList.add('light-active');
     }, 250);
 
-    // 4. Smoothly transition to the main invitation experience
+    // 4. Open flaps in 3D perspective
     setTimeout(() => {
-      envelopeScreen.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-      envelopeScreen.style.opacity = '0';
-      envelopeScreen.style.transform = 'translateY(-30px)';
+      envelopeBox.classList.add('open');
+    }, 550);
 
+    // 5. Expand golden light portal to flood the screen
+    setTimeout(() => {
+      if (lightPortal) lightPortal.classList.add('active');
+    }, 950);
+
+    // 6. Smoothly transition to the main invitation experience
+    setTimeout(() => {
+      envelopeScreen.classList.add('hidden');
+      inviteScreen.classList.remove('hidden');
+      window.scrollTo({ top: 0 });
+
+      // Fade out the golden light portal to reveal the card
       setTimeout(() => {
-        envelopeScreen.classList.add('hidden');
-        inviteScreen.classList.remove('hidden');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 700);
-    }, 1400);
+        if (lightPortal) {
+          lightPortal.style.transition = 'opacity 1s ease';
+          lightPortal.classList.remove('active');
+          setTimeout(() => {
+            lightPortal.style.display = 'none';
+          }, 1000);
+        }
+        triggerGoldConfetti();
+      }, 300);
+    }, 1600);
   });
 }
 

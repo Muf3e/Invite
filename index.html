@@ -52,6 +52,9 @@
         <!-- The 3D Envelope Box -->
         <div class="envelope-3d" id="envelope-box">
           <div class="envelope-back"></div>
+
+          <!-- Radiant Light Beam shining through the center crack -->
+          <div class="center-light-beam" id="center-light-beam"></div>
           
           <!-- Letter Card peeking inside -->
           <div class="envelope-letter-preview">
@@ -63,9 +66,9 @@
           </div>
 
           <!-- Bottom & Side Flaps -->
-          <div class="envelope-flap flap-left"></div>
-          <div class="envelope-flap flap-right"></div>
-          <div class="envelope-flap flap-bottom"></div>
+          <div class="envelope-flap flap-left" id="flap-left"></div>
+          <div class="envelope-flap flap-right" id="flap-right"></div>
+          <div class="envelope-flap flap-bottom" id="flap-bottom"></div>
 
           <!-- Top Foldable Flap -->
           <div class="envelope-flap flap-top" id="top-flap"></div>
@@ -73,7 +76,9 @@
           <!-- 3D Gold Wax Seal (Interactive Button) -->
           <div class="wax-seal-container" id="wax-seal">
             <div class="seal-pulse-glow"></div>
-            <img src="assets/seal.jpg" alt="Gold Wax Seal" class="wax-seal-img" />
+            <div class="seal-rotating-rays" id="seal-rays"></div>
+            <div class="seal-radiant-halo" id="seal-halo"></div>
+            <img src="assets/seal.jpg" alt="Bilingual Gold Wax Seal with M&T and Meem & Taa" class="wax-seal-img" />
             <div class="seal-tap-prompt">
               <span class="tap-icon">✨</span>
               <span class="tap-text">TAP TO OPEN</span>
@@ -81,8 +86,11 @@
           </div>
         </div>
 
+        <!-- Fullscreen Golden Light Flare Transition -->
+        <div class="golden-light-portal" id="light-portal"></div>
+
         <div class="envelope-footer-note">
-          <p>Tap the golden seal to open your invitation</p>
+          <p>✨ Tap the seal for the light reveal ✨</p>
         </div>
       </div>
     </section>
