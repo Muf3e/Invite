@@ -690,6 +690,9 @@ body {
     0 0 25px rgba(212, 175, 55, 0.25);
   border: 3px solid rgba(212, 175, 55, 0.5);
   background: #170E24;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .couple-portrait-img {

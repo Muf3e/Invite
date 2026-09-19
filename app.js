@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initRsvpAndGuestbook();
   initBackToTop();
   initStoryScrollSpy();
+  initParallaxDepth();
 });
 
 /* ==========================================================================
@@ -656,4 +657,38 @@ function initStoryScrollSpy() {
 
   chapters.forEach(chapter => observer.observe(chapter));
 }
+
+/* ==========================================================================
+   10. INTERACTIVE 3D PARALLAX DEPTH (MOUSE & GYROSCOPE)
+   ========================================================================== */
+function initParallaxDepth() {
+  const arch = document.querySelector('.portrait-arch-frame');
+  const showcase = document.querySelector('.couple-portrait-showcase');
+  if (!arch || !showcase) return;
+
+  showcase.addEventListener('mousemove', (e) => {
+    const rect = showcase.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    const rotX = -(y / (rect.height / 2)) * 7;
+    const rotY = (x / (rect.width / 2)) * 7;
+    arch.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale(1.02)`;
+  });
+
+  showcase.addEventListener('mouseleave', () => {
+    arch.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+  });
+
+  // Mobile Gyroscope Parallax
+  if (window.DeviceOrientationEvent) {
+    window.addEventListener('deviceorientation', (e) => {
+      if (e.gamma !== null && e.beta !== null) {
+        const rotY = Math.max(-8, Math.min(8, e.gamma / 3));
+        const rotX = Math.max(-8, Math.min(8, (e.beta - 45) / 3));
+        arch.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
+      }
+    }, { passive: true });
+  }
+}
+
 
