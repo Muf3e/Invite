@@ -476,142 +476,159 @@ function initAudioPlayer() {
 }
 
 /* ==========================================================================
-   4. INTERACTIVE HTML5 SCRATCH-TO-REVEAL CANVAS
+   4. INTERACTIVE HTML5 4-BLOCK SCRATCH-TO-REVEAL GRID
    ========================================================================== */
 function initScratchCard() {
-  const canvas = document.getElementById('scratch-canvas');
+  const blocks = [
+    { id: 'scratch-canvas-1', title: 'DATE' },
+    { id: 'scratch-canvas-2', title: 'MONTH' },
+    { id: 'scratch-canvas-3', title: 'VENUE' },
+    { id: 'scratch-canvas-4', title: 'LOCATION' }
+  ];
+
   const progressBar = document.getElementById('scratch-progress');
   const hintText = document.getElementById('scratch-hint');
-  if (!canvas) return;
+  const revealedSummary = document.getElementById('scratch-revealed-summary');
 
-  const ctx = canvas.getContext('2d');
-  let isDrawing = false;
-  let isRevealed = false;
+  let revealedCount = 0;
+  const totalBlocks = 4;
 
-  // Render luxurious golden shimmer foil on canvas
-  function renderGoldFoil() {
-    const w = canvas.width;
-    const h = canvas.height;
+  blocks.forEach((b) => {
+    const canvas = document.getElementById(b.id);
+    if (!canvas) return;
 
-    // Base metallic gold gradient
-    const grad = ctx.createLinearGradient(0, 0, w, h);
-    grad.addColorStop(0, '#B88E28');
-    grad.addColorStop(0.25, '#F7E7B4');
-    grad.addColorStop(0.5, '#D4AF37');
-    grad.addColorStop(0.75, '#FFF5D1');
-    grad.addColorStop(1, '#8A6414');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, w, h);
+    const ctx = canvas.getContext('2d');
+    let isDrawing = false;
+    let isBlockRevealed = false;
 
-    // Subtle decorative border pattern
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
-    ctx.lineWidth = 2;
-    ctx.strokeRect(10, 10, w - 20, h - 20);
-
-    // Fine gold glitter noise
-    for (let i = 0; i < 400; i++) {
-      ctx.fillStyle = Math.random() > 0.5 ? 'rgba(255, 255, 255, 0.35)' : 'rgba(99, 71, 7, 0.2)';
-      ctx.fillRect(Math.random() * w, Math.random() * h, 2, 2);
-    }
-
-    // Centered foil text
-    ctx.fillStyle = '#2A163B';
-    ctx.font = 'bold 16px "Montserrat", sans-serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('✨ SCRATCH HERE ✨', w / 2, h / 2 - 12);
-
-    ctx.fillStyle = '#634707';
-    ctx.font = 'italic 12px "Cormorant Garamond", Georgia, serif';
-    ctx.fillText('Rub with your finger or mouse to reveal', w / 2, h / 2 + 15);
-  }
-
-  renderGoldFoil();
-
-  // Scratch handling
-  function scratch(e) {
-    if (!isDrawing || isRevealed) return;
-
-    const rect = canvas.getBoundingClientRect();
-    const scaleX = canvas.width / rect.width;
-    const scaleY = canvas.height / rect.height;
-
-    let clientX, clientY;
-    if (e.touches && e.touches.length > 0) {
-      clientX = e.touches[0].clientX;
-      clientY = e.touches[0].clientY;
-    } else {
-      clientX = e.clientX;
-      clientY = e.clientY;
-    }
-
-    const x = (clientX - rect.left) * scaleX;
-    const y = (clientY - rect.top) * scaleY;
-
-    ctx.globalCompositeOperation = 'destination-out';
-    ctx.beginPath();
-    ctx.arc(x, y, 22, 0, Math.PI * 2, false);
-    ctx.fill();
-
-    checkScratchPercentage();
-  }
-
-  // Throttle check percentage
-  let checkTimer = null;
-  function checkScratchPercentage() {
-    if (checkTimer) return;
-    checkTimer = setTimeout(() => {
-      checkTimer = null;
+    function renderTileFoil() {
       const w = canvas.width;
       const h = canvas.height;
-      const imgData = ctx.getImageData(0, 0, w, h);
-      const pixels = imgData.data;
-      let clearPixels = 0;
-      const step = 32; // sampling step for high performance
 
-      for (let i = 3; i < pixels.length; i += 4 * step) {
-        if (pixels[i] === 0) {
-          clearPixels++;
+      // Rich metallic gold gradient
+      const grad = ctx.createLinearGradient(0, 0, w, h);
+      grad.addColorStop(0, '#B88E28');
+      grad.addColorStop(0.25, '#F7E7B4');
+      grad.addColorStop(0.5, '#D4AF37');
+      grad.addColorStop(0.75, '#FFF5D1');
+      grad.addColorStop(1, '#8A6414');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
+
+      // Fine filigree border
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.45)';
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(6, 6, w - 12, h - 12);
+
+      // Glitter noise
+      for (let i = 0; i < 180; i++) {
+        ctx.fillStyle = Math.random() > 0.5 ? 'rgba(255, 255, 255, 0.4)' : 'rgba(99, 71, 7, 0.25)';
+        ctx.fillRect(Math.random() * w, Math.random() * h, 2, 2);
+      }
+
+      // Foil text
+      ctx.fillStyle = '#2A163B';
+      ctx.font = 'bold 12px "Montserrat", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('✨ SCRATCH ✨', w / 2, h / 2 - 9);
+
+      ctx.fillStyle = '#634707';
+      ctx.font = 'italic 11px "Cormorant Garamond", Georgia, serif';
+      ctx.fillText(`Rub to reveal ${b.title.toLowerCase()}`, w / 2, h / 2 + 11);
+    }
+
+    renderTileFoil();
+
+    function scratch(e) {
+      if (!isDrawing || isBlockRevealed) return;
+
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+
+      let clientX, clientY;
+      if (e.touches && e.touches.length > 0) {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      } else {
+        clientX = e.clientX;
+        clientY = e.clientY;
+      }
+
+      const x = (clientX - rect.left) * scaleX;
+      const y = (clientY - rect.top) * scaleY;
+
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.beginPath();
+      ctx.arc(x, y, 20, 0, Math.PI * 2, false);
+      ctx.fill();
+
+      checkBlockPercentage();
+    }
+
+    let checkTimer = null;
+    function checkBlockPercentage() {
+      if (checkTimer) return;
+      checkTimer = setTimeout(() => {
+        checkTimer = null;
+        if (isBlockRevealed) return;
+
+        const w = canvas.width;
+        const h = canvas.height;
+        const imgData = ctx.getImageData(0, 0, w, h);
+        const pixels = imgData.data;
+        let clearPixels = 0;
+        const step = 20;
+
+        for (let i = 3; i < pixels.length; i += 4 * step) {
+          if (pixels[i] === 0) clearPixels++;
         }
-      }
 
-      const totalSampled = pixels.length / (4 * step);
-      const percent = Math.round((clearPixels / totalSampled) * 100);
+        const totalSampled = pixels.length / (4 * step);
+        const percent = Math.round((clearPixels / totalSampled) * 100);
 
-      if (progressBar) {
-        progressBar.style.setProperty('--progress', `${percent}%`);
-      }
+        if (percent >= 35) {
+          revealBlock();
+        }
+      }, 100);
+    }
 
-      if (percent >= 45 && !isRevealed) {
-        completeScratchReveal();
-      }
-    }, 120);
-  }
+    function revealBlock() {
+      if (isBlockRevealed) return;
+      isBlockRevealed = true;
+      canvas.style.transition = 'opacity 0.5s ease';
+      canvas.style.opacity = '0';
 
-  function completeScratchReveal() {
-    isRevealed = true;
-    canvas.style.transition = 'opacity 0.6s ease';
-    canvas.style.opacity = '0';
-    setTimeout(() => {
-      canvas.style.pointerEvents = 'none';
-      if (progressBar) progressBar.style.setProperty('--progress', '100%');
-      if (hintText) {
-        hintText.innerText = '✨ Mubarak! The Auspicious Date has been Unveiled! ✨';
-        hintText.style.color = 'var(--gold-dark)';
-        hintText.style.fontWeight = '600';
-      }
-      triggerGoldConfetti();
-    }, 600);
-  }
+      setTimeout(() => {
+        canvas.style.pointerEvents = 'none';
+        revealedCount++;
+        const totalPercent = Math.round((revealedCount / totalBlocks) * 100);
 
-  // Pointer Events
-  canvas.addEventListener('mousedown', (e) => { isDrawing = true; scratch(e); });
-  window.addEventListener('mousemove', scratch);
-  window.addEventListener('mouseup', () => { isDrawing = false; });
+        if (progressBar) progressBar.style.setProperty('--progress', `${totalPercent}%`);
 
-  canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); }, { passive: true });
-  window.addEventListener('touchmove', scratch, { passive: true });
-  window.addEventListener('touchend', () => { isDrawing = false; });
+        if (hintText) {
+          if (revealedCount < totalBlocks) {
+            hintText.innerText = `Scratch the remaining blocks! (${revealedCount} of ${totalBlocks} Revealed)`;
+          } else {
+            hintText.innerText = '✨ Mubarak! All 4 Wedding Details Have Been Revealed! ✨';
+            hintText.style.color = '#8C5E14';
+            hintText.style.fontWeight = '700';
+            triggerGoldConfetti();
+          }
+        }
+      }, 500);
+    }
+
+    // Pointer events for this canvas
+    canvas.addEventListener('mousedown', (e) => { isDrawing = true; scratch(e); });
+    canvas.addEventListener('mousemove', scratch);
+    window.addEventListener('mouseup', () => { isDrawing = false; });
+
+    canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); }, { passive: true });
+    canvas.addEventListener('touchmove', scratch, { passive: true });
+    window.addEventListener('touchend', () => { isDrawing = false; });
+  });
 }
 
 function triggerGoldConfetti() {
@@ -662,10 +679,10 @@ function initCountdownTimer() {
   const secondsEl = document.getElementById('cd-seconds');
   if (!daysEl) return;
 
-  // Auspicious Wedding Date (Tuesday, Jan 20, 12:00:00)
-  let targetDate = new Date('January 20, 2026 12:00:00').getTime();
+  // Auspicious Wedding Date (Monday, Jan 26, 12:00:00)
+  let targetDate = new Date('January 26, 2026 12:00:00').getTime();
   if (targetDate <= Date.now()) {
-    targetDate = new Date('January 20, 2027 12:00:00').getTime();
+    targetDate = new Date('January 26, 2027 12:00:00').getTime();
   }
 
   function updateTimer() {
@@ -706,9 +723,9 @@ function initCalendarAction() {
     // Generate iCal format (.ics)
     const title = 'Wedding of Mustafa & Tasneem (Aqd al-Nikah)';
     const description = 'Auspicious wedding celebration of Mustafa & Tasneem under the Raza Mubarak of His Holiness Syedna Mufaddal Saifuddin (TUS).';
-    const location = 'Pulgaon Mawaid';
-    const startDate = '20260120T063000Z'; // UTC format (12:00 PM IST)
-    const endDate = '20260120T140000Z';
+    const location = 'Pulgaon, Maharashtra';
+    const startDate = '20260126T063000Z'; // UTC format (12:00 PM IST)
+    const endDate = '20260126T140000Z';
 
     const icsContent = [
       'BEGIN:VCALENDAR',

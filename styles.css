@@ -1389,108 +1389,72 @@ body {
   margin-bottom: 18px;
 }
 
-.scratch-wrapper {
-  width: 310px;
-  height: 190px;
-  margin: 0 auto;
-  position: relative;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(45, 20, 75, 0.1);
-  border: 1.5px solid rgba(212, 175, 55, 0.45);
+/* 4-Block Scratch Grid Styling */
+.scratch-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  max-width: 580px;
+  margin: 22px auto 16px;
 }
 
-.scratch-reveal-content {
+.scratch-tile-block {
+  position: relative;
+  height: 155px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1.5px solid rgba(212, 175, 55, 0.55);
+  box-shadow: 0 8px 22px rgba(70, 35, 90, 0.08);
+  background: #FFFFFF;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.scratch-tile-block:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(70, 35, 90, 0.12), 0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+.tile-reveal-content {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, #FFFDF8 0%, #F5ECDB 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 12px;
+  background: radial-gradient(circle at center, #FFFDF8 0%, #FAF3E6 100%);
   z-index: 1;
 }
 
-.revealed-badge {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+.tile-category-tag {
   font-family: var(--font-sans);
-  font-size: 0.65rem;
-  letter-spacing: 2px;
+  font-size: 0.68rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
   color: #8C5E14;
-  font-weight: 600;
-  margin-bottom: 6px;
+  font-weight: 700;
+  margin-bottom: 5px;
 }
 
-.date-display-grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-}
-
-.date-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.date-num {
+.tile-val-huge {
   font-family: var(--font-display);
-  font-size: 2.2rem;
+  font-size: 1.85rem;
   font-weight: 700;
   color: #C58B1B;
-  line-height: 1;
+  line-height: 1.1;
+  text-align: center;
 }
 
-.date-label {
+.tile-val-sub {
   font-family: var(--font-sans);
-  font-size: 0.62rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  letter-spacing: 1.5px;
   color: #4A3560;
   margin-top: 4px;
+  text-align: center;
 }
 
-.date-separator {
-  color: var(--gold-primary);
-  font-size: 1.3rem;
-}
-
-.revealed-hijri {
-  font-family: 'Kanz al Marjaan', var(--font-serif);
-  font-size: 1.05rem;
-  color: #8C5E14;
-  margin-top: 6px;
-}
-
-.btn-gold-action {
-  background: var(--gold-gradient);
-  color: #351C05;
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  padding: 7px 16px;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  box-shadow: 0 4px 12px rgba(180, 140, 30, 0.3);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  margin-top: 8px;
-}
-
-.btn-gold-action:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(180, 140, 30, 0.4);
-}
-
-.scratch-canvas {
+.tile-scratch-canvas {
   position: absolute;
   top: 0;
   left: 0;
@@ -1499,6 +1463,76 @@ body {
   z-index: 2;
   cursor: grab;
   touch-action: none;
+  transition: opacity 0.5s ease;
+}
+
+.revealed-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  color: #8C5E14;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.scratch-revealed-summary {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px dashed rgba(212, 175, 55, 0.45);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: fadeInSummary 0.6s ease;
+}
+
+@keyframes fadeInSummary {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.revealed-full-detail {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: #3E2469;
+  letter-spacing: 0.5px;
+  text-align: center;
+  margin: 4px 0;
+}
+
+.revealed-hijri-date {
+  font-family: 'Kanz al Marjaan', var(--font-serif);
+  font-size: 1.25rem;
+  color: #8C5E14;
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.btn-gold-action {
+  background: var(--gold-gradient);
+  color: #351C05;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 8px 20px;
+  border-radius: 24px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(180, 140, 30, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-top: 4px;
+}
+
+.btn-gold-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(180, 140, 30, 0.45);
 }
 
 .scratch-progress-wrap {
@@ -1510,8 +1544,8 @@ body {
 }
 
 .scratch-progress-bar {
-  width: 160px;
-  height: 4px;
+  width: 180px;
+  height: 6px;
   background: rgba(164, 142, 212, 0.25);
   border-radius: 4px;
   overflow: hidden;
@@ -1527,14 +1561,15 @@ body {
   width: var(--progress, 0%);
   background: var(--gold-gradient);
   border-radius: 4px;
-  transition: width 0.2s ease;
+  transition: width 0.25s ease;
 }
 
 .scratch-hint {
   font-family: var(--font-sans);
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   color: #644E7A;
   font-style: italic;
+  font-weight: 500;
 }
 
 /* Countdown Grid */

@@ -272,9 +272,9 @@
               <div class="card-event-details-box">
                 <div class="event-details-inner">
                   <div class="event-detail-row">
-                    <span class="event-detail-eng">20th January 2026 - Tuesday</span>
+                    <span class="event-detail-eng">26th January 2026 - Monday</span>
                     <span class="event-detail-sep">|</span>
-                    <span class="event-detail-arabic">يَوْمُ الثُّلَاثَاء - ۲ مِي شَعْبَانِ الكَرِيم ١٤٤٧ هـ</span>
+                    <span class="event-detail-arabic">يَوْمُ الإِثْنَيْن - ۸ مِي شَعْبَانِ الكَرِيم ١٤٤٧ هـ</span>
                   </div>
                   <div class="event-detail-row">
                     <span class="event-detail-eng">Time: 12:00 PM</span>
@@ -282,9 +282,9 @@
                     <span class="event-detail-arabic">وَقْت - قَبْلَ زَوَال - پَٹِيرُو مَجْلِس ، مَرْدُو دَرِيس</span>
                   </div>
                   <div class="event-detail-row">
-                    <span class="event-detail-eng">Pulgaon Mawaid</span>
+                    <span class="event-detail-eng">Pulgaon, Maharashtra</span>
                     <span class="event-detail-sep">|</span>
-                    <span class="event-detail-arabic">جَگَہ - پُلْگَام مَوَائِد</span>
+                    <span class="event-detail-arabic">جَگَہ - پُلْگَام مَوَائِد ، مَهَارَاشْٹرَا</span>
                   </div>
                 </div>
               </div>
@@ -326,46 +326,76 @@
           </div>
         </div>
 
-        <!-- Interactive Scratch-to-Reveal Card -->
+        <!-- Interactive 4-Block Scratch-to-Reveal Grid -->
         <div class="luxury-card-box scratch-container">
           <div class="card-ornament top-center">❖</div>
           <span class="section-eyebrow">Interactive Milestone</span>
-          <h3 class="card-title">Scratch to Reveal the Date</h3>
-          <p class="scratch-instructions">Rub the golden shimmering foil below with your finger or cursor to unveil the wedding date!</p>
+          <h3 class="card-title">Scratch to Reveal the Date &amp; Venue</h3>
+          <p class="scratch-instructions">Rub the golden shimmering foil across each of the 4 blocks below with your finger or cursor to unveil the wedding details!</p>
 
-          <div class="scratch-wrapper">
-            <div class="scratch-reveal-content" id="revealed-date-content">
-              <div class="revealed-badge">
-                <span class="badge-sparkle">✨</span>
-                <span class="badge-tag">SAVE THE DATE</span>
-                <span class="badge-sparkle">✨</span>
+          <div class="scratch-grid-4">
+            <!-- Block 1: Date -->
+            <div class="scratch-tile-block" data-block="1">
+              <div class="tile-reveal-content">
+                <span class="tile-category-tag">Auspicious Date</span>
+                <span class="tile-val-huge">26th</span>
+                <span class="tile-val-sub">Monday</span>
               </div>
-              <div class="date-display-grid">
-                <div class="date-col">
-                  <span class="date-num">20</span>
-                  <span class="date-label">JANUARY</span>
-                </div>
-                <div class="date-separator">✦</div>
-                <div class="date-col">
-                  <span class="date-num">2026</span>
-                  <span class="date-label">TUESDAY</span>
-                </div>
-              </div>
-              <p class="revealed-hijri">2 Shaban al-Karim 1447 H (۲ مي شعبان الكريم ١٤٤٧ هـ)</p>
-              <div class="add-cal-btn-wrap">
-                <button id="add-to-cal-btn" class="btn-gold-action">
-                  <span class="btn-icon">📅</span> Add to Calendar
-                </button>
-              </div>
+              <canvas id="scratch-canvas-1" class="tile-scratch-canvas" width="220" height="150"></canvas>
             </div>
 
-            <!-- HTML5 Scratch Canvas -->
-            <canvas id="scratch-canvas" class="scratch-canvas" width="340" height="210"></canvas>
+            <!-- Block 2: Month & Year -->
+            <div class="scratch-tile-block" data-block="2">
+              <div class="tile-reveal-content">
+                <span class="tile-category-tag">Month &amp; Year</span>
+                <span class="tile-val-huge">January</span>
+                <span class="tile-val-sub">2026</span>
+              </div>
+              <canvas id="scratch-canvas-2" class="tile-scratch-canvas" width="220" height="150"></canvas>
+            </div>
+
+            <!-- Block 3: Venue -->
+            <div class="scratch-tile-block" data-block="3">
+              <div class="tile-reveal-content">
+                <span class="tile-category-tag">Wedding Venue</span>
+                <span class="tile-val-huge">Pulgaon</span>
+                <span class="tile-val-sub">Mawaid</span>
+              </div>
+              <canvas id="scratch-canvas-3" class="tile-scratch-canvas" width="220" height="150"></canvas>
+            </div>
+
+            <!-- Block 4: State / Location -->
+            <div class="scratch-tile-block" data-block="4">
+              <div class="tile-reveal-content">
+                <span class="tile-category-tag">Location</span>
+                <span class="tile-val-huge">Maharashtra</span>
+                <span class="tile-val-sub">India</span>
+              </div>
+              <canvas id="scratch-canvas-4" class="tile-scratch-canvas" width="220" height="150"></canvas>
+            </div>
           </div>
 
           <div class="scratch-progress-wrap">
             <div class="scratch-progress-bar" id="scratch-progress"></div>
-            <span class="scratch-hint" id="scratch-hint">Scratch at least 50% to unveil completely!</span>
+            <span class="scratch-hint" id="scratch-hint">Scratch the 4 blocks to unveil all details! (0 of 4 Revealed)</span>
+          </div>
+
+          <!-- Revealed Complete Summary & Calendar Action -->
+          <div class="scratch-revealed-summary" id="scratch-revealed-summary">
+            <div class="revealed-badge">
+              <span class="badge-sparkle">✨</span>
+              <span class="badge-tag">SAVE THE DATE</span>
+              <span class="badge-sparkle">✨</span>
+            </div>
+            <p class="revealed-full-detail">
+              <strong>26th January 2026, Monday</strong> • <strong>Pulgaon, Maharashtra</strong>
+            </p>
+            <p class="revealed-hijri-date">8 Shaban al-Karim 1447 H (۸ مي شعبان الكريم ١٤٤٧ هـ)</p>
+            <div class="add-cal-btn-wrap">
+              <button id="add-to-cal-btn" class="btn-gold-action">
+                <span class="btn-icon">📅</span> Add to Calendar
+              </button>
+            </div>
           </div>
         </div>
 
@@ -420,14 +450,14 @@
             <div class="event-marker"><span class="marker-number">01</span></div>
             <div class="event-details">
               <div class="event-badge">Pre-Wedding Sacred Ritual</div>
-              <h4 class="event-title">માણેક થંભ (Manak Thamb)</h4>
+              <h4 class="event-title">Manak Thamb (Sacred Pillar Installation)</h4>
               <p class="event-meaning">Auspicious installation of the sacred pillar to welcome barakaat, health, and prosperity for the new household.</p>
               <div class="event-meta">
-                <span class="meta-item"><i class="meta-icon">🗓️</i> Friday, 12th December 2026</span>
+                <span class="meta-item"><i class="meta-icon">🗓️</i> Friday, 23rd January 2026</span>
                 <span class="meta-item"><i class="meta-icon">⏰</i> 10:00 AM onwards</span>
-                <span class="meta-item"><i class="meta-icon">📍</i> Saifee Villa, Malabar Hill, Mumbai</span>
+                <span class="meta-item"><i class="meta-icon">📍</i> Saifee Villa, Pulgaon, Maharashtra</span>
               </div>
-              <a href="https://maps.google.com/?q=Saifee+Villa+Mumbai" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
+              <a href="https://maps.google.com/?q=Pulgaon+Maharashtra" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
             </div>
           </div>
 
@@ -435,15 +465,15 @@
           <div class="timeline-card">
             <div class="event-marker"><span class="marker-number">02</span></div>
             <div class="event-details">
-              <div class="event-badge">Haldi &amp; Canopy Songs</div>
-              <h4 class="event-title">માંડવો અને પીઠી (Mandvo &amp; Peethi)</h4>
-              <p class="event-meaning">Blessing the ceremonial canopy with fragrant turmeric, auspicious songs, and traditional Madeh.</p>
+              <div class="event-badge">Haldi &amp; Canopy Blessings</div>
+              <h4 class="event-title">Mandvo &amp; Peethi (Haldi Ceremony)</h4>
+              <p class="event-meaning">Blessing the ceremonial canopy with fragrant turmeric, auspicious wedding songs, and traditional hymns.</p>
               <div class="event-meta">
-                <span class="meta-item"><i class="meta-icon">🗓️</i> Friday, 12th December 2026</span>
+                <span class="meta-item"><i class="meta-icon">🗓️</i> Friday, 23rd January 2026</span>
                 <span class="meta-item"><i class="meta-icon">⏰</i> 04:30 PM</span>
-                <span class="meta-item"><i class="meta-icon">📍</i> Royal Emerald Courtyard, Mumbai</span>
+                <span class="meta-item"><i class="meta-icon">📍</i> Courtyard, Pulgaon, Maharashtra</span>
               </div>
-              <a href="https://maps.google.com/?q=Mumbai" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
+              <a href="https://maps.google.com/?q=Pulgaon+Maharashtra" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
             </div>
           </div>
 
@@ -451,15 +481,15 @@
           <div class="timeline-card">
             <div class="event-marker"><span class="marker-number">03</span></div>
             <div class="event-details">
-              <div class="event-badge">Family Tradition</div>
-              <h4 class="event-title">મામા મોસાળું અને કંઠી (Mama Mosala &amp; Kanthi)</h4>
-              <p class="event-meaning">Ceremonial presentation of festive bridal jewelry, auspicious sweets, and honors from maternal uncles.</p>
+              <div class="event-badge">Family Tradition &amp; Honors</div>
+              <h4 class="event-title">Mama Mosala &amp; Kanthi (Family Presentation)</h4>
+              <p class="event-meaning">Ceremonial presentation of festive bridal gifts, auspicious sweets, and honors from maternal uncles.</p>
               <div class="event-meta">
-                <span class="meta-item"><i class="meta-icon">🗓️</i> Saturday, 13th December 2026</span>
+                <span class="meta-item"><i class="meta-icon">🗓️</i> Saturday, 24th January 2026</span>
                 <span class="meta-item"><i class="meta-icon">⏰</i> 06:30 PM</span>
-                <span class="meta-item"><i class="meta-icon">📍</i> Lavender Garden Terrace, Mumbai</span>
+                <span class="meta-item"><i class="meta-icon">📍</i> Terrace Garden, Pulgaon, Maharashtra</span>
               </div>
-              <a href="https://maps.google.com/?q=Mumbai" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
+              <a href="https://maps.google.com/?q=Pulgaon+Maharashtra" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
             </div>
           </div>
 
@@ -467,15 +497,15 @@
           <div class="timeline-card">
             <div class="event-marker"><span class="marker-number">04</span></div>
             <div class="event-details">
-              <div class="event-badge">Spiritual Gathering</div>
-              <h4 class="event-title">دريْس ومجلس (Darees &amp; Majlis)</h4>
+              <div class="event-badge">Spiritual Gathering &amp; Prayers</div>
+              <h4 class="event-title">Darees &amp; Majlis (Sacred Prayers)</h4>
               <p class="event-meaning">Recitation of the Holy Quran, zikr, praises, and prayers seeking divine blessings prior to the Nikah.</p>
               <div class="event-meta">
-                <span class="meta-item"><i class="meta-icon">🗓️</i> Sunday, 14th December 2026</span>
+                <span class="meta-item"><i class="meta-icon">🗓️</i> Sunday, 25th January 2026</span>
                 <span class="meta-item"><i class="meta-icon">⏰</i> 11:00 AM</span>
-                <span class="meta-item"><i class="meta-icon">📍</i> Al-Masjid al-Saifee Markaz, Mumbai</span>
+                <span class="meta-item"><i class="meta-icon">📍</i> Al-Masjid al-Saifee Markaz, Pulgaon, Maharashtra</span>
               </div>
-              <a href="https://maps.google.com/?q=Saifee+Masjid+Mumbai" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
+              <a href="https://maps.google.com/?q=Pulgaon+Maharashtra" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
             </div>
           </div>
 
@@ -483,15 +513,15 @@
           <div class="timeline-card featured-event">
             <div class="event-marker"><span class="marker-number highlight">05</span></div>
             <div class="event-details">
-              <div class="event-badge gold-badge">عقد النكاح المبارك</div>
-              <h4 class="event-title">عقد النكاح (Aqd al-Nikah &amp; Zafaf)</h4>
-              <p class="event-meaning">Solemnization of marriage under the pious Raza Mubarak of Syedna Mufaddal Saifuddin (TUS), followed by the joyful wedding procession.</p>
+              <div class="event-badge gold-badge">Aqd al-Nikah (Sacred Ceremony)</div>
+              <h4 class="event-title">Aqd al-Nikah &amp; Wedding Procession</h4>
+              <p class="event-meaning">Solemnization of marriage under the pious Raza Mubarak of His Holiness Syedna Mufaddal Saifuddin (TUS), followed by the joyful wedding procession.</p>
               <div class="event-meta">
-                <span class="meta-item"><i class="meta-icon">🗓️</i> Sunday, 14th December 2026</span>
-                <span class="meta-item"><i class="meta-icon">⏰</i> 01:30 PM Sharp</span>
-                <span class="meta-item"><i class="meta-icon">📍</i> Grand Saifee Darbar Hall, Mumbai</span>
+                <span class="meta-item"><i class="meta-icon">🗓️</i> Monday, 26th January 2026</span>
+                <span class="meta-item"><i class="meta-icon">⏰</i> 12:00 PM Sharp</span>
+                <span class="meta-item"><i class="meta-icon">📍</i> Pulgaon Mawaid, Maharashtra</span>
               </div>
-              <a href="https://maps.google.com/?q=Mumbai" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
+              <a href="https://maps.google.com/?q=Pulgaon+Maharashtra" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
             </div>
           </div>
 
@@ -499,15 +529,15 @@
           <div class="timeline-card">
             <div class="event-marker"><span class="marker-number">06</span></div>
             <div class="event-details">
-              <div class="event-badge">Traditional Bohra Feast</div>
-              <h4 class="event-title">ખુશીનું જમણ (Khushi nu Jaman)</h4>
-              <p class="event-meaning">Traditional communal feast served in the Thaal, beginning with Namak, Sodanna, Halwa, royal savories &amp; Biryani, ending with paan &amp; ittar.</p>
+              <div class="event-badge">Traditional Bohra Wedding Feast</div>
+              <h4 class="event-title">Khushi nu Jaman (Wedding Feast)</h4>
+              <p class="event-meaning">Traditional communal feast served in the Thaal, beginning with salt and sweet tasting, royal savories &amp; festive dishes, concluding with paan and ittar.</p>
               <div class="event-meta">
-                <span class="meta-item"><i class="meta-icon">🗓️</i> Sunday, 14th December 2026</span>
-                <span class="meta-item"><i class="meta-icon">⏰</i> 07:30 PM onwards</span>
-                <span class="meta-item"><i class="meta-icon">📍</i> The Crystal Ballroom, Grand Hyatt, Mumbai</span>
+                <span class="meta-item"><i class="meta-icon">🗓️</i> Monday, 26th January 2026</span>
+                <span class="meta-item"><i class="meta-icon">⏰</i> 01:30 PM onwards</span>
+                <span class="meta-item"><i class="meta-icon">📍</i> Pulgaon Mawaid, Maharashtra</span>
               </div>
-              <a href="https://maps.google.com/?q=Grand+Hyatt+Mumbai" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
+              <a href="https://maps.google.com/?q=Pulgaon+Maharashtra" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
             </div>
           </div>
 
@@ -515,15 +545,15 @@
           <div class="timeline-card">
             <div class="event-marker"><span class="marker-number">07</span></div>
             <div class="event-details">
-              <div class="event-badge">Evening Gala</div>
-              <h4 class="event-title">Walima &amp; Reception</h4>
-              <p class="event-meaning">An enchanting evening of congratulations, memories, and joy under starry chandeliers.</p>
+              <div class="event-badge">Evening Gala Celebration</div>
+              <h4 class="event-title">Walima &amp; Reception Gala</h4>
+              <p class="event-meaning">An enchanting evening of congratulations, celebration, and joy celebrating the newlyweds.</p>
               <div class="event-meta">
-                <span class="meta-item"><i class="meta-icon">🗓️</i> Monday, 15th December 2026</span>
-                <span class="meta-item"><i class="meta-icon">⏰</i> 08:00 PM</span>
-                <span class="meta-item"><i class="meta-icon">📍</i> St. Regis Grand Astral Hall, Mumbai</span>
+                <span class="meta-item"><i class="meta-icon">🗓️</i> Monday, 26th January 2026</span>
+                <span class="meta-item"><i class="meta-icon">⏰</i> 07:30 PM onwards</span>
+                <span class="meta-item"><i class="meta-icon">📍</i> Grand Hall, Pulgaon, Maharashtra</span>
               </div>
-              <a href="https://maps.google.com/?q=St+Regis+Mumbai" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
+              <a href="https://maps.google.com/?q=Pulgaon+Maharashtra" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
             </div>
           </div>
 
