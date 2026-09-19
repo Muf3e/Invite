@@ -564,15 +564,26 @@ function initRsvpAndGuestbook() {
 
     // Save RSVP record to localStorage
     const rsvpRecords = JSON.parse(localStorage.getItem('mt_rsvp_records') || '[]');
-    rsvpRecords.push({
+    const rsvpItem = {
       name,
       phone,
       count,
       attendance,
       message,
       timestamp: new Date().toISOString()
-    });
+    };
+    rsvpRecords.push(rsvpItem);
     localStorage.setItem('mt_rsvp_records', JSON.stringify(rsvpRecords));
+
+    // Async sync to Google Sheets (if webhook configured or fallback webhook)
+    if (typeof GOOGLE_SHEET_WEBHOOK_URL !== 'undefined' && GOOGLE_SHEET_WEBHOOK_URL) {
+      fetch(GOOGLE_SHEET_WEBHOOK_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(rsvpItem)
+      }).catch(err => console.log('Google Sheets sync notice:', err));
+    }
 
     // If guest left a message, add it to the live wall
     if (message) {
@@ -659,33 +670,33 @@ function initStoryScrollSpy() {
 }
 
 /* ==========================================================================
-   10. INTERACTIVE 3D PARALLAX DEPTH (MOUSE & GYROSCOPE)
+   10. INTERACTIVE 3D PARALLAX DEPTH ON ANIMATED COUPLE (MOUSE & GYROSCOPE)
    ========================================================================== */
 function initParallaxDepth() {
-  const arch = document.querySelector('.portrait-arch-frame');
-  const showcase = document.querySelector('.couple-portrait-showcase');
-  if (!arch || !showcase) return;
+  const coupleWrap = document.getElementById('couple-cutout-wrap');
+  const stage = document.getElementById('couple-stage');
+  if (!coupleWrap || !stage) return;
 
-  showcase.addEventListener('mousemove', (e) => {
-    const rect = showcase.getBoundingClientRect();
+  stage.addEventListener('mousemove', (e) => {
+    const rect = stage.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
-    const rotX = -(y / (rect.height / 2)) * 7;
-    const rotY = (x / (rect.width / 2)) * 7;
-    arch.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale(1.02)`;
+    const rotX = -(y / (rect.height / 2)) * 8;
+    const rotY = (x / (rect.width / 2)) * 8;
+    coupleWrap.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale(1.03)`;
   });
 
-  showcase.addEventListener('mouseleave', () => {
-    arch.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+  stage.addEventListener('mouseleave', () => {
+    coupleWrap.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
   });
 
   // Mobile Gyroscope Parallax
   if (window.DeviceOrientationEvent) {
     window.addEventListener('deviceorientation', (e) => {
       if (e.gamma !== null && e.beta !== null) {
-        const rotY = Math.max(-8, Math.min(8, e.gamma / 3));
-        const rotX = Math.max(-8, Math.min(8, (e.beta - 45) / 3));
-        arch.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
+        const rotY = Math.max(-10, Math.min(10, e.gamma / 2.5));
+        const rotX = Math.max(-10, Math.min(10, (e.beta - 45) / 2.5));
+        coupleWrap.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
       }
     }, { passive: true });
   }
