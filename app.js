@@ -197,6 +197,11 @@ function initEnvelopeExperience() {
       handleOpen();
     }
   });
+
+  const sealIndicator = document.getElementById('seal-indicator');
+  if (sealIndicator) {
+    sealIndicator.addEventListener('click', handleOpen);
+  }
 }
 
 function createSealBurst(element) {

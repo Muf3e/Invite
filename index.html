@@ -54,51 +54,94 @@
     <section id="envelope-screen" class="envelope-screen fullscreen-envelope-view">
       <div class="fullscreen-envelope-container" id="envelope-box">
         
-        <!-- Embossed Texture & Gilded Flaps -->
+        <!-- Embossed Texture & Gilded Flaps Base -->
         <div class="envelope-full-bg"></div>
 
-        <!-- Soft Warm Light Beam emerging through center vertical seam -->
+        <!-- Subtle Luxury Crease Seams & Radiant Golden Burst Rays (Mathematically Exact Across All Screens) -->
+        <svg class="envelope-seams-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="seamRayBurstTL" x1="50%" y1="50%" x2="0%" y2="0%">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
+              <stop offset="30%" stop-color="#FFE89E" stop-opacity="0.95"/>
+              <stop offset="70%" stop-color="#D4AF37" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="seamRayBurstTR" x1="50%" y1="50%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
+              <stop offset="30%" stop-color="#FFE89E" stop-opacity="0.95"/>
+              <stop offset="70%" stop-color="#D4AF37" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="seamRayBurstBL" x1="50%" y1="50%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
+              <stop offset="30%" stop-color="#FFE89E" stop-opacity="0.95"/>
+              <stop offset="70%" stop-color="#D4AF37" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="seamRayBurstBR" x1="50%" y1="50%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
+              <stop offset="30%" stop-color="#FFE89E" stop-opacity="0.95"/>
+              <stop offset="70%" stop-color="#D4AF37" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+            </linearGradient>
+            <filter id="seamGlowFilter" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="1.8" result="blur"/>
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <!-- Elegant crease fold seams meeting precisely at center (50, 50) -->
+          <line x1="0" y1="0" x2="50" y2="50" class="seam-crease-line" vector-effect="non-scaling-stroke"/>
+          <line x1="100" y1="0" x2="50" y2="50" class="seam-crease-line" vector-effect="non-scaling-stroke"/>
+          <line x1="0" y1="100" x2="50" y2="50" class="seam-crease-line" vector-effect="non-scaling-stroke"/>
+          <line x1="100" y1="100" x2="50" y2="50" class="seam-crease-line" vector-effect="non-scaling-stroke"/>
+          <!-- Active radiant burst rays when opening -->
+          <line x1="50" y1="50" x2="0" y2="0" stroke="url(#seamRayBurstTL)" class="seam-burst-ray" vector-effect="non-scaling-stroke"/>
+          <line x1="50" y1="50" x2="100" y2="0" stroke="url(#seamRayBurstTR)" class="seam-burst-ray" vector-effect="non-scaling-stroke"/>
+          <line x1="50" y1="50" x2="0" y2="100" stroke="url(#seamRayBurstBL)" class="seam-burst-ray" vector-effect="non-scaling-stroke"/>
+          <line x1="50" y1="50" x2="100" y2="100" stroke="url(#seamRayBurstBR)" class="seam-burst-ray" vector-effect="non-scaling-stroke"/>
+        </svg>
         <div class="soft-center-beam" id="center-light-beam"></div>
 
-        <!-- Envelope Flap Layers with Luxury Embossed Florals & Shimmer -->
+        <!-- Envelope Flap Layers: 4 Authentic Triangular Flaps Meeting at Center -->
+        <div class="envelope-panel panel-bottom" id="panel-bottom">
+          <div class="flap-embossed-flourish bouquet-bottom"></div>
+        </div>
         <div class="envelope-panel panel-left" id="panel-left">
-          <div class="flap-embossed-flourish lace-left"></div>
+          <div class="flap-embossed-flourish vine-left"></div>
         </div>
         <div class="envelope-panel panel-right" id="panel-right">
-          <div class="flap-embossed-flourish lace-right"></div>
+          <div class="flap-embossed-flourish vine-right"></div>
         </div>
         <div class="envelope-panel panel-top" id="top-flap">
           <div class="flap-embossed-flourish bouquet-top"></div>
         </div>
-        <div class="envelope-panel panel-bottom" id="panel-bottom">
-          <div class="flap-embossed-flourish bouquet-bottom"></div>
-        </div>
 
-        <!-- Prominent Pure Gold Wax Seal (Direct Authentic Seal Cutout, No Paper Circle) -->
+        <!-- Prominent Pure Gold Wax Seal (Direct Authentic Cutout, No Paper Circle) -->
         <div class="wax-seal-macro-wrap" id="wax-seal" role="button" tabindex="0" aria-label="Open wedding invitation">
           <div class="seal-soft-aura"></div>
           <div class="seal-sunbeam-rays" id="seal-rays"></div>
           <img src="assets/seal.png" alt="Mustafa &amp; Tasneem Bilingual Gold Wax Seal (MT / م ت)" class="seal-macro-img" id="seal-img" />
-          
+        </div>
+
+        <!-- Elegant Tap Prompt (Separate from seal so it never overlaps the gold rim) -->
+        <div class="seal-tap-indicator" id="seal-indicator">
           <div class="seal-callout-pill">
             <span class="callout-sparkle">✨</span>
             <span class="callout-text">TAP TO UNVEIL</span>
             <span class="callout-sparkle">✨</span>
           </div>
         </div>
-
-        <div class="envelope-macro-footer">
-          <p class="macro-sub-title">Auspicious Wedding of Mustafa &amp; Tasneem</p>
-          <p class="macro-hint">Tap the golden seal for the reveal</p>
-        </div>
-      </div>
-
-      <!-- Soft Ethereal Champagne Light Bloom Portal Overlay -->
-      <div class="soft-light-portal" id="light-portal">
-        <div class="portal-sunburst"></div>
-        <div class="portal-warm-glow"></div>
       </div>
     </section>
+
+    <!-- Soft Ethereal Champagne Light Bloom Portal Overlay -->
+    <div class="soft-light-portal" id="light-portal">
+      <div class="portal-sunburst"></div>
+      <div class="portal-warm-glow"></div>
+    </div>
 
     <!-- ==============================================
          STORYTELLER PARALLAX BOOK INVITATION
@@ -130,17 +173,38 @@
             <div class="lantern-chain"></div>
             <div class="lantern-body">
               <div class="lantern-flame-glow"></div>
-              <svg viewBox="0 0 50 90" class="lantern-svg" aria-hidden="true">
+              <svg viewBox="0 0 60 105" class="lantern-svg" aria-hidden="true">
                 <defs>
                   <linearGradient id="lanternGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#FFE89E"/>
-                    <stop offset="50%" stop-color="#D4AF37"/>
-                    <stop offset="100%" stop-color="#8C6A1E"/>
+                    <stop offset="0%" stop-color="#FFF4D0"/>
+                    <stop offset="30%" stop-color="#E5C368"/>
+                    <stop offset="70%" stop-color="#B88A28"/>
+                    <stop offset="100%" stop-color="#735212"/>
                   </linearGradient>
+                  <radialGradient id="lanternGlassGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#FFFDF2" stop-opacity="1"/>
+                    <stop offset="40%" stop-color="#FFE082" stop-opacity="0.95"/>
+                    <stop offset="80%" stop-color="#FFB300" stop-opacity="0.8"/>
+                    <stop offset="100%" stop-color="#E65100" stop-opacity="0.5"/>
+                  </radialGradient>
                 </defs>
-                <path d="M25 0 L25 12 M16 12 L34 12 L38 28 L12 28 Z M12 28 L8 65 L42 65 L38 28 Z M8 65 L25 85 L42 65 Z" fill="url(#lanternGoldGrad)" stroke="#6E4F10" stroke-width="1.2"/>
-                <ellipse cx="25" cy="46" rx="7" ry="12" fill="#FFFBE6" opacity="0.95"/>
-                <ellipse cx="25" cy="46" rx="4" ry="7" fill="#FFDE59"/>
+                <!-- Suspension loop & finial -->
+                <circle cx="30" cy="6" r="4" fill="none" stroke="url(#lanternGoldGrad)" stroke-width="2"/>
+                <path d="M28 10 L32 10 L30 16 Z" fill="url(#lanternGoldGrad)"/>
+                <!-- Ornate Dome Cap -->
+                <path d="M16 28 C16 18, 24 16, 30 16 C36 16, 44 18, 44 28 Z" fill="url(#lanternGoldGrad)" stroke="#523908" stroke-width="0.8"/>
+                <rect x="14" y="28" width="32" height="4" rx="2" fill="url(#lanternGoldGrad)" stroke="#523908" stroke-width="0.8"/>
+                <!-- Glowing Amber Glass Cylinder -->
+                <path d="M17 32 L43 32 L40 76 L20 76 Z" fill="url(#lanternGlassGlow)"/>
+                <!-- Filigree Lattice Overlay -->
+                <path d="M17 32 L43 32 L40 76 L20 76 Z" fill="none" stroke="url(#lanternGoldGrad)" stroke-width="1.2"/>
+                <path d="M30 32 L30 76 M20 46 L40 46 M18 60 L42 60" stroke="#7A5612" stroke-width="0.9" opacity="0.75"/>
+                <path d="M22 32 L38 76 M38 32 L22 76" stroke="#946B18" stroke-width="0.8" opacity="0.6"/>
+                <!-- Lower Taper & Base -->
+                <path d="M20 76 L40 76 L34 90 L26 90 Z" fill="url(#lanternGoldGrad)" stroke="#523908" stroke-width="0.8"/>
+                <!-- Droplet Pendant -->
+                <circle cx="30" cy="95" r="3" fill="url(#lanternGoldGrad)" stroke="#523908" stroke-width="0.8"/>
+                <path d="M30 98 L30 104" stroke="url(#lanternGoldGrad)" stroke-width="1.5"/>
               </svg>
             </div>
           </div>
@@ -149,10 +213,24 @@
             <div class="lantern-chain"></div>
             <div class="lantern-body">
               <div class="lantern-flame-glow"></div>
-              <svg viewBox="0 0 50 90" class="lantern-svg" aria-hidden="true">
-                <path d="M25 0 L25 12 M16 12 L34 12 L38 28 L12 28 Z M12 28 L8 65 L42 65 L38 28 Z M8 65 L25 85 L42 65 Z" fill="url(#lanternGoldGrad)" stroke="#6E4F10" stroke-width="1.2"/>
-                <ellipse cx="25" cy="46" rx="7" ry="12" fill="#FFFBE6" opacity="0.95"/>
-                <ellipse cx="25" cy="46" rx="4" ry="7" fill="#FFDE59"/>
+              <svg viewBox="0 0 60 105" class="lantern-svg" aria-hidden="true">
+                <!-- Suspension loop & finial -->
+                <circle cx="30" cy="6" r="4" fill="none" stroke="url(#lanternGoldGrad)" stroke-width="2"/>
+                <path d="M28 10 L32 10 L30 16 Z" fill="url(#lanternGoldGrad)"/>
+                <!-- Ornate Dome Cap -->
+                <path d="M16 28 C16 18, 24 16, 30 16 C36 16, 44 18, 44 28 Z" fill="url(#lanternGoldGrad)" stroke="#523908" stroke-width="0.8"/>
+                <rect x="14" y="28" width="32" height="4" rx="2" fill="url(#lanternGoldGrad)" stroke="#523908" stroke-width="0.8"/>
+                <!-- Glowing Amber Glass Cylinder -->
+                <path d="M17 32 L43 32 L40 76 L20 76 Z" fill="url(#lanternGlassGlow)"/>
+                <!-- Filigree Lattice Overlay -->
+                <path d="M17 32 L43 32 L40 76 L20 76 Z" fill="none" stroke="url(#lanternGoldGrad)" stroke-width="1.2"/>
+                <path d="M30 32 L30 76 M20 46 L40 46 M18 60 L42 60" stroke="#7A5612" stroke-width="0.9" opacity="0.75"/>
+                <path d="M22 32 L38 76 M38 32 L22 76" stroke="#946B18" stroke-width="0.8" opacity="0.6"/>
+                <!-- Lower Taper & Base -->
+                <path d="M20 76 L40 76 L34 90 L26 90 Z" fill="url(#lanternGoldGrad)" stroke="#523908" stroke-width="0.8"/>
+                <!-- Droplet Pendant -->
+                <circle cx="30" cy="95" r="3" fill="url(#lanternGoldGrad)" stroke="#523908" stroke-width="0.8"/>
+                <path d="M30 98 L30 104" stroke="url(#lanternGoldGrad)" stroke-width="1.5"/>
               </svg>
             </div>
           </div>
