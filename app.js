@@ -662,12 +662,15 @@ function initCountdownTimer() {
   const secondsEl = document.getElementById('cd-seconds');
   if (!daysEl) return;
 
-  // Auspicious Wedding Date (Sunday, Dec 14, 2026, 13:30:00)
-  const targetDate = new Date('December 14, 2026 13:30:00').getTime();
+  // Auspicious Wedding Date (Tuesday, Jan 20, 12:00:00)
+  let targetDate = new Date('January 20, 2026 12:00:00').getTime();
+  if (targetDate <= Date.now()) {
+    targetDate = new Date('January 20, 2027 12:00:00').getTime();
+  }
 
   function updateTimer() {
     const now = new Date().getTime();
-    const distance = targetDate - now;
+    let distance = targetDate - now;
 
     if (distance < 0) {
       daysEl.innerText = '00';
@@ -703,9 +706,9 @@ function initCalendarAction() {
     // Generate iCal format (.ics)
     const title = 'Wedding of Mustafa & Tasneem (Aqd al-Nikah)';
     const description = 'Auspicious wedding celebration of Mustafa & Tasneem under the Raza Mubarak of His Holiness Syedna Mufaddal Saifuddin (TUS).';
-    const location = 'Grand Saifee Darbar Hall, Mumbai';
-    const startDate = '20261214T080000Z'; // UTC format (1:30 PM IST)
-    const endDate = '20261214T160000Z';
+    const location = 'Pulgaon Mawaid';
+    const startDate = '20260120T063000Z'; // UTC format (12:00 PM IST)
+    const endDate = '20260120T140000Z';
 
     const icsContent = [
       'BEGIN:VCALENDAR',
