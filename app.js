@@ -5,6 +5,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initFloatingParticles();
+  initArchMotionCanvas();
   initEnvelopeExperience();
   initAudioPlayer();
   initScratchCard();
@@ -14,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initBackToTop();
   initStoryScrollSpy();
   initParallaxDepth();
+  initArchScrollPrompt();
 });
 
 /* ==========================================================================
@@ -114,6 +116,16 @@ function initEnvelopeExperience() {
 
   if (!waxSeal || !envelopeBox) return;
 
+  // Support direct preview of opened invitation for testing & inspection
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('open') === 'true' || urlParams.get('preview') === 'open') {
+    envelopeScreen.classList.add('hidden');
+    inviteScreen.classList.remove('hidden');
+    if (storyNav) storyNav.classList.add('visible');
+    const walkVideo = document.getElementById('couple-walk-video');
+    if (walkVideo) walkVideo.play().catch(() => {});
+  }
+
   let hasTriggered = false;
 
   const handleOpen = () => {
@@ -154,6 +166,15 @@ function initEnvelopeExperience() {
       inviteScreen.classList.remove('hidden');
       if (storyNav) storyNav.classList.add('visible');
       window.scrollTo({ top: 0, behavior: 'instant' });
+
+      // Autoplay couple walking video seamlessly
+      const walkVideo = document.getElementById('couple-walk-video');
+      if (walkVideo) {
+        walkVideo.play().catch(err => console.log('Video autoplay:', err));
+      }
+
+      // Re-trigger motion canvas resize
+      window.dispatchEvent(new Event('resize'));
 
       // Fade out soft light portal to unveil Chapter I
       setTimeout(() => {
@@ -670,36 +691,227 @@ function initStoryScrollSpy() {
 }
 
 /* ==========================================================================
-   10. INTERACTIVE 3D PARALLAX DEPTH ON ANIMATED COUPLE (MOUSE & GYROSCOPE)
+   10. LIVING MOTION GRAPHICS CANVAS INSIDE HERO ARCHWAY
+   ========================================================================== */
+function initArchMotionCanvas() {
+  const canvas = document.getElementById('arch-motion-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const parent = canvas.parentElement;
+
+  let width = (canvas.width = parent.clientWidth || 380);
+  let height = (canvas.height = parent.clientHeight || 480);
+
+  const handleResize = () => {
+    if (!parent) return;
+    width = canvas.width = parent.clientWidth || 380;
+    height = canvas.height = parent.clientHeight || 480;
+  };
+
+  window.addEventListener('resize', handleResize);
+
+  // Sparkles (rising gold dust) & Petals (swirling down)
+  const sparkles = [];
+  const sparkleCount = 38;
+  for (let i = 0; i < sparkleCount; i++) {
+    sparkles.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      r: Math.random() * 2.2 + 0.8,
+      speedY: -(Math.random() * 0.9 + 0.3),
+      speedX: (Math.random() - 0.5) * 0.5,
+      opacity: Math.random() * 0.7 + 0.3,
+      twinkleSpeed: Math.random() * 0.04 + 0.015,
+      phase: Math.random() * Math.PI * 2
+    });
+  }
+
+  const petals = [];
+  const petalCount = 18;
+  for (let i = 0; i < petalCount; i++) {
+    petals.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      rx: Math.random() * 5 + 3,
+      ry: Math.random() * 3 + 2,
+      speedY: Math.random() * 0.8 + 0.4,
+      speedX: (Math.random() - 0.5) * 0.7,
+      rotation: Math.random() * 360,
+      rotSpeed: (Math.random() - 0.5) * 1.5,
+      opacity: Math.random() * 0.6 + 0.3,
+      color: Math.random() > 0.5 ? 'rgba(230, 190, 215,' : 'rgba(200, 175, 235,'
+    });
+  }
+
+  // Soft bokeh spheres
+  const bokehs = [];
+  for (let i = 0; i < 8; i++) {
+    bokehs.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      r: Math.random() * 25 + 15,
+      pulse: Math.random() * Math.PI * 2,
+      pulseSpeed: Math.random() * 0.02 + 0.01
+    });
+  }
+
+  function renderArchMotion() {
+    ctx.clearRect(0, 0, width, height);
+
+    // 1. Soft golden bokeh in background
+    for (let i = 0; i < bokehs.length; i++) {
+      const b = bokehs[i];
+      b.pulse += b.pulseSpeed;
+      const alpha = 0.08 + 0.06 * Math.sin(b.pulse);
+      ctx.fillStyle = `rgba(255, 235, 150, ${alpha})`;
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, b.r + Math.sin(b.pulse) * 4, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // 2. Rising Golden Sparkles
+    for (let i = 0; i < sparkles.length; i++) {
+      const s = sparkles[i];
+      s.y += s.speedY;
+      s.x += s.speedX + Math.sin(s.phase) * 0.3;
+      s.phase += s.twinkleSpeed;
+
+      const currentAlpha = Math.max(0.1, s.opacity * (0.6 + 0.4 * Math.sin(s.phase)));
+
+      ctx.fillStyle = `rgba(255, 245, 180, ${currentAlpha})`;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Tiny white star center
+      if (s.r > 1.8) {
+        ctx.fillStyle = `rgba(255, 255, 255, ${currentAlpha * 0.9})`;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r * 0.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      if (s.y < -10) {
+        s.y = height + 10;
+        s.x = Math.random() * width;
+      }
+    }
+
+    // 3. Falling Flower Petals
+    for (let i = 0; i < petals.length; i++) {
+      const p = petals[i];
+      p.y += p.speedY;
+      p.x += p.speedX + Math.sin(p.rotation * 0.02) * 0.4;
+      p.rotation += p.rotSpeed;
+
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate((p.rotation * Math.PI) / 180);
+      ctx.fillStyle = `${p.color} ${p.opacity})`;
+      ctx.beginPath();
+      ctx.ellipse(0, 0, p.rx, p.ry, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
+      if (p.y > height + 15 || p.x < -15 || p.x > width + 15) {
+        p.y = -15;
+        p.x = Math.random() * width;
+      }
+    }
+
+    requestAnimationFrame(renderArchMotion);
+  }
+
+  renderArchMotion();
+}
+
+/* ==========================================================================
+   11. INTERACTIVE 3D PARALLAX ON HERO ARCHWAY & WALKING COUPLE
    ========================================================================== */
 function initParallaxDepth() {
-  const coupleWrap = document.getElementById('couple-cutout-wrap');
-  const stage = document.getElementById('couple-stage');
-  if (!coupleWrap || !stage) return;
+  const archCard = document.getElementById('archway-card');
+  const heroStage = document.getElementById('hero-archway-stage');
+  const walkVideo = document.getElementById('couple-walk-video');
+  const lanternLeft = document.getElementById('lantern-left');
+  const lanternRight = document.getElementById('lantern-right');
 
-  stage.addEventListener('mousemove', (e) => {
-    const rect = stage.getBoundingClientRect();
+  if (!archCard || !heroStage) return;
+
+  // Desktop Mouse Parallax
+  heroStage.addEventListener('mousemove', (e) => {
+    const rect = heroStage.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
-    const rotX = -(y / (rect.height / 2)) * 8;
-    const rotY = (x / (rect.width / 2)) * 8;
-    coupleWrap.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale(1.03)`;
+
+    const rotX = -(y / (rect.height / 2)) * 5;
+    const rotY = (x / (rect.width / 2)) * 5;
+
+    archCard.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale(1.01)`;
+
+    if (walkVideo) {
+      walkVideo.style.transform = `scale(1.05) translate(${(rotY * -1.8).toFixed(1)}px, ${(rotX * -1.8).toFixed(1)}px)`;
+    }
+
+    if (lanternLeft) {
+      lanternLeft.style.transform = `translateX(${(rotY * 0.8).toFixed(1)}px)`;
+    }
+    if (lanternRight) {
+      lanternRight.style.transform = `translateX(${(rotY * 0.8).toFixed(1)}px)`;
+    }
   });
 
-  stage.addEventListener('mouseleave', () => {
-    coupleWrap.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+  heroStage.addEventListener('mouseleave', () => {
+    archCard.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+    if (walkVideo) {
+      walkVideo.style.transform = 'scale(1) translate(0px, 0px)';
+    }
+    if (lanternLeft) lanternLeft.style.transform = 'none';
+    if (lanternRight) lanternRight.style.transform = 'none';
   });
 
   // Mobile Gyroscope Parallax
   if (window.DeviceOrientationEvent) {
     window.addEventListener('deviceorientation', (e) => {
       if (e.gamma !== null && e.beta !== null) {
-        const rotY = Math.max(-10, Math.min(10, e.gamma / 2.5));
-        const rotX = Math.max(-10, Math.min(10, (e.beta - 45) / 2.5));
-        coupleWrap.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
+        const rotY = Math.max(-8, Math.min(8, e.gamma / 3));
+        const rotX = Math.max(-8, Math.min(8, (e.beta - 45) / 3));
+        archCard.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
+
+        if (walkVideo) {
+          walkVideo.style.transform = `scale(1.04) translate(${(rotY * -1.5).toFixed(1)}px, ${(rotX * -1.5).toFixed(1)}px)`;
+        }
       }
     }, { passive: true });
   }
+
+  // Scroll Parallax on Video
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    if (scrollY < 800 && walkVideo) {
+      walkVideo.style.transform = `translateY(${scrollY * 0.15}px)`;
+    }
+  }, { passive: true });
+}
+
+/* ==========================================================================
+   12. ARCH SCROLL PROMPT NAVIGATION
+   ========================================================================== */
+function initArchScrollPrompt() {
+  const prompt = document.getElementById('arch-scroll-prompt');
+  const target = document.getElementById('chapter-invitation');
+  if (!prompt || !target) return;
+
+  const doScroll = () => {
+    target.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  prompt.addEventListener('click', doScroll);
+  prompt.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      doScroll();
+    }
+  });
 }
 
 

@@ -60,18 +60,25 @@
         <!-- Soft Warm Light Beam emerging through center vertical seam -->
         <div class="soft-center-beam" id="center-light-beam"></div>
 
-        <!-- Envelope Flap Layers -->
-        <div class="envelope-panel panel-left" id="panel-left"></div>
-        <div class="envelope-panel panel-right" id="panel-right"></div>
-        <div class="envelope-panel panel-top" id="top-flap"></div>
-        <div class="envelope-panel panel-bottom" id="panel-bottom"></div>
+        <!-- Envelope Flap Layers with Luxury Embossed Florals & Shimmer -->
+        <div class="envelope-panel panel-left" id="panel-left">
+          <div class="flap-embossed-flourish lace-left"></div>
+        </div>
+        <div class="envelope-panel panel-right" id="panel-right">
+          <div class="flap-embossed-flourish lace-right"></div>
+        </div>
+        <div class="envelope-panel panel-top" id="top-flap">
+          <div class="flap-embossed-flourish bouquet-top"></div>
+        </div>
+        <div class="envelope-panel panel-bottom" id="panel-bottom">
+          <div class="flap-embossed-flourish bouquet-bottom"></div>
+        </div>
 
-        <!-- Prominent Macro Wax Seal (In Direct Close-Up Focus) -->
+        <!-- Prominent Pure Gold Wax Seal (Direct Authentic Seal Cutout, No Paper Circle) -->
         <div class="wax-seal-macro-wrap" id="wax-seal" role="button" tabindex="0" aria-label="Open wedding invitation">
           <div class="seal-soft-aura"></div>
           <div class="seal-sunbeam-rays" id="seal-rays"></div>
-          <div class="seal-ring-highlight"></div>
-          <img src="assets/seal.jpg" alt="Mustafa &amp; Tasneem Bilingual Gold Wax Seal (MT / م ت)" class="seal-macro-img" />
+          <img src="assets/seal.png" alt="Mustafa &amp; Tasneem Bilingual Gold Wax Seal (MT / م ت)" class="seal-macro-img" id="seal-img" />
           
           <div class="seal-callout-pill">
             <span class="callout-sparkle">✨</span>
@@ -98,8 +105,8 @@
          ============================================== -->
     <section id="invitation-screen" class="invitation-screen hidden">
 
-      <!-- CHAPTER I: THE ROYAL UNION (Couple Portrait & Monogram) -->
-      <article class="story-chapter" id="chapter-union">
+      <!-- CHAPTER I: THE ROYAL PROCESSION & UNION (Living Archway & Walking Couple) -->
+      <article class="story-chapter hero-arch-chapter" id="chapter-union">
         <div class="chapter-header">
           <span class="chapter-roman">Chapter I</span>
           <h2 class="chapter-title">The Royal Union</h2>
@@ -115,23 +122,83 @@
           <p class="bismillah-trans">In the name of Allah, the Most Beneficent, the Most Merciful</p>
         </div>
 
-        <!-- Standalone Animated Couple Figures (No Background, Pure Character Animation) -->
-        <div class="couple-cutout-stage" id="couple-stage">
-          <div class="couple-radiant-halo"></div>
-          <div class="couple-gold-orbit">
-            <span class="orbit-sparkle s1">✦</span>
-            <span class="orbit-sparkle s2">✨</span>
-            <span class="orbit-sparkle s3">✦</span>
+        <!-- Grand Mughal Archway Stage with Swaying Lanterns & Walking Couple Video -->
+        <div class="hero-archway-container" id="hero-archway-stage">
+          
+          <!-- Hanging Ornate Lanterns with Living Sway -->
+          <div class="hanging-lantern lantern-left" id="lantern-left">
+            <div class="lantern-chain"></div>
+            <div class="lantern-body">
+              <div class="lantern-flame-glow"></div>
+              <svg viewBox="0 0 50 90" class="lantern-svg" aria-hidden="true">
+                <defs>
+                  <linearGradient id="lanternGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FFE89E"/>
+                    <stop offset="50%" stop-color="#D4AF37"/>
+                    <stop offset="100%" stop-color="#8C6A1E"/>
+                  </linearGradient>
+                </defs>
+                <path d="M25 0 L25 12 M16 12 L34 12 L38 28 L12 28 Z M12 28 L8 65 L42 65 L38 28 Z M8 65 L25 85 L42 65 Z" fill="url(#lanternGoldGrad)" stroke="#6E4F10" stroke-width="1.2"/>
+                <ellipse cx="25" cy="46" rx="7" ry="12" fill="#FFFBE6" opacity="0.95"/>
+                <ellipse cx="25" cy="46" rx="4" ry="7" fill="#FFDE59"/>
+              </svg>
+            </div>
           </div>
-          <div class="couple-cutout-wrap" id="couple-cutout-wrap">
-            <img src="assets/couple.png" alt="Mustafa &amp; Tasneem in Traditional Dawoodi Bohra Attire" class="couple-cutout-img" id="couple-cutout-img" />
+
+          <div class="hanging-lantern lantern-right" id="lantern-right">
+            <div class="lantern-chain"></div>
+            <div class="lantern-body">
+              <div class="lantern-flame-glow"></div>
+              <svg viewBox="0 0 50 90" class="lantern-svg" aria-hidden="true">
+                <path d="M25 0 L25 12 M16 12 L34 12 L38 28 L12 28 Z M12 28 L8 65 L42 65 L38 28 Z M8 65 L25 85 L42 65 Z" fill="url(#lanternGoldGrad)" stroke="#6E4F10" stroke-width="1.2"/>
+                <ellipse cx="25" cy="46" rx="7" ry="12" fill="#FFFBE6" opacity="0.95"/>
+                <ellipse cx="25" cy="46" rx="4" ry="7" fill="#FFDE59"/>
+              </svg>
+            </div>
           </div>
-          <div class="couple-caption-bar">
-            <span class="caption-script">Two souls united in faith, love &amp; prayers</span>
+
+          <!-- Archway Scenic Window -->
+          <div class="archway-frame-card" id="archway-card">
+            
+            <!-- Arch Header Text (Exact styling from reference video) -->
+            <div class="arch-invitation-heading">
+              <span class="arch-script-welcome">Welcome to the</span>
+              <h2 class="arch-ceremony-title">Nikkah Ceremony</h2>
+              <span class="arch-of-script">of</span>
+              <h1 class="arch-couple-title">Mustafa <span>&amp;</span> Tasneem</h1>
+            </div>
+
+            <!-- The Scenic Walking Couple Stage -->
+            <div class="arch-scenic-window" id="arch-scenic-window">
+              
+              <!-- Video / Living Motion Graphic Layer -->
+              <div class="walking-video-wrap" id="walking-video-wrap">
+                <video class="couple-walk-video" id="couple-walk-video" autoplay loop muted playsinline poster="assets/couple_walking.jpg">
+                  <source src="assets/couple_walking.mp4" type="video/mp4" />
+                </video>
+                <img src="assets/couple_walking.jpg" alt="Mustafa &amp; Tasneem Walking" class="couple-walk-fallback" />
+              </div>
+
+              <!-- Radiant Golden Sunbeam Glow -->
+              <div class="arch-sunbeam-glow"></div>
+
+              <!-- Living Motion Graphic Canvas (Rising Gold Dust, Floating Petals, Bokeh) -->
+              <canvas id="arch-motion-canvas" class="arch-motion-canvas"></canvas>
+
+              <!-- Archway Ornate Floral Crest & Border Overlay -->
+              <div class="arch-floral-overlay"></div>
+            </div>
+
+            <!-- Scroll Down Indicator (Exact like reference video) -->
+            <div class="arch-scroll-prompt" id="arch-scroll-prompt" role="button" tabindex="0" aria-label="Scroll to next chapter">
+              <span class="scroll-label">Scroll down</span>
+              <span class="scroll-chevron">⌵</span>
+            </div>
+
           </div>
         </div>
 
-        <!-- Custom Masterpiece Arabic Calligraphy Logo -->
+        <!-- Custom Masterpiece Arabic Calligraphy Logo & Formal Introduction -->
         <div class="calligraphy-monogram-block">
           <div class="logo-aura-glow"></div>
           <div class="logo-inner-badge">
@@ -139,7 +206,7 @@
           </div>
           <div class="couple-names-header">
             <span class="cursive-prefix">Together with their families</span>
-            <h1 class="couple-primary-names">Mustafa &amp; Tasneem</h1>
+            <h2 class="couple-primary-names">Mustafa &amp; Tasneem</h2>
             <p class="couple-tagline">Celebrate with us as we embark on this sacred journey of companionship and barakat.</p>
           </div>
         </div>
@@ -566,7 +633,7 @@
       <!-- EPILOGUE: IN DIVINE GRATITUDE -->
       <footer class="invite-footer">
         <div class="footer-seal-emblem">
-          <img src="assets/seal.jpg" alt="Wax Seal Emblem (MT / م ت)" class="footer-mini-seal" />
+          <img src="assets/seal.png" alt="Wax Seal Emblem (MT / م ت)" class="footer-mini-seal" />
         </div>
         <h3 class="footer-couple-name">Mustafa &amp; Tasneem</h3>
         <p class="footer-salutation">عبيد سيدنا المنعام ط ع وامائه</p>
