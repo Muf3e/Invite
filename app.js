@@ -371,24 +371,29 @@ function initEnvelopeExperience() {
       });
     }
 
-    // 3. Activate radiant golden rays, glowing rim, and light burst bloom
+    // 3. Activate radiant golden rays, glowing rim, and shimmer sweep across embossed flowers
     waxSeal.classList.add('glowing');
     envelopeBox.classList.add('light-active');
     const sealBurst = document.getElementById('seal-light-burst');
     if (sealBurst) sealBurst.classList.add('active');
     createSealBurst(waxSeal);
 
-    // 4. Open flaps smoothly and slowly in authentic 3D perspective
+    // 4. Seal lifts forward in 3D perspective revealing inner gold glow (matching video 6.0s)
     setTimeout(() => {
-      envelopeBox.classList.add('open');
-    }, 600);
-
-    // 5. Expand soft ethereal champagne light bloom portal
-    setTimeout(() => {
-      if (lightPortal) lightPortal.classList.add('active');
+      waxSeal.classList.add('lifting');
     }, 1800);
 
-    // 6. Transition smoothly to the main invitation story
+    // 5. Open flaps smoothly and slowly in authentic 3D perspective (matching video 7.4s)
+    setTimeout(() => {
+      envelopeBox.classList.add('open');
+    }, 2800);
+
+    // 6. Expand soft ethereal champagne light bloom portal
+    setTimeout(() => {
+      if (lightPortal) lightPortal.classList.add('active');
+    }, 3800);
+
+    // 7. Transition smoothly to the main invitation story (matching video 9.1s)
     setTimeout(() => {
       envelopeScreen.classList.add('hidden');
       inviteScreen.classList.remove('hidden');
@@ -405,8 +410,8 @@ function initEnvelopeExperience() {
           }, 1000);
         }
         triggerGoldConfetti();
-      }, 300);
-    }, 2400);
+      }, 400);
+    }, 4500);
   };
 
   waxSeal.addEventListener('click', handleOpen);
@@ -466,14 +471,18 @@ function initAudioPlayer() {
   const toggleBtn = document.getElementById('music-toggle');
   if (!audio || !toggleBtn) return;
 
+  const musicIcon = document.getElementById('music-icon-state');
+
   toggleBtn.addEventListener('click', () => {
     if (audio.paused) {
       audio.play().then(() => {
         toggleBtn.classList.add('playing');
+        if (musicIcon) musicIcon.innerText = '⏸';
       }).catch(err => console.error(err));
     } else {
       audio.pause();
       toggleBtn.classList.remove('playing');
+      if (musicIcon) musicIcon.innerText = '▶';
     }
   });
 }
