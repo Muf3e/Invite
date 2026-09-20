@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mustafa &amp; Tasneem — Wedding Invitation Version Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #140C20;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --gold: #D4AF37;
+      --gold-dark: #8C5E14;
+      --text: #2D1A3E;
+      --text-muted: #5E4670;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: radial-gradient(circle at 50% 0%, #2D1445 0%, #140C20 60%, #0B0612 100%);
+      color: #FFF;
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+      padding: 40px 20px 80px;
+    }
+    .header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 40px;
+    }
+    .crown { font-size: 2.2rem; margin-bottom: 10px; }
+    h1 {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      background: linear-gradient(135deg, #FFF6D6 0%, #D4AF37 50%, #AA7C11 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 12px;
+    }
+    p.subtitle {
+      font-size: 1rem;
+      color: #DDD2F2;
+      line-height: 1.6;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .version-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 26px 22px;
+      color: var(--text);
+      border: 1.5px solid rgba(212, 175, 55, 0.5);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), 0 0 15px rgba(212, 175, 55, 0.15);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .version-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 25px rgba(212, 175, 55, 0.3);
+      border-color: var(--gold);
+    }
+    .version-card.current {
+      border: 2.5px solid var(--gold);
+      background: linear-gradient(180deg, #FFFFFF 0%, #FFFDF8 100%);
+      box-shadow: 0 14px 40px rgba(212, 175, 55, 0.3);
+    }
+    .badge-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .version-tag {
+      background: var(--gold);
+      color: #2D1445;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      text-transform: uppercase;
+    }
+    .status-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--gold-dark);
+    }
+    h2 {
+      font-size: 1.25rem;
+      color: #2D1445;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+    .features-list {
+      list-style: none;
+      font-size: 0.8rem;
+      color: #4A3560;
+      margin-bottom: 20px;
+      border-top: 1px dashed rgba(212, 175, 55, 0.4);
+      padding-top: 12px;
+    }
+    .features-list li {
+      margin-bottom: 6px;
+      padding-left: 18px;
+      position: relative;
+    }
+    .features-list li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+    .btn-open {
+      display: block;
+      text-align: center;
+      background: linear-gradient(135deg, #FBF6E9 0%, #D4AF37 50%, #AA7C11 100%);
+      color: #1A0E28;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 12px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-open:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(212, 175, 55, 0.5);
+    }
+    .footer-note {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 0.85rem;
+      color: #C8B8E6;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="crown">👑</div>
+    <h1>Mustafa &amp; Tasneem</h1>
+    <p class="subtitle">Complete Archive &amp; Interactive Gallery of All Invitation Versions</p>
+  </div>
+
+  <div class="grid">
+
+    <!-- Active Root Version -->
+    <div class="version-card current">
+      <div class="badge-bar">
+        <span class="version-tag">Current Active</span>
+        <span class="status-tag">✨ Live Root Project</span>
+      </div>
+      <h2>Latest Masterpiece (Version 10)</h2>
+      <p class="desc">Bright luminous ivory-pearl luxury theme with the user's beloved floral chandelier medallion logo, classical Thuluth calligraphy names with diacritics, 4-block scratch grid for 26th Jan &amp; Pulgaon, and pure English Rusumat titles.</p>
+      <ul class="features-list">
+        <li>Bright luminous warm ivory-pearl parchment canvas</li>
+        <li>Classical Thuluth calligraphy (مُصْطَفَى &amp; تَسْنِيم)</li>
+        <li>Kanz al Marjaan font for Lisan al-Dawat &amp; Arabic verses</li>
+        <li>Interactive 4-block scratch grid (26th, Jan 2026, Pulgaon, Maharashtra)</li>
+        <li>100% pure English Rusumat titles (no Gujarati/Arabic headers)</li>
+      </ul>
+      <a href="../index.html" class="btn-open">▶ Open Current Version</a>
+    </div>
+
+    <!-- Version 6 -->
+    <div class="version-card">
+      <div class="badge-bar">
+        <span class="version-tag">Version 6</span>
+        <span class="status-tag">Royal Dark Parchment</span>
+      </div>
+      <h2>Steady Background &amp; Rosette Logo</h2>
+      <p class="desc">Deep royal plum/lavender fixed atmospheric background with content parallax, soft wax seal acoustic unseal sound effect, and Islamic rosette medallion.</p>
+      <ul class="features-list">
+        <li>Fixed deep royal plum/purple background</li>
+        <li>Soft wax seal unseal sound effect (Web Audio API)</li>
+        <li>Islamic rosette calligraphy medallion in Chapter I</li>
+        <li>Removed couple video and central white strip</li>
+      </ul>
+      <a href="v6_steady_dark_parchment_rosette/index.html" class="btn-open">▶ Open Version 6</a>
+    </div>
+
+    <!-- Version 5 -->
+    <div class="version-card">
+      <div class="badge-bar">
+        <span class="version-tag">Version 5</span>
+        <span class="status-tag">Couple Video Loop</span>
+      </div>
+      <h2>Frontal Seal &amp; Walking Couple Video</h2>
+      <p class="desc">Masterpiece frontal centered gold wax seal (MT / م ت), 3D blind-embossed floral flaps, living dynamic motion graphic background, and looping video of Bohra couple walking through palace archway.</p>
+      <ul class="features-list">
+        <li>Frontal 3D gold wax seal in center focus</li>
+        <li>3D blind-embossed floral flap reliefs</li>
+        <li>Continuous video loop of Bohra couple walking</li>
+        <li>Dynamic motion graphic particle canvas</li>
+      </ul>
+      <a href="v5_frontal_seal_walking_couple_video/index.html" class="btn-open">▶ Open Version 5</a>
+    </div>
+
+    <!-- Version 4 -->
+    <div class="version-card">
+      <div class="badge-bar">
+        <span class="version-tag">Version 4</span>
+        <span class="status-tag">Transparent Cutout</span>
+      </div>
+      <h2>Fullscreen Edge-to-Edge Parallax</h2>
+      <p class="desc">First edge-to-edge 100vw storyteller layout removing the boxed card, featuring a transparent cutout portrait of the couple with halo glow and Google Sheets RSVP integration.</p>
+      <ul class="features-list">
+        <li>Full-bleed 100vw parallax chapters</li>
+        <li>Transparent cutout couple illustration (no box/frame)</li>
+        <li>Royal dark translucent glassmorphism</li>
+        <li>Google Sheets webhook RSVP connection</li>
+      </ul>
+      <a href="v4_fullscreen_transparent_cutout_couple/index.html" class="btn-open">▶ Open Version 4</a>
+    </div>
+
+    <!-- Version 3 -->
+    <div class="version-card">
+      <div class="badge-bar">
+        <span class="version-tag">Version 3</span>
+        <span class="status-tag">Fullscreen Envelope</span>
+      </div>
+      <h2>Couple Under Arch &amp; 3D Gyro</h2>
+      <p class="desc">Introduced fullscreen envelope close-up with bilingual MT seal without ampersand, watercolor couple illustration under floral arch, and 3D mouse/gyroscope parallax tilt.</p>
+      <ul class="features-list">
+        <li>Fullscreen envelope close-up (100vw × 100vh)</li>
+        <li>Bilingual MT seal without &amp; or و</li>
+        <li>Couple under archway with lanterns</li>
+        <li>Interactive 3D mouse tilt &amp; mobile gyroscope depth</li>
+      </ul>
+      <a href="v3_fullscreen_envelope_couple_arch/index.html" class="btn-open">▶ Open Version 3</a>
+    </div>
+
+    <!-- Version 2 -->
+    <div class="version-card">
+      <div class="badge-bar">
+        <span class="version-tag">Version 2</span>
+        <span class="status-tag">Bilingual Seal</span>
+      </div>
+      <h2>Bilingual Seal with Ampersand</h2>
+      <p class="desc">Upgraded wax seal to bilingual monogram featuring 'M &amp; T' and 'م و ت', radiant sunburst golden light reveal opening, and ambient background music.</p>
+      <ul class="features-list">
+        <li>Bilingual seal with M &amp; T and م و ت</li>
+        <li>Radiant sunburst golden light portal reveal</li>
+        <li>Ambient background audio player</li>
+        <li>Interactive scratch card and countdown</li>
+      </ul>
+      <a href="v2_bilingual_seal_with_ampersand/index.html" class="btn-open">▶ Open Version 2</a>
+    </div>
+
+    <!-- Version 1 -->
+    <div class="version-card">
+      <div class="badge-bar">
+        <span class="version-tag">Version 1</span>
+        <span class="status-tag">Initial Card Layout</span>
+      </div>
+      <h2>Initial Mobile Card Layout</h2>
+      <p class="desc">The initial 480px constrained card design with traditional stationery aesthetic, initial circular gold MT wax seal, and traditional Bohra wording in Lisan al-Dawat.</p>
+      <ul class="features-list">
+        <li>480px constrained card container</li>
+        <li>Initial circular English-only MT wax seal</li>
+        <li>Envelope modal with flap lift animation</li>
+        <li>Interactive scratch card &amp; countdown</li>
+      </ul>
+      <a href="v1_card_layout_initial/index.html" class="btn-open">▶ Open Version 1</a>
+    </div>
+
+  </div>
+
+  <div class="footer-note">
+    <p>All assets, illustrations, video loops, and seals are preserved in <code>creations_history/all_generated_assets/</code></p>
+  </div>
+
+</body>
+</html>
