@@ -74,6 +74,13 @@
           <div class="flap-embossed-flourish bouquet-top"></div>
         </div>
 
+        <!-- Expanding Golden Wave / Ripple Effect from behind Seal on Tap -->
+        <div class="seal-wave-container" id="seal-waves">
+          <div class="seal-wave-ring wave-1"></div>
+          <div class="seal-wave-ring wave-2"></div>
+          <div class="seal-wave-ring wave-3"></div>
+        </div>
+
         <!-- Radiant Golden Light Burst from behind Seal on Tap -->
         <div class="seal-light-burst" id="seal-light-burst"></div>
 
@@ -286,58 +293,45 @@
           </div>
         </div>
 
-        <!-- Interactive 4-Block Scratch-to-Reveal Grid -->
+        <!-- Interactive 3-Block Scratch-to-Reveal Grid -->
         <div class="luxury-card-box scratch-container">
           <div class="card-ornament top-center">❖</div>
           <span class="section-eyebrow">Interactive Milestone</span>
-          <h3 class="card-title">Scratch to Reveal the Wedding Date &amp; Venue</h3>
-          <p class="scratch-instructions">Rub the golden shimmering foil across all 4 blocks below to unveil the date and destination!</p>
+          <h3 class="card-title">Scratch to Reveal the Wedding Date</h3>
+          <p class="scratch-instructions">Rub the golden shimmering foil across the 3 blocks below to unveil the date!</p>
 
-          <div class="scratch-grid-4">
+          <div class="scratch-grid-3">
             <!-- Block 1: Date -->
             <div class="scratch-tile-block" data-block="1">
               <div class="tile-reveal-content">
-                <span class="tile-category-tag">Auspicious Day</span>
-                <span class="tile-val-huge">26th</span>
-                <span class="tile-val-sub">Monday</span>
+                <span class="tile-val-huge">26</span>
+                <span class="tile-category-tag">Date</span>
               </div>
-              <canvas id="scratch-canvas-1" class="tile-scratch-canvas" width="220" height="150"></canvas>
+              <canvas id="scratch-canvas-1" class="tile-scratch-canvas" width="240" height="150"></canvas>
             </div>
 
             <!-- Block 2: Month -->
             <div class="scratch-tile-block" data-block="2">
               <div class="tile-reveal-content">
-                <span class="tile-category-tag">Wedding Month</span>
-                <span class="tile-val-huge">January</span>
-                <span class="tile-val-sub">Rajab al-Asab</span>
+                <span class="tile-val-huge">01</span>
+                <span class="tile-category-tag">Month</span>
               </div>
-              <canvas id="scratch-canvas-2" class="tile-scratch-canvas" width="220" height="150"></canvas>
+              <canvas id="scratch-canvas-2" class="tile-scratch-canvas" width="240" height="150"></canvas>
             </div>
 
             <!-- Block 3: Year -->
             <div class="scratch-tile-block" data-block="3">
               <div class="tile-reveal-content">
-                <span class="tile-category-tag">Year</span>
                 <span class="tile-val-huge">2026</span>
-                <span class="tile-val-sub">1447 Hijri</span>
+                <span class="tile-category-tag">Year</span>
               </div>
-              <canvas id="scratch-canvas-3" class="tile-scratch-canvas" width="220" height="150"></canvas>
-            </div>
-
-            <!-- Block 4: Venue -->
-            <div class="scratch-tile-block" data-block="4">
-              <div class="tile-reveal-content">
-                <span class="tile-category-tag">Destination</span>
-                <span class="tile-val-huge">Pulgaon</span>
-                <span class="tile-val-sub">Maharashtra</span>
-              </div>
-              <canvas id="scratch-canvas-4" class="tile-scratch-canvas" width="220" height="150"></canvas>
+              <canvas id="scratch-canvas-3" class="tile-scratch-canvas" width="240" height="150"></canvas>
             </div>
           </div>
 
           <div class="scratch-progress-wrap">
             <div class="scratch-progress-bar" id="scratch-progress"></div>
-            <span class="scratch-hint" id="scratch-hint">Scratch all 4 blocks to unveil! (0 of 4 Revealed)</span>
+            <span class="scratch-hint" id="scratch-hint">Scratch all 3 blocks to unveil! (0 of 3 Revealed)</span>
           </div>
 
           <!-- Revealed Complete Summary & Calendar Action -->
