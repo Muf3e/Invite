@@ -1,0 +1,2444 @@
+@font-face {
+  font-family: 'Kanz al Marjaan';
+  src: url('assets/fonts/kanz-al-marjaan-webfont.woff2') format('woff2'),
+       url('assets/fonts/kanz-al-marjaan-webfont.woff') format('woff'),
+       url('assets/fonts/kanz-al-marjaan-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Thuluth';
+  src: url('assets/fonts/thuluth.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==========================================================================
+   ROYAL LAVENDER & GOLD: DAWOODI BOHRA PARALLAX STORYTELLER INVITATION
+   Mustafa & Tasneem — Interactive Wedding Experience
+   ========================================================================== */
+
+:root {
+  /* Lavender & Pearl Palette (Bright, Luminous, Clear) */
+  --lavender-mist: #FAF8FE;
+  --lavender-light: #F3EEFB;
+  --lavender-soft: #E2D7F5;
+  --lavender-medium: #A48ED4;
+  --lavender-deep: #5E3D8E;
+  --lavender-royal: #3E2469;
+  --plum-dark: #22123B;
+
+  /* Liquid Metallic Gold Palette */
+  --gold-highlight: #FFF9E6;
+  --gold-light: #F7E4AD;
+  --gold-primary: #C58B1B;
+  --gold-dark: #8C5E14;
+  --gold-shadow: #5E4306;
+  --gold-gradient: linear-gradient(135deg, #FFE8A3 0%, #E5B85C 30%, #D4AF37 60%, #9D741A 100%);
+  --gold-foil-text: linear-gradient(135deg, #7A4E0A 0%, #B88218 30%, #E8C167 55%, #A67314 80%, #6E4405 100%);
+  --gold-soft-glow: rgba(235, 195, 85, 0.4);
+
+  /* High-Contrast Clear Neutrals */
+  --parchment-bg: #FCFAF6;
+  --ivory-white: #FFFFFF;
+  --text-dark: #261633;
+  --text-body: #3B234F;
+  --text-muted: #644E7A;
+
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-arabic: 'Kanz al Marjaan', 'Amiri', 'Traditional Arabic', serif;
+  --font-dawat: 'Kanz al Marjaan', serif;
+  --font-thuluth: 'Thuluth', 'Amiri', serif;
+  --font-script: 'Great Vibes', cursive;
+  --font-sans: 'Montserrat', sans-serif;
+  --font-display: 'Cinzel Decorative', Georgia, serif;
+
+  /* Transitions & Shadows */
+  --smooth-ease: cubic-bezier(0.25, 1, 0.5, 1);
+  --bounce-ease: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --shadow-luxury: 0 16px 40px rgba(55, 30, 80, 0.08), 0 0 25px rgba(212, 175, 55, 0.15);
+  --shadow-card: 0 12px 32px rgba(50, 25, 75, 0.06);
+}
+
+/* Reset */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #FAF7F2;
+  background-image: 
+    radial-gradient(circle at 14% 16%, rgba(224, 212, 246, 0.5) 0%, transparent 45%),
+    radial-gradient(circle at 86% 20%, rgba(255, 240, 200, 0.55) 0%, transparent 45%),
+    radial-gradient(circle at 50% 55%, rgba(253, 250, 245, 0.9) 0%, #EDE4D3 100%);
+  background-attachment: fixed;
+  background-size: cover;
+  color: var(--text-dark);
+  font-family: 'Kanz al Marjaan', var(--font-serif);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+/* Steady Ambient Petal & Soft Bokeh Canvas */
+#petal-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Fullscreen Storyteller Viewport (Full Bleed, No Boxed Card Layout) */
+.app-viewport {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  background: transparent;
+  position: relative;
+  z-index: 2;
+  overflow-x: hidden;
+  margin: 0;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+}
+
+@media (min-width: 768px) {
+  .app-viewport {
+    margin: 0;
+    border-radius: 0;
+    min-height: 100vh;
+    border: none;
+    box-shadow: none;
+  }
+}
+
+/* Floating Audio Equalizer */
+.floating-music-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(212, 175, 55, 0.6);
+  box-shadow: 0 8px 24px rgba(70, 30, 90, 0.12), 0 0 15px rgba(212, 175, 55, 0.2);
+  padding: 8px 14px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: transform 0.3s var(--smooth-ease), box-shadow 0.3s ease;
+}
+
+.floating-music-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 12px 28px rgba(70, 30, 90, 0.18), 0 0 20px rgba(212, 175, 55, 0.35);
+}
+
+.eq-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 16px;
+}
+
+.eq-bars .bar {
+  width: 3px;
+  background: var(--gold-gradient);
+  border-radius: 2px;
+  height: 4px;
+  transition: height 0.2s ease;
+}
+
+.floating-music-btn.playing .bar-1 { animation: eqAnim 0.7s infinite alternate ease-in-out; }
+.floating-music-btn.playing .bar-2 { animation: eqAnim 0.5s infinite alternate ease-in-out 0.2s; }
+.floating-music-btn.playing .bar-3 { animation: eqAnim 0.9s infinite alternate ease-in-out 0.1s; }
+.floating-music-btn.playing .bar-4 { animation: eqAnim 0.6s infinite alternate ease-in-out 0.3s; }
+
+@keyframes eqAnim {
+  0% { height: 3px; }
+  100% { height: 16px; }
+}
+
+.music-label {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #8C5E14;
+}
+
+/* Side Storyteller Chapter Navigation */
+.story-nav {
+  position: fixed;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 90;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.story-nav.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (max-width: 580px) {
+  .story-nav {
+    display: none; /* Keep mobile clean */
+  }
+}
+
+.story-nav-track {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  box-shadow: 0 8px 24px rgba(70, 30, 90, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 12px 7px;
+  border-radius: 24px;
+}
+
+.story-nav-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  transition: all 0.3s var(--smooth-ease);
+  position: relative;
+}
+
+.story-nav-dot:hover,
+.story-nav-dot.active {
+  background: var(--gold-primary);
+  transform: scale(1.4);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+}
+
+/* ==========================================================================
+   PROLOGUE: FULLSCREEN ENVELOPE CLOSE-UP VIEW
+   ========================================================================== */
+.fullscreen-envelope-view {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 50;
+  background: #170E24;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.fullscreen-envelope-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1400px;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 45%, #FAF7F2 0%, #EFE8DB 50%, #E2D7C5 100%);
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.8s ease;
+}
+
+@media (min-width: 768px) {
+  .fullscreen-envelope-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+  }
+}
+
+/* Embossed luxury paper */
+.envelope-full-bg {
+  position: absolute;
+  inset: 0;
+  background-color: #FAF8F2;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.6) 0%, transparent 60%),
+    radial-gradient(rgba(212, 175, 55, 0.15) 1px, transparent 1px);
+  background-size: 100% 100%, 18px 18px;
+  opacity: 0.95;
+}
+
+/* Authentic Envelope Seam Lines & Golden Burst Rays (Mathematically Exact Across All Screens) */
+.envelope-seams-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.seam-crease-line {
+  stroke: rgba(212, 175, 55, 0.45);
+  stroke-width: 1.4;
+  filter: drop-shadow(0 1px 3px rgba(45, 20, 70, 0.25));
+  transition: opacity 0.5s ease;
+}
+
+.seam-burst-ray {
+  stroke-width: 4;
+  stroke-linecap: round;
+  filter: url(#seamGlowFilter);
+  opacity: 0;
+  transition: opacity 0.45s ease, stroke-width 0.45s ease;
+}
+
+.fullscreen-envelope-container.light-active .seam-burst-ray {
+  opacity: 1;
+  stroke-width: 5;
+}
+
+.fullscreen-envelope-container.open .seam-crease-line,
+.fullscreen-envelope-container.open .seam-burst-ray {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* Center Seam Light Beam (Gentle champagne glow) */
+.soft-center-beam {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 250, 230, 0.95) 45%, 
+    #FFF4C4 50%, 
+    rgba(229, 192, 123, 0.9) 55%, 
+    transparent 100%
+  );
+  box-shadow: 0 0 40px rgba(255, 230, 130, 0.8), 0 0 80px rgba(212, 175, 55, 0.5);
+  opacity: 0;
+  z-index: 5;
+  filter: blur(1.5px);
+  transition: width 0.85s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.65s ease;
+}
+
+.fullscreen-envelope-container.light-active .soft-center-beam {
+  width: 90px;
+  opacity: 1;
+}
+
+/* Golden Wave / Ripple Effect on Envelope Tap (Soft & Slow Animation) */
+.seal-wave-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.seal-wave-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid rgba(212, 175, 55, 0.85);
+  box-shadow: 0 0 30px rgba(255, 235, 150, 0.7), inset 0 0 15px rgba(212, 175, 55, 0.4);
+  width: 190px;
+  height: 190px;
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none;
+}
+
+.fullscreen-envelope-container.light-active .seal-wave-ring.wave-1 {
+  animation: sealWavePulse 2.4s cubic-bezier(0.12, 0.8, 0.25, 1) forwards;
+}
+
+.fullscreen-envelope-container.light-active .seal-wave-ring.wave-2 {
+  animation: sealWavePulse 2.4s cubic-bezier(0.12, 0.8, 0.25, 1) 0.35s forwards;
+}
+
+.fullscreen-envelope-container.light-active .seal-wave-ring.wave-3 {
+  animation: sealWavePulse 2.4s cubic-bezier(0.12, 0.8, 0.25, 1) 0.7s forwards;
+}
+
+@keyframes sealWavePulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.95;
+    border-color: rgba(255, 245, 190, 0.95);
+  }
+  45% {
+    opacity: 0.75;
+    border-color: rgba(212, 175, 55, 0.7);
+    box-shadow: 0 0 50px rgba(255, 230, 130, 0.6), inset 0 0 25px rgba(212, 175, 55, 0.35);
+  }
+  100% {
+    transform: scale(7.5);
+    opacity: 0;
+    border-color: rgba(212, 175, 55, 0);
+  }
+}
+
+/* Radiant Golden Light Burst behind Seal on Tap (Soft & Slow) */
+.seal-light-burst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.2);
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 245, 200, 0.95) 25%, rgba(212, 175, 55, 0.8) 55%, transparent 75%);
+  box-shadow: 0 0 90px rgba(255, 245, 200, 0.95), 0 0 160px rgba(212, 175, 55, 0.8);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 8;
+  transition: transform 2.2s cubic-bezier(0.15, 0.85, 0.25, 1), opacity 1.8s ease;
+}
+
+.seal-light-burst.active {
+  transform: translate(-50%, -50%) scale(4.2);
+  opacity: 1;
+}
+
+.fullscreen-envelope-container.light-active .flap-embossed-flourish {
+  filter: drop-shadow(0 0 20px rgba(255, 240, 160, 0.9)) brightness(1.3) !important;
+}
+
+/* Authentic Blind-Embossed 3D Paper Relief Flourishes on Envelope Flaps (Matching Reference Video) */
+.flap-embossed-flourish {
+  position: absolute;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  opacity: 0.96;
+  transition: filter 0.6s ease, transform 0.6s ease;
+}
+
+.fullscreen-envelope-container.light-active .flap-embossed-flourish {
+  filter: drop-shadow(0 0 12px rgba(255, 235, 140, 0.9)) brightness(1.2) !important;
+}
+
+/* Top Flap Embossed Floral Bouquet */
+.bouquet-top {
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(82%, 360px);
+  height: 200px;
+  background-image: url('assets/embossed_bouquet.png');
+  background-position: top center;
+  background-size: contain;
+  filter: drop-shadow(0 4px 10px rgba(70, 50, 30, 0.16));
+}
+
+/* Bottom Flap Embossed Floral Bouquet (Pointed Upwards) */
+.bouquet-bottom {
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(180deg);
+  width: min(82%, 360px);
+  height: 200px;
+  background-image: url('assets/embossed_bouquet.png');
+  background-position: top center;
+  background-size: contain;
+  filter: drop-shadow(0 -4px 10px rgba(70, 50, 30, 0.16));
+}
+
+/* Left & Right Flap Embossed Trailing Rose Vines */
+.vine-left {
+  top: 50%;
+  left: 6px;
+  transform: translateY(-50%);
+  width: min(32%, 140px);
+  height: 82%;
+  background-image: url('assets/embossed_vine.png');
+  background-position: center left;
+  background-size: contain;
+  filter: drop-shadow(2px 0 8px rgba(70, 50, 30, 0.14));
+}
+
+.vine-right {
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%) scaleX(-1);
+  width: min(32%, 140px);
+  height: 82%;
+  background-image: url('assets/embossed_vine.png');
+  background-position: center left;
+  background-size: contain;
+  filter: drop-shadow(2px 0 8px rgba(70, 50, 30, 0.14));
+}
+
+/* Flap Panels filling the full screen with authentic 3D unfolding & gold satin lining */
+.envelope-panel {
+  position: absolute;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+.panel-top {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  background: linear-gradient(180deg, #FAF7F2 0%, #EDE5D8 100%);
+  border-bottom: 1.5px solid rgba(212, 175, 55, 0.55);
+  transform-origin: top center;
+  z-index: 4;
+  filter: drop-shadow(0 10px 25px rgba(40, 20, 60, 0.25));
+  transition: transform 2.2s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.8s ease;
+}
+
+.panel-top::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #C6922C 0%, #F5DE98 45%, #D4AF37 75%, #AA7C11 100%);
+  transform: rotateX(180deg);
+  backface-visibility: hidden;
+  box-shadow: inset 0 0 30px rgba(170, 124, 17, 0.5);
+}
+
+.panel-bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  background: linear-gradient(0deg, #EDE5D8 0%, #FAF6EE 100%);
+  border-top: 1.5px solid rgba(212, 175, 55, 0.5);
+  transform-origin: bottom center;
+  z-index: 2;
+  filter: drop-shadow(0 -8px 24px rgba(45, 20, 70, 0.2));
+  transition: transform 2.2s cubic-bezier(0.22, 1, 0.36, 1) 0.1s, opacity 1.8s ease 0.1s;
+}
+
+.panel-bottom::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, #C6922C 0%, #F5DE98 45%, #D4AF37 75%, #AA7C11 100%);
+  transform: rotateX(180deg);
+  backface-visibility: hidden;
+  box-shadow: inset 0 0 30px rgba(170, 124, 17, 0.5);
+}
+
+.panel-left {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  background: linear-gradient(135deg, #F9F5EC 0%, #E8DFCE 100%);
+  border-right: 1.5px solid rgba(212, 175, 55, 0.45);
+  box-shadow: 8px 0 28px rgba(45, 20, 70, 0.18);
+  transform-origin: left center;
+  z-index: 3;
+  transition: transform 2.1s cubic-bezier(0.22, 1, 0.36, 1) 0.05s, opacity 1.7s ease 0.05s;
+}
+
+.panel-right {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+  background: linear-gradient(225deg, #F9F5EC 0%, #E8DFCE 100%);
+  border-left: 1.5px solid rgba(212, 175, 55, 0.45);
+  box-shadow: -8px 0 28px rgba(45, 20, 70, 0.18);
+  transform-origin: right center;
+  z-index: 3;
+  transition: transform 2.1s cubic-bezier(0.22, 1, 0.36, 1) 0.05s, opacity 1.7s ease 0.05s;
+}
+
+/* State when envelope opens (Exact mechanics matching reference video) */
+.fullscreen-envelope-container.open .panel-top {
+  transform: perspective(1400px) rotateX(175deg);
+  opacity: 0.2;
+}
+
+.fullscreen-envelope-container.open .panel-left {
+  transform: perspective(1400px) rotateY(-170deg);
+  opacity: 0.15;
+}
+
+.fullscreen-envelope-container.open .panel-right {
+  transform: perspective(1400px) rotateY(170deg);
+  opacity: 0.15;
+}
+
+.fullscreen-envelope-container.open .panel-bottom {
+  transform: perspective(1400px) rotateX(-175deg);
+  opacity: 0.2;
+}
+
+.fullscreen-envelope-container.open .wax-seal-macro-wrap {
+  transform: translate(-50%, -190%) scale(0.88) rotate(-4deg);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fullscreen-envelope-container.open .seal-tap-indicator {
+  opacity: 0;
+  transform: translateX(-50%) translateY(20px);
+  pointer-events: none;
+}
+
+/* Pure Authentic Gold Wax Seal (Direct Cutout, No Paper Circle) */
+.wax-seal-macro-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 195px;
+  height: 195px;
+  z-index: 10;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 2.0s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.6s ease;
+}
+
+@media (max-width: 480px) {
+  .wax-seal-macro-wrap {
+    width: 165px;
+    height: 165px;
+  }
+}
+
+.wax-seal-macro-wrap:hover {
+  transform: translate(-50%, -50%) scale(1.06);
+}
+
+/* Pure Wax Seal Cutout Image: No border, no circular paper crop, pure organic drop shadow */
+.seal-macro-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: relative;
+  z-index: 4;
+  border-radius: 0;
+  border: none;
+  filter: drop-shadow(0 18px 30px rgba(35, 18, 5, 0.65))
+          drop-shadow(0 4px 10px rgba(212, 175, 55, 0.45));
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.wax-seal-macro-wrap:hover .seal-macro-img {
+  filter: drop-shadow(0 22px 36px rgba(35, 18, 5, 0.75))
+          drop-shadow(0 0 20px rgba(255, 235, 140, 0.7));
+}
+
+.seal-soft-aura {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.5) 0%, rgba(215, 203, 240, 0.28) 50%, transparent 70%);
+  animation: breatheAura 3s infinite ease-in-out;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes breatheAura {
+  0%, 100% { transform: scale(0.95); opacity: 0.45; }
+  50% { transform: scale(1.18); opacity: 0.85; }
+}
+
+/* Soft Ethereal Rotating Rays (Subtle champagne) */
+.seal-sunbeam-rays {
+  position: absolute;
+  width: 440px;
+  height: 440px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(255, 235, 140, 0.35) 15deg,
+    transparent 30deg,
+    rgba(212, 175, 55, 0.25) 45deg,
+    transparent 60deg,
+    rgba(255, 235, 140, 0.35) 75deg,
+    transparent 90deg,
+    rgba(212, 175, 55, 0.25) 105deg,
+    transparent 120deg,
+    rgba(255, 235, 140, 0.35) 135deg,
+    transparent 150deg,
+    rgba(212, 175, 55, 0.25) 165deg,
+    transparent 180deg,
+    rgba(255, 235, 140, 0.35) 195deg,
+    transparent 210deg,
+    rgba(212, 175, 55, 0.25) 225deg,
+    transparent 240deg,
+    rgba(255, 235, 140, 0.35) 255deg,
+    transparent 270deg,
+    rgba(212, 175, 55, 0.25) 285deg,
+    transparent 300deg,
+    rgba(255, 235, 140, 0.35) 315deg,
+    transparent 330deg,
+    rgba(212, 175, 55, 0.25) 345deg,
+    transparent 360deg
+  );
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.8s ease, transform 0.8s var(--bounce-ease);
+  pointer-events: none;
+  z-index: 2;
+  filter: blur(2px);
+}
+
+.wax-seal-macro-wrap.glowing .seal-sunbeam-rays {
+  opacity: 1;
+  transform: scale(1.15);
+  animation: rotateRays 12s linear infinite;
+}
+
+@keyframes rotateRays {
+  0% { transform: scale(1.15) rotate(0deg); }
+  100% { transform: scale(1.15) rotate(360deg); }
+}
+
+/* Seal Tap Prompt Indicator */
+.seal-tap-indicator {
+  position: absolute;
+  top: calc(50% + 128px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 11;
+  cursor: pointer;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+@media (max-width: 480px) {
+  .seal-tap-indicator {
+    top: calc(50% + 110px);
+  }
+}
+
+.seal-callout-pill {
+  white-space: nowrap;
+  background: rgba(35, 20, 56, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--gold-light);
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  letter-spacing: 2.2px;
+  font-weight: 600;
+  padding: 7px 16px;
+  border-radius: 20px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35), 0 0 10px rgba(212, 175, 55, 0.3);
+  border: 1px solid rgba(212, 175, 55, 0.55);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: floatCallout 2.4s infinite ease-in-out;
+}
+
+@media (max-width: 480px) {
+  .seal-callout-pill {
+    top: 185px;
+  }
+}
+
+@keyframes floatCallout {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.envelope-macro-footer {
+  position: absolute;
+  bottom: 80px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 10;
+  pointer-events: none;
+  padding: 0 24px;
+}
+
+@media (min-width: 768px) {
+  .envelope-macro-footer {
+    bottom: 36px;
+  }
+}
+
+.macro-sub-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--lavender-royal);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.macro-hint {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* Soft Ethereal Light Bloom Portal */
+.soft-light-portal {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+  mix-blend-mode: screen;
+}
+
+.soft-light-portal.active {
+  opacity: 1;
+}
+
+.portal-sunburst {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, 
+    rgba(255, 252, 240, 0.95) 0%, 
+    rgba(255, 235, 170, 0.85) 30%, 
+    rgba(220, 185, 100, 0.6) 60%, 
+    rgba(178, 159, 224, 0.3) 85%, 
+    transparent 100%
+  );
+  filter: blur(10px);
+}
+
+.portal-warm-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(255, 245, 210, 0.9) 0%, transparent 70%);
+}
+
+/* ==========================================================================
+   STORYTELLER PARALLAX BOOK SECTIONS
+   ========================================================================== */
+.invitation-screen {
+  padding: 0 0 80px 0;
+  background: transparent;
+  animation: fadeInStory 1.2s var(--smooth-ease) forwards;
+}
+
+@keyframes fadeInStory {
+  0% { opacity: 0; transform: translateY(35px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Story Chapter Wrapper */
+.story-chapter {
+  padding: 40px 18px 24px;
+  position: relative;
+}
+
+/* ==========================================================================
+   CHAPTER I: THE ROYAL UNION — STEADY LUXURY STAGE
+   ========================================================================== */
+.hero-arch-chapter {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px 40px;
+  background: transparent;
+  overflow: visible;
+  border-bottom: 1.5px solid rgba(212, 175, 55, 0.25);
+}
+
+.couple-thuluth-title {
+  font-family: 'Thuluth', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: #A06815;
+  margin: 4px auto 14px;
+  text-align: center;
+  direction: rtl;
+  filter: drop-shadow(0 2px 5px rgba(160, 104, 21, 0.28));
+  letter-spacing: 1px;
+}
+
+/* Royal Vector Arch Frame from PDF Asset 25 for Chapter II */
+.royal-arch-frame-svg-wrap {
+  position: absolute;
+  inset: -10px;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  border-radius: 30px;
+}
+
+.royal-arch-border-img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  opacity: 0.85;
+  filter: drop-shadow(0 2px 8px rgba(209, 139, 55, 0.35));
+}
+
+.card-ornate-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 18px auto;
+  max-width: 320px;
+  width: 80%;
+}
+
+.ornate-divider-svg {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 1px 4px rgba(209, 139, 55, 0.4));
+}
+
+.chapter-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.chapter-roman {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  font-weight: 700;
+  display: block;
+}
+
+.chapter-title {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 4px 0 8px;
+  letter-spacing: 1px;
+}
+
+.chapter-subtitle {
+  font-size: 0.95rem;
+  color: #D0C2EA;
+  font-style: italic;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.ornate-separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.sep-line {
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.6), transparent);
+}
+
+.sep-gem {
+  color: var(--gold-primary);
+  font-size: 0.75rem;
+}
+
+/* CHAPTER I: Bismillah & Couple Portrait */
+.bismillah-block {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.arabic-bismillah {
+  font-family: var(--font-arabic);
+  font-size: 1.85rem;
+  line-height: 1.3;
+  color: #F8E298;
+  filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.45));
+}
+
+.bismillah-trans {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #D6C8F2;
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   GRAND MUGHAL ARCHWAY HERO STAGE (Living Procession & Walking Couple)
+   ========================================================================== */
+.hero-archway-container {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  margin: 10px auto 35px;
+  perspective: 1200px;
+}
+
+/* Hanging Ornate Lanterns (Left & Right) with physics sway */
+.hanging-lantern {
+  position: absolute;
+  top: -12px;
+  width: 38px;
+  z-index: 12;
+  pointer-events: none;
+}
+
+.hanging-lantern.lantern-left {
+  left: 8px;
+}
+
+.hanging-lantern.lantern-right {
+  right: 8px;
+}
+
+.lantern-chain {
+  width: 2px;
+  height: 38px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, #D4AF37 0%, #A6822B 100%);
+  box-shadow: 0 0 4px rgba(212, 175, 55, 0.4);
+}
+
+.lantern-body {
+  position: relative;
+  transform-origin: top center;
+  animation: lanternSwing 3.8s ease-in-out infinite alternate;
+}
+
+.lantern-right .lantern-body {
+  animation-duration: 4.2s;
+  animation-delay: -1.8s;
+}
+
+@keyframes lanternSwing {
+  0% { transform: rotate(-4.5deg); }
+  100% { transform: rotate(4.5deg); }
+}
+
+.lantern-flame-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 238, 140, 0.95) 0%, rgba(255, 190, 60, 0.45) 50%, transparent 75%);
+  filter: blur(6px);
+  animation: flameFlicker 2.2s infinite ease-in-out;
+}
+
+@keyframes flameFlicker {
+  0%, 100% { opacity: 0.85; transform: translate(-50%, -50%) scale(0.92); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.12); }
+}
+
+.lantern-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 4px 10px rgba(45, 20, 70, 0.35));
+}
+
+/* Chapter I Monogram Presentation */
+.calligraphy-monogram-block {
+  text-align: center;
+  position: relative;
+  margin: 15px auto 40px;
+  max-width: 960px;
+  padding: 20px 14px;
+}
+
+.logo-aura-glow {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, rgba(178, 159, 224, 0.2) 50%, transparent 75%);
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+.logo-inner-badge {
+  width: 220px;
+  height: 220px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  overflow: visible;
+  position: relative;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+.couple-arabic-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 24px rgba(212, 175, 55, 0.65));
+}
+
+.bismillah-block {
+  text-align: center;
+  margin: 10px auto 20px;
+}
+
+.bismillah-calligraphy-img {
+  max-width: min(85%, 380px);
+  height: auto;
+  display: block;
+  margin: 0 auto 10px;
+  filter: drop-shadow(0 2px 6px rgba(184, 126, 24, 0.35));
+}
+
+.bismillah-trans {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: #644E7A;
+  letter-spacing: 0.5px;
+}
+
+.cursive-prefix {
+  font-family: var(--font-script);
+  font-size: 1.85rem;
+  color: #8C5E14;
+  display: block;
+}
+
+.couple-primary-names {
+  font-family: var(--font-display);
+  font-size: 2.35rem;
+  letter-spacing: 1.5px;
+  background: var(--gold-foil-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.3;
+  margin: 4px 0 8px;
+}
+
+.couple-tagline {
+  font-size: 1.05rem;
+  color: #4B365E;
+  max-width: 460px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* CHAPTER II: Traditional Bohra Sacred Invitation Stage (Seamless Full-Bleed) */
+.bohra-invitation-stage {
+  position: relative;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 30px 20px;
+  background: transparent;
+}
+
+.bohra-stage-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.bohra-stage-decor .flourish-corner {
+  position: absolute;
+  width: 44px;
+  height: 70px;
+  background-image: url('assets/asset_20.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.85;
+  pointer-events: none;
+}
+.bohra-stage-decor .flourish-corner.tl { top: 0; left: 0; }
+.bohra-stage-decor .flourish-corner.tr { top: 0; right: 0; transform: scaleX(-1); }
+.bohra-stage-decor .flourish-corner.bl { bottom: 0; left: 0; transform: scaleY(-1); }
+.bohra-stage-decor .flourish-corner.br { bottom: 0; right: 0; transform: scale(-1); }
+
+.parchment-body {
+  text-align: center;
+}
+
+/* Top Calligraphy Header with Medallions & Bismillah */
+.card-calligraphy-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  gap: 12px;
+}
+
+.top-bismillah-box {
+  flex: 2;
+  text-align: center;
+}
+
+.bismillah-card-header-img {
+  max-width: min(100%, 380px);
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 2px 6px rgba(184, 126, 24, 0.35));
+}
+
+.top-medallion-box {
+  flex: 1;
+  text-align: center;
+}
+
+.alhamdolillah-medallion-img {
+  max-width: 95px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 2px 4px rgba(184, 126, 24, 0.3));
+}
+
+.shukranlillah-text {
+  font-family: 'Thuluth', serif;
+  font-size: 1.85rem;
+  color: var(--gold-primary);
+  font-weight: bold;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(184, 126, 24, 0.3));
+}
+
+/* Sacred Dawat Poetry & Verses */
+.dawat-poetry-section {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.arabic-poetry-line {
+  font-family: 'Kanz al Marjaan', 'Amiri', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #A06815;
+  line-height: 2.3;
+  direction: rtl;
+  margin: 2px 0;
+  filter: drop-shadow(0 1px 2px rgba(160, 104, 21, 0.25));
+}
+
+.lisan-stanza-line {
+  font-family: 'Kanz al Marjaan', serif;
+  font-size: 1.45rem;
+  color: #2D1A3E;
+  line-height: 2.35;
+  direction: rtl;
+  margin: 4px 0;
+}
+
+.syedna-calligraphy-wrap {
+  margin: 14px auto;
+  text-align: center;
+  max-width: 720px;
+}
+
+.syedna-calligraphy-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 2px 6px rgba(184, 126, 24, 0.35));
+}
+
+/* Bohra Card Couple Grid (Exact Layout from Uploaded Image) */
+.bohra-card-couple-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 32px 0 24px;
+  direction: rtl;
+}
+
+.couple-side-col {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1.5px solid rgba(212, 175, 55, 0.45);
+  border-radius: 18px;
+  padding: 20px 14px;
+  box-shadow: 0 8px 24px rgba(70, 35, 90, 0.04);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  text-align: center;
+}
+
+.kinship-label {
+  font-family: 'Kanz al Marjaan', serif;
+  font-size: 1.35rem;
+  color: #8C5E14;
+  font-weight: bold;
+  display: block;
+}
+
+.thuluth-calligraphy-name {
+  font-family: 'Thuluth', serif;
+  font-size: 3.6rem;
+  color: #C58B1B;
+  line-height: 1.15;
+  margin: 6px 0;
+  filter: drop-shadow(0 2px 8px rgba(197, 139, 27, 0.4));
+}
+
+.family-parent-lines {
+  font-family: 'Kanz al Marjaan', serif;
+  direction: rtl;
+  margin-top: 4px;
+}
+
+.parent-line-bold {
+  font-size: 1.35rem;
+  color: #2D1A3E;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.parent-line-sub {
+  font-size: 1.25rem;
+  color: #4E3666;
+  line-height: 1.6;
+}
+
+.couple-center-knot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+}
+
+.knot-wedding-script {
+  font-family: 'Kanz al Marjaan', serif;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #C58B1B;
+  line-height: 1.4;
+}
+
+.knot-sub-script {
+  font-family: 'Kanz al Marjaan', serif;
+  font-size: 1.25rem;
+  color: #6E4D88;
+  margin-top: 2px;
+}
+
+/* Sacred Raza Mubarak Ceremony Box */
+.card-raza-ceremony-box {
+  margin: 22px 0;
+  text-align: center;
+}
+
+.nikah-raza-callout {
+  font-family: 'Kanz al Marjaan', serif;
+  font-size: 1.4rem;
+  color: #2D1A3E;
+  font-weight: bold;
+  line-height: 2.1;
+  direction: rtl;
+}
+
+.invitation-request-line {
+  font-family: 'Kanz al Marjaan', serif;
+  font-size: 1.38rem;
+  color: #3B234F;
+  line-height: 2.2;
+  direction: rtl;
+}
+
+/* Golden Event Details Box (Date, Time, Venue) */
+.card-event-details-box {
+  background: rgba(255, 250, 240, 0.95);
+  border: 2px solid rgba(212, 175, 55, 0.7);
+  border-radius: 16px;
+  padding: 16px 22px;
+  margin: 26px auto;
+  max-width: 800px;
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15);
+}
+
+.event-detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px dashed rgba(212, 175, 55, 0.4);
+}
+
+.event-detail-row:last-child {
+  border-bottom: none;
+}
+
+.event-detail-eng {
+  font-family: 'Cinzel Decorative', var(--font-serif);
+  font-size: 1.15rem;
+  color: #2D1A3E;
+  font-weight: 600;
+}
+
+.event-detail-sep {
+  color: #C58B1B;
+  font-weight: bold;
+  margin: 0 10px;
+}
+
+.event-detail-arabic {
+  font-family: 'Kanz al Marjaan', serif;
+  font-size: 1.35rem;
+  color: #2D1A3E;
+  direction: rtl;
+}
+
+/* Family Signatures Section */
+.card-family-signatures-wrap {
+  margin-top: 26px;
+  padding-top: 18px;
+  border-top: 1.5px solid rgba(212, 175, 55, 0.45);
+  text-align: center;
+}
+
+.dawat-ubaid-title {
+  font-family: 'Kanz al Marjaan', serif;
+  font-size: 1.35rem;
+  color: #8C5E14;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.family-signatures-columns {
+  display: flex;
+  justify-content: space-around;
+  gap: 24px;
+  direction: rtl;
+  margin-top: 8px;
+}
+
+.sign-name {
+  font-family: 'Kanz al Marjaan', serif;
+  font-size: 1.32rem;
+  color: #2D1A3E;
+  line-height: 2.1;
+}
+
+.final-salutations {
+  font-family: 'Kanz al Marjaan', serif;
+  font-size: 1.35rem;
+  color: #5E3D8E;
+  font-weight: bold;
+  margin-top: 16px;
+}
+
+/* CHAPTER III: Scratch Card & Countdown (Seamless Luxury Layout) */
+.luxury-card-box {
+  background: transparent;
+  border-radius: 0;
+  padding: 24px 16px;
+  position: relative;
+  border: none;
+  box-shadow: none;
+  text-align: center;
+  margin-bottom: 32px;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card-ornament {
+  color: var(--gold-primary);
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.section-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold-primary);
+  font-weight: 600;
+  display: block;
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  color: #3E2469;
+  margin: 6px 0 10px;
+  letter-spacing: 0.5px;
+}
+
+.scratch-instructions {
+  font-size: 0.95rem;
+  color: #4A3560;
+  margin-bottom: 18px;
+}
+
+/* 3-Block Scratch Grid Styling (Date, Month, Year) */
+.scratch-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  max-width: 820px;
+  margin: 24px auto 18px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .scratch-grid-3 {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 10px !important;
+  }
+  .scratch-tile-block {
+    height: 135px !important;
+  }
+  .tile-val-huge {
+    font-size: 1.65rem !important;
+  }
+  .tile-category-tag {
+    font-size: 0.75rem !important;
+  }
+}
+
+.scratch-tile-block {
+  position: relative;
+  height: 155px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1.5px solid rgba(212, 175, 55, 0.55);
+  box-shadow: 0 8px 22px rgba(70, 35, 90, 0.08);
+  background: #FFFFFF;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.scratch-tile-block:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(70, 35, 90, 0.12), 0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+.tile-reveal-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  background: radial-gradient(circle at center, #FFFDF8 0%, #FAF3E6 100%);
+  z-index: 1;
+}
+
+.tile-val-huge {
+  font-family: var(--font-display);
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: #C58B1B;
+  line-height: 1.1;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.tile-category-tag {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #8C5E14;
+  font-weight: 700;
+  text-align: center;
+}
+
+.tile-scratch-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  cursor: grab;
+  touch-action: none;
+  transition: opacity 0.5s ease;
+}
+
+.revealed-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  color: #8C5E14;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.scratch-revealed-summary {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px dashed rgba(212, 175, 55, 0.45);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: fadeInSummary 0.6s ease;
+}
+
+@keyframes fadeInSummary {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.revealed-full-detail {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: #3E2469;
+  letter-spacing: 0.5px;
+  text-align: center;
+  margin: 4px 0;
+}
+
+.revealed-hijri-date {
+  font-family: 'Kanz al Marjaan', var(--font-serif);
+  font-size: 1.25rem;
+  color: #8C5E14;
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.btn-gold-action {
+  background: var(--gold-gradient);
+  color: #351C05;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 8px 20px;
+  border-radius: 24px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(180, 140, 30, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-top: 4px;
+}
+
+.btn-gold-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(180, 140, 30, 0.45);
+}
+
+.scratch-progress-wrap {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.scratch-progress-bar {
+  width: 180px;
+  height: 6px;
+  background: rgba(164, 142, 212, 0.25);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.scratch-progress-bar::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: var(--progress, 0%);
+  background: var(--gold-gradient);
+  border-radius: 4px;
+  transition: width 0.25s ease;
+}
+
+.scratch-hint {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  color: #644E7A;
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* Countdown Grid */
+.timer-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 22px 0 14px;
+}
+
+.timer-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #FFFFFF;
+  border: 1.5px solid rgba(212, 175, 55, 0.5);
+  box-shadow: 0 6px 18px rgba(70, 30, 90, 0.08);
+  border-radius: 14px;
+  width: 76px;
+  padding: 12px 6px;
+}
+
+.time-digit {
+  font-family: var(--font-display);
+  font-size: 1.95rem;
+  font-weight: 700;
+  color: #C58B1B;
+  line-height: 1;
+}
+
+.time-label {
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #5E3D8E;
+  margin-top: 5px;
+}
+
+.timer-colon {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: #C58B1B;
+  font-weight: 700;
+}
+
+.timer-subtext {
+  font-size: 0.98rem;
+  color: #4A3560;
+  font-style: italic;
+}
+
+/* CHAPTER IV: Timeline Rusumat (Bright, Clean, High-Contrast) */
+.events-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.events-timeline::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  left: 20px;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(212, 175, 55, 0.6) 0%, rgba(164, 142, 212, 0.4) 100%);
+}
+
+.timeline-card {
+  display: flex;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 20px;
+  padding: 20px 18px;
+  border: 1.5px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 8px 24px rgba(60, 30, 80, 0.04);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.timeline-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(60, 30, 80, 0.08), 0 0 20px rgba(212, 175, 55, 0.18);
+  border-color: rgba(212, 175, 55, 0.7);
+}
+
+.timeline-card.featured-event {
+  border: 1.5px solid #C58B1B;
+  background: linear-gradient(135deg, rgba(255, 253, 248, 0.75) 0%, rgba(250, 244, 232, 0.7) 100%);
+  box-shadow: 0 12px 32px rgba(70, 35, 90, 0.06), 0 0 20px rgba(212, 175, 55, 0.2);
+}
+
+.event-marker {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.marker-number {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 1.5px solid var(--gold-primary);
+  color: #8C5E14;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+}
+
+.marker-number.highlight {
+  background: var(--gold-gradient);
+  border-color: var(--gold-dark);
+  color: #351C05;
+  box-shadow: 0 0 16px rgba(212, 175, 55, 0.6);
+}
+
+.event-details {
+  flex: 1;
+}
+
+.event-badge {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.64rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 8px;
+  background: rgba(164, 142, 212, 0.15);
+  color: #5E3D8E;
+  border: 1px solid rgba(164, 142, 212, 0.4);
+  margin-bottom: 6px;
+}
+
+.event-badge.gold-badge {
+  background: var(--gold-gradient);
+  color: #351C05;
+  font-family: 'Kanz al Marjaan', var(--font-arabic);
+  font-size: 0.92rem;
+  padding: 3px 12px;
+  border: none;
+  font-weight: bold;
+}
+
+.event-title {
+  font-family: 'Kanz al Marjaan', var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #3E2469;
+  line-height: 1.3;
+}
+
+.event-meaning {
+  font-size: 0.95rem;
+  color: #4A3560;
+  line-height: 1.5;
+  margin: 5px 0 10px;
+}
+
+.event-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 12px;
+}
+
+.meta-item {
+  font-size: 0.9rem;
+  color: #5E3D8E;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.meta-icon {
+  font-style: normal;
+}
+
+.btn-mini-map {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #8C5E14;
+  text-decoration: none;
+  background: rgba(212, 175, 55, 0.12);
+  padding: 5px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-mini-map:hover {
+  background: rgba(212, 175, 55, 0.25);
+  transform: translateX(2px);
+}
+
+/* CHAPTER V: Dress Code (Seamless Luxury) */
+.dresscode-box {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none;
+  box-shadow: none;
+  padding: 24px 0;
+}
+
+.dresscode-intro {
+  font-size: 0.95rem;
+  color: #4A3560;
+  margin-bottom: 22px;
+}
+
+.dresscode-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.attire-col {
+  flex: 1;
+  text-align: center;
+}
+
+.attire-icon {
+  font-size: 2.2rem;
+  margin-bottom: 8px;
+}
+
+.attire-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: #3E2469;
+  margin-bottom: 6px;
+}
+
+.attire-spec {
+  font-size: 0.92rem;
+  color: #4A3560;
+  line-height: 1.5;
+}
+
+.attire-divider {
+  width: 1px;
+  height: 90px;
+  background: rgba(212, 175, 55, 0.35);
+}
+
+.color-palette-swatches {
+  padding-top: 14px;
+  border-top: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.swatch-label {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: #8C5E14;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.swatches-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.swatch:hover {
+  transform: scale(1.15);
+}
+
+.swatch.s1 { background: #E8E2F5; }
+.swatch.s2 { background: #9D88C5; }
+.swatch.s3 { background: #FAF8F5; }
+.swatch.s4 { background: linear-gradient(135deg, #F6E29F, #D4AF37); }
+.swatch.s5 { background: #351C52; }
+
+/* CHAPTER VI: RSVP & Form (Ultra-Readable Luxury Inputs) */
+.rsvp-subtext {
+  font-size: 0.95rem;
+  color: #4A3560;
+  margin-bottom: 20px;
+}
+
+.rsvp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.form-group.half {
+  flex: 1;
+}
+
+.form-group label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #3E2469;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1.5px solid #D8C7EC;
+  font-family: 'Kanz al Marjaan', var(--font-serif);
+  font-size: 1.05rem;
+  background: #FFFFFF;
+  color: #261633;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--gold-primary);
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25);
+}
+
+.radio-pill-group {
+  display: flex;
+  gap: 10px;
+}
+
+.radio-pill {
+  flex: 1;
+  position: relative;
+  cursor: pointer;
+}
+
+.radio-pill input {
+  position: absolute;
+  opacity: 0;
+}
+
+.radio-pill span {
+  display: block;
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 11px 8px;
+  border-radius: 12px;
+  background: #FCFAFF;
+  border: 1.5px solid #D8C7EC;
+  color: #4A3560;
+  transition: all 0.2s ease;
+}
+
+.radio-pill input:checked + span {
+  background: var(--gold-gradient);
+  color: #351C05;
+  border-color: var(--gold-dark);
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.35);
+}
+
+.btn-submit-rsvp {
+  background: var(--gold-gradient);
+  color: #351C05;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 15px 24px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 6px 20px rgba(180, 140, 30, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-top: 10px;
+}
+
+.btn-submit-rsvp:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(180, 140, 30, 0.5);
+}
+
+.rsvp-feedback {
+  background: rgba(255, 255, 255, 0.98);
+  border: 1.5px solid var(--gold-primary);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  margin-top: 20px;
+  animation: fadeInFeedback 0.5s ease;
+  box-shadow: 0 10px 30px rgba(60, 30, 80, 0.1);
+}
+
+@keyframes fadeInFeedback {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.feedback-icon {
+  font-size: 2.2rem;
+  margin-bottom: 8px;
+}
+
+.rsvp-feedback h4 {
+  font-family: var(--font-display);
+  color: #C58B1B;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.rsvp-feedback p {
+  font-size: 0.95rem;
+  color: #3E2469;
+  margin-top: 6px;
+}
+
+.wishes-board {
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(212, 175, 55, 0.35);
+  text-align: left;
+}
+
+.wishes-title-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.wishes-title-bar h4 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: #3E2469;
+}
+
+.wishes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 320px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.wish-card {
+  background: #FFFFFF;
+  border-radius: 14px;
+  padding: 14px 16px;
+  border-left: 4px solid #C58B1B;
+  border-top: 1px solid rgba(212, 175, 55, 0.35);
+  border-right: 1px solid rgba(212, 175, 55, 0.35);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 4px 14px rgba(70, 35, 90, 0.05);
+}
+
+.wish-author {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #8C5E14;
+  display: flex;
+  justify-content: space-between;
+}
+
+.wish-time {
+  font-size: 0.72rem;
+  color: #7B6590;
+  font-weight: normal;
+}
+
+.wish-text {
+  font-size: 0.95rem;
+  color: #2D1A3E;
+  margin-top: 6px;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* EPILOGUE FOOTER */
+.invite-footer {
+  text-align: center;
+  padding: 60px 20px 40px;
+  background: linear-gradient(180deg, transparent 0%, rgba(248, 243, 235, 0.95) 100%);
+}
+
+.footer-mini-seal {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  box-shadow: 0 4px 16px rgba(184, 126, 24, 0.25), 0 0 15px rgba(212, 175, 55, 0.3);
+  margin-bottom: 14px;
+  border: 1.5px solid rgba(212, 175, 55, 0.6);
+}
+
+.footer-couple-name {
+  font-family: var(--font-script);
+  font-size: 2.6rem;
+  background: var(--gold-foil-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.2;
+}
+
+.footer-salutation {
+  font-family: 'Kanz al Marjaan', serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #8C5E14;
+  margin: 8px 0;
+}
+
+.footer-year {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #6C5485;
+}
+
+.footer-back-to-top {
+  margin-top: 24px;
+}
+
+.back-to-top-link {
+  background: #FFFFFF;
+  border: 1.5px solid rgba(212, 175, 55, 0.5);
+  padding: 9px 22px;
+  border-radius: 20px;
+  color: #8C5E14;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(70, 35, 90, 0.06);
+  transition: all 0.2s ease;
+}
+
+.back-to-top-link:hover {
+  background: rgba(212, 175, 55, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(184, 126, 24, 0.2);
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVENESS & REFINED VIEWPORTS (<= 640px)
+   ========================================================================== */
+@media (max-width: 640px) {
+  .bohra-invitation-stage {
+    padding: 20px 8px;
+  }
+
+  .card-calligraphy-topbar {
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .bismillah-card-header-img {
+    max-width: 170px;
+  }
+
+  .shukranlillah-text {
+    font-size: 1.3rem;
+  }
+
+  .alhamdolillah-medallion-img {
+    max-width: 65px;
+  }
+
+  .arabic-poetry-line {
+    font-size: 1.35rem;
+    line-height: 2.1;
+  }
+
+  .lisan-stanza-line {
+    font-size: 1.25rem;
+    line-height: 2.1;
+  }
+
+  .syedna-calligraphy-wrap {
+    margin: 10px auto;
+  }
+
+  /* Bohra Couple Grid Mobile Refinement */
+  .bohra-card-couple-grid {
+    gap: 8px;
+    margin: 20px 0 18px;
+  }
+
+  .couple-side-col {
+    padding: 14px 6px;
+    border-radius: 14px;
+  }
+
+  .kinship-label {
+    font-size: 1.15rem;
+  }
+
+  .thuluth-calligraphy-name {
+    font-size: 2.3rem;
+    margin: 2px 0;
+    line-height: 1.25;
+  }
+
+  .parent-line-bold {
+    font-size: 1.15rem;
+    line-height: 1.45;
+  }
+
+  .parent-line-sub {
+    font-size: 1.05rem;
+    line-height: 1.45;
+  }
+
+  .knot-wedding-script {
+    font-size: 1.25rem;
+  }
+
+  .knot-sub-script {
+    font-size: 1.05rem;
+  }
+
+  .nikah-raza-callout {
+    font-size: 1.22rem;
+    line-height: 1.9;
+  }
+
+  .invitation-request-line {
+    font-size: 1.2rem;
+    line-height: 1.9;
+  }
+
+  /* Event Details Box Mobile */
+  .card-event-details-box {
+    padding: 14px 14px;
+    margin: 20px auto;
+  }
+
+  .event-detail-row {
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  .event-detail-sep {
+    display: none;
+  }
+
+  .event-detail-eng {
+    font-size: 0.98rem;
+  }
+
+  .event-detail-arabic {
+    font-size: 1.2rem;
+  }
+
+  /* Family Signatures Mobile */
+  .dawat-ubaid-title {
+    font-size: 1.2rem;
+  }
+
+  .family-signatures-columns {
+    gap: 12px;
+  }
+
+  .sign-name {
+    font-size: 1.15rem;
+    line-height: 1.9;
+  }
+
+  .final-salutations {
+    font-size: 1.2rem;
+  }
+}
+

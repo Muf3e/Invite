@@ -484,7 +484,8 @@ function initScratchCard() {
   const blocks = [
     { id: 'scratch-canvas-1', title: 'DATE' },
     { id: 'scratch-canvas-2', title: 'MONTH' },
-    { id: 'scratch-canvas-3', title: 'YEAR' }
+    { id: 'scratch-canvas-3', title: 'YEAR' },
+    { id: 'scratch-canvas-4', title: 'VENUE' }
   ];
 
   const progressBar = document.getElementById('scratch-progress');
@@ -492,7 +493,7 @@ function initScratchCard() {
   const revealedSummary = document.getElementById('scratch-revealed-summary');
 
   let revealedCount = 0;
-  const totalBlocks = 3;
+  const totalBlocks = 4;
 
   blocks.forEach((b) => {
     const canvas = document.getElementById(b.id);
@@ -612,7 +613,7 @@ function initScratchCard() {
           if (revealedCount < totalBlocks) {
             hintText.innerText = `Scratch the remaining blocks! (${revealedCount} of ${totalBlocks} Revealed)`;
           } else {
-            hintText.innerText = '✨ Mubarak! Wedding Date Has Been Revealed: 26th January 2026! ✨';
+            hintText.innerText = '✨ Mubarak! Wedding Date & Venue Have Been Revealed: 26th January 2026, Pulgaon! ✨';
             hintText.style.color = '#8C5E14';
             hintText.style.fontWeight = '700';
             if (revealedSummary) revealedSummary.classList.add('visible');
