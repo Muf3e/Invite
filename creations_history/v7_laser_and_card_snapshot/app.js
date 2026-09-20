@@ -370,24 +370,27 @@ function initEnvelopeExperience() {
       });
     }
 
-    // 3. Activate radiant golden rays, glowing rim, and light burst bloom
+    // 3. Activate radiant golden rays, glowing rim, and laser wireframe contour wave
     waxSeal.classList.add('glowing');
-    envelopeBox.classList.add('light-active');
-    const sealBurst = document.getElementById('seal-light-burst');
-    if (sealBurst) sealBurst.classList.add('active');
+    envelopeBox.classList.add('wireframe-active');
     createSealBurst(waxSeal);
 
-    // 4. Open flaps smoothly in authentic 3D perspective
+    // 4. Center seam illuminates with soft warm champagne beam
+    setTimeout(() => {
+      envelopeBox.classList.add('light-active');
+    }, 380);
+
+    // 5. Open flaps smoothly in 3D perspective
     setTimeout(() => {
       envelopeBox.classList.add('open');
-    }, 550);
+    }, 720);
 
-    // 5. Expand soft ethereal champagne light bloom portal
+    // 6. Expand soft ethereal champagne light bloom portal
     setTimeout(() => {
       if (lightPortal) lightPortal.classList.add('active');
-    }, 950);
+    }, 1180);
 
-    // 6. Transition smoothly to the main invitation story
+    // 7. Transition smoothly to the main invitation story
     setTimeout(() => {
       envelopeScreen.classList.add('hidden');
       inviteScreen.classList.remove('hidden');
@@ -397,15 +400,15 @@ function initEnvelopeExperience() {
       // Fade out soft light portal to unveil Chapter I
       setTimeout(() => {
         if (lightPortal) {
-          lightPortal.style.transition = 'opacity 0.8s ease';
+          lightPortal.style.transition = 'opacity 1s ease';
           lightPortal.classList.remove('active');
           setTimeout(() => {
             lightPortal.style.display = 'none';
-          }, 800);
+          }, 1000);
         }
         triggerGoldConfetti();
-      }, 250);
-    }, 1500);
+      }, 300);
+    }, 1750);
   };
 
   waxSeal.addEventListener('click', handleOpen);
@@ -484,8 +487,7 @@ function initScratchCard() {
   const blocks = [
     { id: 'scratch-canvas-1', title: 'DATE' },
     { id: 'scratch-canvas-2', title: 'MONTH' },
-    { id: 'scratch-canvas-3', title: 'YEAR' },
-    { id: 'scratch-canvas-4', title: 'VENUE' }
+    { id: 'scratch-canvas-3', title: 'YEAR' }
   ];
 
   const progressBar = document.getElementById('scratch-progress');
@@ -493,7 +495,7 @@ function initScratchCard() {
   const revealedSummary = document.getElementById('scratch-revealed-summary');
 
   let revealedCount = 0;
-  const totalBlocks = 4;
+  const totalBlocks = 3;
 
   blocks.forEach((b) => {
     const canvas = document.getElementById(b.id);

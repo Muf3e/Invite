@@ -51,16 +51,68 @@
     <!-- ==============================================
          PROLOGUE: FULLSCREEN ENVELOPE CLOSE-UP SCREEN
          ============================================== -->
-    <!-- ==============================================
-         PROLOGUE: FULLSCREEN ENVELOPE CLOSE-UP SCREEN
-         ============================================== -->
     <section id="envelope-screen" class="envelope-screen fullscreen-envelope-view">
       <div class="fullscreen-envelope-container" id="envelope-box">
         
         <!-- Embossed Texture & Gilded Flaps Base -->
         <div class="envelope-full-bg"></div>
 
-        <!-- Envelope Flap Layers: 4 Authentic 3D Flaps Meeting at Center -->
+        <!-- Subtle Luxury Crease Seams & Radiant Golden Burst Rays (Mathematically Exact Across All Screens) -->
+        <svg class="envelope-seams-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="seamRayBurstTL" x1="50%" y1="50%" x2="0%" y2="0%">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
+              <stop offset="30%" stop-color="#FFE89E" stop-opacity="0.95"/>
+              <stop offset="70%" stop-color="#D4AF37" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="seamRayBurstTR" x1="50%" y1="50%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
+              <stop offset="30%" stop-color="#FFE89E" stop-opacity="0.95"/>
+              <stop offset="70%" stop-color="#D4AF37" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="seamRayBurstBL" x1="50%" y1="50%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
+              <stop offset="30%" stop-color="#FFE89E" stop-opacity="0.95"/>
+              <stop offset="70%" stop-color="#D4AF37" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="seamRayBurstBR" x1="50%" y1="50%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
+              <stop offset="30%" stop-color="#FFE89E" stop-opacity="0.95"/>
+              <stop offset="70%" stop-color="#D4AF37" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+            </linearGradient>
+            <filter id="seamGlowFilter" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="1.8" result="blur"/>
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <!-- Elegant crease fold seams meeting precisely at center (50, 50) -->
+          <line x1="0" y1="0" x2="50" y2="50" class="seam-crease-line" vector-effect="non-scaling-stroke"/>
+          <line x1="100" y1="0" x2="50" y2="50" class="seam-crease-line" vector-effect="non-scaling-stroke"/>
+          <line x1="0" y1="100" x2="50" y2="50" class="seam-crease-line" vector-effect="non-scaling-stroke"/>
+          <line x1="100" y1="100" x2="50" y2="50" class="seam-crease-line" vector-effect="non-scaling-stroke"/>
+          <!-- Active radiant burst rays when opening -->
+          <line x1="50" y1="50" x2="0" y2="0" stroke="url(#seamRayBurstTL)" class="seam-burst-ray" vector-effect="non-scaling-stroke"/>
+          <line x1="50" y1="50" x2="100" y2="0" stroke="url(#seamRayBurstTR)" class="seam-burst-ray" vector-effect="non-scaling-stroke"/>
+          <line x1="50" y1="50" x2="0" y2="100" stroke="url(#seamRayBurstBL)" class="seam-burst-ray" vector-effect="non-scaling-stroke"/>
+          <line x1="50" y1="50" x2="100" y2="100" stroke="url(#seamRayBurstBR)" class="seam-burst-ray" vector-effect="non-scaling-stroke"/>
+        </svg>
+        <div class="soft-center-beam" id="center-light-beam"></div>
+
+        <!-- Laser Wireframe Ripple Rings Radiating Outward on Tap (Matching Reference Video) -->
+        <div class="laser-ripple-container" id="laser-ripple-container">
+          <div class="laser-ripple-ring ring-1"></div>
+          <div class="laser-ripple-ring ring-2"></div>
+          <div class="laser-ripple-ring ring-3"></div>
+        </div>
+
+        <!-- Envelope Flap Layers: 4 Authentic Triangular Flaps Meeting at Center -->
         <div class="envelope-panel panel-bottom" id="panel-bottom">
           <div class="flap-embossed-flourish bouquet-bottom"></div>
         </div>
@@ -74,10 +126,7 @@
           <div class="flap-embossed-flourish bouquet-top"></div>
         </div>
 
-        <!-- Radiant Golden Light Burst from behind Seal on Tap -->
-        <div class="seal-light-burst" id="seal-light-burst"></div>
-
-        <!-- Prominent Pure Gold Wax Seal (Direct Authentic Frontal Cutout) -->
+        <!-- Prominent Pure Gold Wax Seal (Direct Authentic Cutout, No Paper Circle) -->
         <div class="wax-seal-macro-wrap" id="wax-seal" role="button" tabindex="0" aria-label="Open wedding invitation">
           <div class="seal-soft-aura"></div>
           <div class="seal-sunbeam-rays" id="seal-rays"></div>
@@ -108,6 +157,22 @@
 
       <!-- CHAPTER I: THE ROYAL PROCESSION & UNION (Living Archway & Walking Couple) -->
       <article class="story-chapter hero-arch-chapter" id="chapter-union">
+        <!-- Living Motion Canvas Elements (Flying Birds in Sky & Ambient Swaying Foliage) -->
+        <div class="chapter-sky-backdrop">
+          <div class="flying-birds-container" aria-hidden="true">
+            <div class="bird bird-1">
+              <svg viewBox="0 0 24 16" class="bird-svg"><path d="M0,8 Q6,0 12,8 Q18,0 24,8 Q18,14 12,8 Q6,14 0,8 Z" fill="rgba(88, 55, 120, 0.45)"/></svg>
+            </div>
+            <div class="bird bird-2">
+              <svg viewBox="0 0 24 16" class="bird-svg"><path d="M0,8 Q6,0 12,8 Q18,0 24,8 Q18,14 12,8 Q6,14 0,8 Z" fill="rgba(88, 55, 120, 0.38)"/></svg>
+            </div>
+            <div class="bird bird-3">
+              <svg viewBox="0 0 24 16" class="bird-svg"><path d="M0,8 Q6,0 12,8 Q18,0 24,8 Q18,14 12,8 Q6,14 0,8 Z" fill="rgba(88, 55, 120, 0.3)"/></svg>
+            </div>
+          </div>
+          <div class="swaying-foliage foliage-left" aria-hidden="true"></div>
+          <div class="swaying-foliage foliage-right" aria-hidden="true"></div>
+        </div>
 
         <div class="chapter-header">
           <span class="chapter-roman">Chapter I</span>
@@ -133,7 +198,6 @@
           <div class="couple-names-header">
             <span class="cursive-prefix">Together with their families</span>
             <h1 class="couple-primary-names">Mustafa &amp; Tasneem</h1>
-            <div class="couple-thuluth-title">مُصْطَفَى وَ تَسْنِيم</div>
             <p class="couple-tagline">Celebrate with us as we embark on this sacred journey of companionship and barakat.</p>
           </div>
         </div>
@@ -151,15 +215,14 @@
           </div>
         </div>
 
-        <div class="bohra-invitation-stage">
-          <div class="bohra-stage-decor">
+        <div class="parchment-card-luxury">
+          <div class="parchment-inner-border">
             <div class="flourish-corner tl"></div>
             <div class="flourish-corner tr"></div>
             <div class="flourish-corner bl"></div>
             <div class="flourish-corner br"></div>
-          </div>
 
-          <div class="parchment-body">
+            <div class="parchment-body">
               <!-- Top Ornate Calligraphy Bar -->
               <div class="card-calligraphy-topbar">
                 <div class="top-medallion-box left-med">
@@ -272,6 +335,7 @@
               </div>
             </div>
           </div>
+        </div>
       </article>
 
       <!-- CHAPTER III: THE AUSPICIOUS DATE & COUNTDOWN -->
@@ -290,10 +354,10 @@
         <div class="luxury-card-box scratch-container">
           <div class="card-ornament top-center">❖</div>
           <span class="section-eyebrow">Interactive Milestone</span>
-          <h3 class="card-title">Scratch to Reveal the Wedding Date &amp; Venue</h3>
-          <p class="scratch-instructions">Rub the golden shimmering foil across all 4 blocks below to unveil the date and destination!</p>
+          <h3 class="card-title">Scratch to Reveal the Wedding Date</h3>
+          <p class="scratch-instructions">Rub the golden shimmering foil across all 3 blocks below to unveil the auspicious date!</p>
 
-          <div class="scratch-grid-4">
+          <div class="scratch-grid-3">
             <!-- Block 1: Date -->
             <div class="scratch-tile-block" data-block="1">
               <div class="tile-reveal-content">
@@ -323,21 +387,11 @@
               </div>
               <canvas id="scratch-canvas-3" class="tile-scratch-canvas" width="220" height="150"></canvas>
             </div>
-
-            <!-- Block 4: Venue -->
-            <div class="scratch-tile-block" data-block="4">
-              <div class="tile-reveal-content">
-                <span class="tile-category-tag">Destination</span>
-                <span class="tile-val-huge">Pulgaon</span>
-                <span class="tile-val-sub">Maharashtra</span>
-              </div>
-              <canvas id="scratch-canvas-4" class="tile-scratch-canvas" width="220" height="150"></canvas>
-            </div>
           </div>
 
           <div class="scratch-progress-wrap">
             <div class="scratch-progress-bar" id="scratch-progress"></div>
-            <span class="scratch-hint" id="scratch-hint">Scratch all 4 blocks to unveil! (0 of 4 Revealed)</span>
+            <span class="scratch-hint" id="scratch-hint">Scratch the 3 blocks to unveil the date! (0 of 3 Revealed)</span>
           </div>
 
           <!-- Revealed Complete Summary & Calendar Action -->
