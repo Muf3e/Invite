@@ -511,7 +511,12 @@ function initCardCustomizer() {
   // Restore saved customization from localStorage
   const savedCustomization = JSON.parse(localStorage.getItem('wedding_card_customization') || 'null');
   if (savedCustomization) {
-    if (savedCustomization.html) parchmentBody.innerHTML = savedCustomization.html;
+    if (savedCustomization.html) {
+      parchmentBody.innerHTML = savedCustomization.html;
+      // Sanitize: ensure no editing classes or contenteditable leaked into saved HTML
+      parchmentBody.querySelectorAll('.active-editing-target').forEach(el => el.classList.remove('active-editing-target'));
+      parchmentBody.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+    }
     if (savedCustomization.maxWidth) {
       cardStage.style.maxWidth = savedCustomization.maxWidth;
       if (widthSlider) widthSlider.value = parseInt(savedCustomization.maxWidth, 10);
@@ -527,6 +532,25 @@ function initCardCustomizer() {
   let isEditing = false;
   let activeElement = null;
 
+  // Single delegated listener for focus tracking on editable elements
+  parchmentBody.addEventListener('focusin', (e) => {
+    if (!isEditing) return;
+    const target = e.target.closest('[contenteditable="true"]');
+    if (!target) return;
+    if (activeElement && activeElement !== target) {
+      activeElement.classList.remove('active-editing-target');
+    }
+    activeElement = target;
+    activeElement.classList.add('active-editing-target');
+
+    const currentSize = window.getComputedStyle(target).fontSize;
+    if (fontSizeIndicator) fontSizeIndicator.innerText = Math.round(parseFloat(currentSize)) + 'px';
+
+    const currentWidth = Math.round(target.getBoundingClientRect().width);
+    if (textBoxWidthSlider) textBoxWidthSlider.value = Math.min(900, Math.max(200, currentWidth));
+    if (textBoxWidthVal) textBoxWidthVal.innerText = currentWidth + 'px';
+  });
+
   function setEditingMode(active) {
     isEditing = active;
     if (isEditing) {
@@ -535,24 +559,11 @@ function initCardCustomizer() {
       toggleBtn.classList.add('active');
       toggleBtn.querySelector('.btn-text').innerText = 'Editing Mode Active (Click Any Text)';
 
-      // Make all text elements editable
+      // Make all target text elements editable
       const textNodes = parchmentBody.querySelectorAll('p, span, h3, h4, .lisan-stanza-line, .parent-line-bold, .parent-line-sub, .thuluth-calligraphy-name, .knot-wedding-script, .knot-sub-script, .nikah-raza-callout, .invitation-request-line, .event-detail-eng, .event-detail-arabic, .sign-name, .final-salutations');
       textNodes.forEach(el => {
         el.setAttribute('contenteditable', 'true');
         el.setAttribute('spellcheck', 'false');
-
-        el.addEventListener('focus', () => {
-          if (activeElement) activeElement.classList.remove('active-editing-target');
-          activeElement = el;
-          activeElement.classList.add('active-editing-target');
-
-          const currentSize = window.getComputedStyle(el).fontSize;
-          if (fontSizeIndicator) fontSizeIndicator.innerText = Math.round(parseFloat(currentSize)) + 'px';
-
-          const currentWidth = Math.round(el.getBoundingClientRect().width);
-          if (textBoxWidthSlider) textBoxWidthSlider.value = Math.min(900, Math.max(200, currentWidth));
-          if (textBoxWidthVal) textBoxWidthVal.innerText = currentWidth + 'px';
-        });
       });
     } else {
       editorPanel.classList.add('hidden');
@@ -591,6 +602,8 @@ function initCardCustomizer() {
       if (textBoxWidthVal) textBoxWidthVal.innerText = val;
       if (activeElement) {
         activeElement.style.maxWidth = val;
+        activeElement.style.width = '100%';
+        activeElement.style.boxSizing = 'border-box';
         activeElement.style.display = 'block';
         activeElement.style.marginLeft = 'auto';
         activeElement.style.marginRight = 'auto';
@@ -611,6 +624,7 @@ function initCardCustomizer() {
   function adjustFontSize(delta) {
     if (!activeElement) {
       activeElement = parchmentBody.querySelector('.lisan-stanza-line') || parchmentBody;
+      activeElement.classList.add('active-editing-target');
     }
     const currentSize = parseFloat(window.getComputedStyle(activeElement).fontSize) || 16;
     const newSize = Math.max(10, Math.min(60, currentSize + delta));
@@ -624,6 +638,10 @@ function initCardCustomizer() {
   // Save changes
   if (saveBtn) {
     saveBtn.addEventListener('click', () => {
+      // Clean up editing active target outlines before serializing
+      const activeTargets = parchmentBody.querySelectorAll('.active-editing-target');
+      activeTargets.forEach(el => el.classList.remove('active-editing-target'));
+
       const textNodes = parchmentBody.querySelectorAll('[contenteditable="true"]');
       textNodes.forEach(el => el.removeAttribute('contenteditable'));
 
@@ -636,6 +654,9 @@ function initCardCustomizer() {
 
       if (isEditing) {
         textNodes.forEach(el => el.setAttribute('contenteditable', 'true'));
+        if (activeElement) {
+          activeElement.classList.add('active-editing-target');
+        }
       }
 
       saveBtn.innerHTML = '<span>✅ Saved!</span>';
@@ -655,9 +676,12 @@ function initCardCustomizer() {
         parchmentBody.style.padding = '35px';
         if (widthSlider) widthSlider.value = 780;
         if (widthVal) widthVal.innerText = '780px';
+        if (textBoxWidthSlider) textBoxWidthSlider.value = 720;
+        if (textBoxWidthVal) textBoxWidthVal.innerText = 'Full';
         if (paddingSlider) paddingSlider.value = 35;
         if (paddingVal) paddingVal.innerText = '35px';
         if (fontSizeIndicator) fontSizeIndicator.innerText = 'Standard';
+        activeElement = null;
         setEditingMode(false);
       }
     });
