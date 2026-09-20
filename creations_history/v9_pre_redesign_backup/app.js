@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initFloatingParticles();
   initEnvelopeExperience();
   initAudioPlayer();
-  initCardCustomizer();
   initScratchCard();
   initCountdownTimer();
   initCalendarAction();
@@ -479,171 +478,14 @@ function initAudioPlayer() {
 }
 
 /* ==========================================================================
-   4. CARD CUSTOMIZER & LIVE EDITING SYSTEM (Item 5)
-   ========================================================================== */
-function initCardCustomizer() {
-  const toggleBtn = document.getElementById('toggle-editor-btn');
-  const editorPanel = document.getElementById('card-editor-panel');
-  const closeBtnX = document.getElementById('close-editor-x');
-  const closeBtnDone = document.getElementById('close-editor-btn');
-  const saveBtn = document.getElementById('save-card-btn');
-  const resetBtn = document.getElementById('reset-card-btn');
-
-  const widthSlider = document.getElementById('card-width-slider');
-  const widthVal = document.getElementById('card-width-val');
-  const paddingSlider = document.getElementById('card-padding-slider');
-  const paddingVal = document.getElementById('card-padding-val');
-
-  const fontIncBtn = document.getElementById('font-inc-btn');
-  const fontDecBtn = document.getElementById('font-dec-btn');
-  const fontSizeIndicator = document.getElementById('font-size-indicator');
-
-  const cardStage = document.getElementById('invitation-card-stage');
-  const parchmentBody = document.getElementById('card-parchment-body');
-
-  if (!toggleBtn || !cardStage || !parchmentBody) return;
-
-  // Restore initial HTML backup for reset
-  const defaultCardHtml = parchmentBody.innerHTML;
-
-  // Restore saved customization from localStorage
-  const savedCustomization = JSON.parse(localStorage.getItem('wedding_card_customization') || 'null');
-  if (savedCustomization) {
-    if (savedCustomization.html) parchmentBody.innerHTML = savedCustomization.html;
-    if (savedCustomization.maxWidth) {
-      cardStage.style.maxWidth = savedCustomization.maxWidth;
-      if (widthSlider) widthSlider.value = parseInt(savedCustomization.maxWidth, 10);
-      if (widthVal) widthVal.innerText = savedCustomization.maxWidth;
-    }
-    if (savedCustomization.padding) {
-      parchmentBody.style.padding = savedCustomization.padding;
-      if (paddingSlider) paddingSlider.value = parseInt(savedCustomization.padding, 10);
-      if (paddingVal) paddingVal.innerText = savedCustomization.padding;
-    }
-  }
-
-  let isEditing = false;
-  let activeElement = null;
-
-  function setEditingMode(active) {
-    isEditing = active;
-    if (isEditing) {
-      editorPanel.classList.remove('hidden');
-      cardStage.classList.add('editing-card-active');
-      toggleBtn.classList.add('active');
-      toggleBtn.querySelector('.btn-text').innerText = 'Editing Mode Active (Click Any Text)';
-
-      // Make all text elements editable
-      const textNodes = parchmentBody.querySelectorAll('p, span, h3, h4, .lisan-stanza-line, .parent-line-bold, .parent-line-sub, .thuluth-calligraphy-name, .knot-wedding-script, .knot-sub-script, .nikah-raza-callout, .invitation-request-line, .event-detail-eng, .event-detail-arabic, .sign-name, .final-salutations');
-      textNodes.forEach(el => {
-        el.setAttribute('contenteditable', 'true');
-        el.setAttribute('spellcheck', 'false');
-
-        el.addEventListener('focus', () => {
-          activeElement = el;
-          const currentSize = window.getComputedStyle(el).fontSize;
-          if (fontSizeIndicator) fontSizeIndicator.innerText = Math.round(parseFloat(currentSize)) + 'px';
-        });
-      });
-    } else {
-      editorPanel.classList.add('hidden');
-      cardStage.classList.remove('editing-card-active');
-      toggleBtn.classList.remove('active');
-      toggleBtn.querySelector('.btn-text').innerText = 'Customize Card Content';
-
-      // Disable editable
-      const textNodes = parchmentBody.querySelectorAll('[contenteditable="true"]');
-      textNodes.forEach(el => el.removeAttribute('contenteditable'));
-    }
-  }
-
-  toggleBtn.addEventListener('click', () => setEditingMode(!isEditing));
-  if (closeBtnX) closeBtnX.addEventListener('click', () => setEditingMode(false));
-  if (closeBtnDone) closeBtnDone.addEventListener('click', () => setEditingMode(false));
-
-  // Width Slider
-  if (widthSlider) {
-    widthSlider.addEventListener('input', (e) => {
-      const val = `${e.target.value}px`;
-      cardStage.style.maxWidth = val;
-      if (widthVal) widthVal.innerText = val;
-    });
-  }
-
-  // Padding Slider
-  if (paddingSlider) {
-    paddingSlider.addEventListener('input', (e) => {
-      const val = `${e.target.value}px`;
-      parchmentBody.style.padding = val;
-      if (paddingVal) paddingVal.innerText = val;
-    });
-  }
-
-  // Font Size Adjustments
-  function adjustFontSize(delta) {
-    if (!activeElement) {
-      activeElement = parchmentBody.querySelector('.lisan-stanza-line') || parchmentBody;
-    }
-    const currentSize = parseFloat(window.getComputedStyle(activeElement).fontSize) || 16;
-    const newSize = Math.max(10, Math.min(60, currentSize + delta));
-    activeElement.style.fontSize = `${newSize}px`;
-    if (fontSizeIndicator) fontSizeIndicator.innerText = `${Math.round(newSize)}px`;
-  }
-
-  if (fontIncBtn) fontIncBtn.addEventListener('click', () => adjustFontSize(2));
-  if (fontDecBtn) fontDecBtn.addEventListener('click', () => adjustFontSize(-2));
-
-  // Save changes
-  if (saveBtn) {
-    saveBtn.addEventListener('click', () => {
-      const textNodes = parchmentBody.querySelectorAll('[contenteditable="true"]');
-      textNodes.forEach(el => el.removeAttribute('contenteditable'));
-
-      const dataToSave = {
-        html: parchmentBody.innerHTML,
-        maxWidth: cardStage.style.maxWidth || '780px',
-        padding: parchmentBody.style.padding || '35px'
-      };
-      localStorage.setItem('wedding_card_customization', JSON.stringify(dataToSave));
-
-      if (isEditing) {
-        textNodes.forEach(el => el.setAttribute('contenteditable', 'true'));
-      }
-
-      saveBtn.innerHTML = '<span>✅ Saved!</span>';
-      setTimeout(() => {
-        saveBtn.innerHTML = '<span>💾 Save Customization</span>';
-      }, 2000);
-    });
-  }
-
-  // Reset to default
-  if (resetBtn) {
-    resetBtn.addEventListener('click', () => {
-      if (confirm('Are you sure you want to reset all card edits and restore original default styling?')) {
-        localStorage.removeItem('wedding_card_customization');
-        parchmentBody.innerHTML = defaultCardHtml;
-        cardStage.style.maxWidth = '780px';
-        parchmentBody.style.padding = '35px';
-        if (widthSlider) widthSlider.value = 780;
-        if (widthVal) widthVal.innerText = '780px';
-        if (paddingSlider) paddingSlider.value = 35;
-        if (paddingVal) paddingVal.innerText = '35px';
-        if (fontSizeIndicator) fontSizeIndicator.innerText = 'Standard';
-        setEditingMode(false);
-      }
-    });
-  }
-}
-
-/* ==========================================================================
-   5. INTERACTIVE HTML5 3-BLOCK SCRATCH-TO-REVEAL GRID (Item 1)
+   4. INTERACTIVE HTML5 4-BLOCK SCRATCH-TO-REVEAL GRID
    ========================================================================== */
 function initScratchCard() {
   const blocks = [
     { id: 'scratch-canvas-1', title: 'DATE' },
     { id: 'scratch-canvas-2', title: 'MONTH' },
-    { id: 'scratch-canvas-3', title: 'YEAR' }
+    { id: 'scratch-canvas-3', title: 'YEAR' },
+    { id: 'scratch-canvas-4', title: 'VENUE' }
   ];
 
   const progressBar = document.getElementById('scratch-progress');
@@ -651,7 +493,7 @@ function initScratchCard() {
   const revealedSummary = document.getElementById('scratch-revealed-summary');
 
   let revealedCount = 0;
-  const totalBlocks = 3;
+  const totalBlocks = 4;
 
   blocks.forEach((b) => {
     const canvas = document.getElementById(b.id);
@@ -769,9 +611,9 @@ function initScratchCard() {
 
         if (hintText) {
           if (revealedCount < totalBlocks) {
-            hintText.innerText = `Scratch all 3 blocks to unveil! (${revealedCount} of ${totalBlocks} Revealed)`;
+            hintText.innerText = `Scratch the remaining blocks! (${revealedCount} of ${totalBlocks} Revealed)`;
           } else {
-            hintText.innerText = '✨ Mubarak! Auspicious Wedding Date Has Been Revealed: 26th January 2026! ✨';
+            hintText.innerText = '✨ Mubarak! Wedding Date & Venue Have Been Revealed: 26th January 2026, Pulgaon! ✨';
             hintText.style.color = '#8C5E14';
             hintText.style.fontWeight = '700';
             if (revealedSummary) revealedSummary.classList.add('visible');
@@ -930,37 +772,40 @@ function initRsvpAndGuestbook() {
   const wishesList = document.getElementById('wishes-list');
   if (!form || !wishesList) return;
 
-  // Real wishes only (Item 11: Remove default/temporary fake wishes)
-  let storedWishes = JSON.parse(localStorage.getItem('mt_wedding_wishes') || '[]');
-  if (Array.isArray(storedWishes)) {
-    storedWishes = storedWishes.filter(w => 
-      w.name !== 'Burhanuddin Bhai & Family' && 
-      w.name !== 'Husain Bhai Kapasi' && 
-      w.name !== 'Arwa Ben & Shabbir Bhai'
-    );
+  // Pre-seed some authentic blessings if not present
+  const defaultWishes = [
+    {
+      name: 'Burhanuddin Bhai & Family',
+      time: 'Yesterday',
+      text: 'Mubarak Mubarak to both families! May Allah Ta’ala bless Mustafa & Tasneem with everlasting happiness, sakoon, and afiyat under the chhatra chhaya of Aqa Mawla TUS.'
+    },
+    {
+      name: 'Husain Bhai Kapasi',
+      time: '2 days ago',
+      text: 'Lakh Lakh Mubaraki! May this sacred union be enriched with infinite barakaat, joy, and prosperity.'
+    },
+    {
+      name: 'Arwa Ben & Shabbir Bhai',
+      time: '3 days ago',
+      text: 'Dil se mubarakbadi! Beautiful invitation. Looking forward to celebrating all the rusumat together!'
+    }
+  ];
+
+  let storedWishes = JSON.parse(localStorage.getItem('mt_wedding_wishes') || 'null');
+  if (!storedWishes || storedWishes.length === 0) {
+    storedWishes = defaultWishes;
     localStorage.setItem('mt_wedding_wishes', JSON.stringify(storedWishes));
-  } else {
-    storedWishes = [];
   }
 
   function renderWishes() {
     wishesList.innerHTML = '';
-    if (!storedWishes || storedWishes.length === 0) {
-      wishesList.innerHTML = `
-        <div class="empty-wishes-prompt">
-          <p class="empty-wishes-text">Be the first to share your heartfelt congratulations and dua for Mustafa &amp; Tasneem ✨</p>
-        </div>
-      `;
-      return;
-    }
-
     storedWishes.forEach((item) => {
       const card = document.createElement('div');
       card.className = 'wish-card';
       card.innerHTML = `
         <div class="wish-author">
           <span>${escapeHtml(item.name)}</span>
-          <span class="wish-time">${escapeHtml(item.time || 'Recent')}</span>
+          <span class="wish-time">${escapeHtml(item.time)}</span>
         </div>
         <p class="wish-text">"${escapeHtml(item.text)}"</p>
       `;

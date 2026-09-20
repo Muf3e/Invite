@@ -37,10 +37,11 @@
   <nav class="story-nav" id="story-nav" aria-label="Invitation Chapters">
     <div class="story-nav-track">
       <a href="#chapter-union" class="story-nav-dot active" data-chapter="I" title="The Royal Union"></a>
-      <a href="#chapter-invitation" class="story-nav-dot" data-chapter="II" title="The Invitation"></a>
+      <a href="#chapter-invitation" class="story-nav-dot" data-chapter="II" title="The Sacred Invitation"></a>
       <a href="#chapter-date" class="story-nav-dot" data-chapter="III" title="Auspicious Date"></a>
-      <a href="#chapter-rusumat" class="story-nav-dot" data-chapter="IV" title="Wedding Timeline"></a>
-      <a href="#chapter-rsvp" class="story-nav-dot" data-chapter="V" title="RSVP &amp; Mubaraki"></a>
+      <a href="#chapter-rusumat" class="story-nav-dot" data-chapter="IV" title="Sacred Rusumat"></a>
+      <a href="#chapter-attire" class="story-nav-dot" data-chapter="V" title="Libaas &amp; Hospitality"></a>
+      <a href="#chapter-rsvp" class="story-nav-dot" data-chapter="VI" title="RSVP &amp; Mubaraki"></a>
     </div>
   </nav>
 
@@ -58,19 +59,6 @@
         
         <!-- Embossed Texture & Gilded Flaps Base -->
         <div class="envelope-full-bg"></div>
-
-        <!-- Inner Shimmering Gold Pocket Lining -->
-        <div class="envelope-pocket-liner"></div>
-
-        <!-- Emerging Card Peek (Slides gracefully up when flap opens, matching reference video) -->
-        <div class="envelope-card-peek" id="envelope-card-peek">
-          <div class="peek-inner-card">
-            <div class="peek-arch-decor"></div>
-            <img src="assets/rosette_logo.png" alt="Monogram Emblem" class="peek-logo-img" />
-            <div class="peek-couple-title">Mustafa &amp; Tasneem</div>
-            <div class="peek-ceremony-tag">The Wedding Invitation</div>
-          </div>
-        </div>
 
         <!-- Envelope Flap Layers: 4 Authentic 3D Flaps Meeting at Center -->
         <div class="envelope-panel panel-bottom" id="panel-bottom">
@@ -160,18 +148,11 @@
         </div>
       </article>
 
-      <!-- Royal Section Separator -->
-      <div class="royal-section-divider">
-        <span class="div-line"></span>
-        <span class="div-ornament"><span class="div-gem">✦</span><span class="div-rosette">❖</span><span class="div-gem">✦</span></span>
-        <span class="div-line rev"></span>
-      </div>
-
-      <!-- CHAPTER II: THE INVITATION (Traditional Bohra Invitation Card) -->
+      <!-- CHAPTER II: THE SACRED COVENANT (Exact Traditional Bohra Invitation Card with Royal Arch Frame) -->
       <article class="story-chapter" id="chapter-invitation">
         <div class="chapter-header">
           <span class="chapter-roman">Chapter II</span>
-          <h2 class="chapter-title">The Invitation</h2>
+          <h2 class="chapter-title">The Sacred Invitation</h2>
           <div class="ornate-separator">
             <span class="sep-line"></span>
             <span class="sep-gem">✦</span>
@@ -179,67 +160,15 @@
           </div>
         </div>
 
-        <!-- Live Invitation Customizer Toolbar -->
-        <div class="card-customizer-bar" id="card-customizer-bar">
-          <button id="toggle-editor-btn" class="btn-customizer-toggle" title="Customize Invitation Text &amp; Styling">
-            <span class="btn-icon">✏️</span>
-            <span class="btn-text">Customize Card Content</span>
-          </button>
-
-          <!-- Drawer that expands when toggle is clicked -->
-          <div class="card-editor-panel hidden" id="card-editor-panel">
-            <div class="editor-header">
-              <div class="editor-header-text">
-                <span class="editor-title">🖋️ Live Card Customizer</span>
-                <span class="editor-subtext">Click any text directly on the card to edit, or adjust layout below</span>
-              </div>
-              <button id="close-editor-x" class="editor-close-x" title="Close editor">✕</button>
-            </div>
-
-            <div class="editor-controls-row">
-              <div class="control-unit">
-                <label for="card-width-slider">Card Width / Frame:</label>
-                <div class="slider-with-val">
-                  <input type="range" id="card-width-slider" min="540" max="950" value="780" step="10">
-                  <span id="card-width-val">780px</span>
-                </div>
-              </div>
-
-              <div class="control-unit">
-                <label>Text Size (Selected Text):</label>
-                <div class="btn-font-group">
-                  <button id="font-dec-btn" class="btn-mini-tool" title="Decrease Font Size">A-</button>
-                  <span id="font-size-indicator">Standard</span>
-                  <button id="font-inc-btn" class="btn-mini-tool" title="Increase Font Size">A+</button>
-                </div>
-              </div>
-
-              <div class="control-unit">
-                <label for="card-padding-slider">Card Padding:</label>
-                <div class="slider-with-val">
-                  <input type="range" id="card-padding-slider" min="15" max="60" value="35" step="5">
-                  <span id="card-padding-val">35px</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="editor-actions-row">
-              <button id="save-card-btn" class="btn-editor-action save-btn">
-                <span>💾 Save Customization</span>
-              </button>
-              <button id="reset-card-btn" class="btn-editor-action reset-btn">
-                <span>↺ Reset to Default</span>
-              </button>
-              <button id="close-editor-btn" class="btn-editor-action done-btn">
-                <span>✓ Done Preview</span>
-              </button>
-            </div>
-            <p class="editor-tip">💡 Tip: Changes are saved to your browser and reflected live on the invitation!</p>
+        <div class="bohra-invitation-stage">
+          <div class="bohra-stage-decor">
+            <div class="flourish-corner tl"></div>
+            <div class="flourish-corner tr"></div>
+            <div class="flourish-corner bl"></div>
+            <div class="flourish-corner br"></div>
           </div>
-        </div>
 
-        <div class="bohra-invitation-stage" id="invitation-card-stage">
-          <div class="parchment-body" id="card-parchment-body">
+          <div class="parchment-body">
               <!-- Top Ornate Calligraphy Bar -->
               <div class="card-calligraphy-topbar">
                 <div class="top-medallion-box left-med">
@@ -355,13 +284,6 @@
           </div>
       </article>
 
-      <!-- Royal Section Separator -->
-      <div class="royal-section-divider">
-        <span class="div-line"></span>
-        <span class="div-ornament"><span class="div-gem">✦</span><span class="div-rosette">❖</span><span class="div-gem">✦</span></span>
-        <span class="div-line rev"></span>
-      </div>
-
       <!-- CHAPTER III: THE AUSPICIOUS DATE & COUNTDOWN -->
       <article class="story-chapter" id="chapter-date">
         <div class="chapter-header">
@@ -374,14 +296,14 @@
           </div>
         </div>
 
-        <!-- Interactive 3-Block Scratch-to-Reveal Grid -->
+        <!-- Interactive 4-Block Scratch-to-Reveal Grid -->
         <div class="luxury-card-box scratch-container">
           <div class="card-ornament top-center">❖</div>
           <span class="section-eyebrow">Interactive Milestone</span>
-          <h3 class="card-title">Scratch to Reveal Date</h3>
-          <p class="scratch-instructions">Rub the golden shimmering foil across the 3 blocks below to unveil the celebration date!</p>
+          <h3 class="card-title">Scratch to Reveal Date &amp; Venue</h3>
+          <p class="scratch-instructions">Rub the golden shimmering foil across the 4 blocks below to unveil the celebration!</p>
 
-          <div class="scratch-grid-3">
+          <div class="scratch-grid-4">
             <!-- Block 1: Date -->
             <div class="scratch-tile-block" data-block="1">
               <div class="tile-reveal-content">
@@ -408,11 +330,20 @@
               </div>
               <canvas id="scratch-canvas-3" class="tile-scratch-canvas" width="220" height="140"></canvas>
             </div>
+
+            <!-- Block 4: Venue -->
+            <div class="scratch-tile-block" data-block="4">
+              <div class="tile-reveal-content">
+                <span class="tile-val-huge tile-venue-text">PULGAON</span>
+                <span class="tile-category-tag">Venue</span>
+              </div>
+              <canvas id="scratch-canvas-4" class="tile-scratch-canvas" width="220" height="140"></canvas>
+            </div>
           </div>
 
           <div class="scratch-progress-wrap">
             <div class="scratch-progress-bar" id="scratch-progress"></div>
-            <span class="scratch-hint" id="scratch-hint">Scratch all 3 blocks to unveil! (0 of 3 Revealed)</span>
+            <span class="scratch-hint" id="scratch-hint">Scratch all 4 blocks to unveil! (0 of 4 Revealed)</span>
           </div>
 
           <!-- Revealed Complete Summary & Calendar Action -->
@@ -461,22 +392,15 @@
             </div>
           </div>
 
-          <p class="timer-subtext">Until we celebrate this joyous union and festive Shaadi moments together ✨</p>
+          <p class="timer-subtext">Until Mustafa &amp; Tasneem say "Qabiltu" in eternal togetherness ✨</p>
         </div>
       </article>
 
-      <!-- Royal Section Separator -->
-      <div class="royal-section-divider">
-        <span class="div-line"></span>
-        <span class="div-ornament"><span class="div-gem">✦</span><span class="div-rosette">❖</span><span class="div-gem">✦</span></span>
-        <span class="div-line rev"></span>
-      </div>
-
-      <!-- CHAPTER IV: WEDDING TIMELINE (Sacred Rusumat) -->
+      <!-- CHAPTER IV: SACRED RUSUMAT & EVENTS (Parallax Story Timeline) -->
       <article class="story-chapter" id="chapter-rusumat">
         <div class="chapter-header">
           <span class="chapter-roman">Chapter IV</span>
-          <h2 class="chapter-title script-timeline-title">Wedding Timeline</h2>
+          <h2 class="chapter-title">Sacred Rusumat &amp; Events</h2>
           <div class="ornate-separator">
             <span class="sep-line"></span>
             <span class="sep-gem">✦</span>
@@ -485,90 +409,115 @@
           <p class="chapter-subtitle">Join us across the cherished Dawoodi Bohra wedding customs</p>
         </div>
 
-        <div class="serpentine-timeline-container">
-          <!-- Background Curved Winding Dashed Path -->
-          <svg class="timeline-winding-svg" viewBox="0 0 400 960" preserveAspectRatio="none" aria-hidden="true">
-            <defs>
-              <linearGradient id="pathGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#C0392B" stop-opacity="0.75" />
-                <stop offset="50%" stop-color="#D4AF37" stop-opacity="0.85" />
-                <stop offset="100%" stop-color="#C0392B" stop-opacity="0.75" />
-              </linearGradient>
-            </defs>
-            <path class="winding-dashed-line" d="M 290 120 C 230 170, 110 200, 110 330 C 110 460, 290 460, 290 590 C 290 710, 110 720, 110 840" fill="none" stroke="url(#pathGradient)" stroke-width="2.5" stroke-dasharray="6,8" />
-          </svg>
+        <div class="events-timeline">
 
-          <!-- 1. Khushi ni Darees (Right) -->
-          <div class="timeline-node node-right" data-node="1">
-            <div class="node-badge-wrap">
-              <div class="circular-badge-frame">
-                <img src="assets/rusumat_darees.png" alt="Khushi ni Darees" class="badge-round-img" />
-              </div>
-            </div>
-            <div class="node-content">
-              <h3 class="node-script-title">Khushi ni Darees</h3>
-              <p class="node-desc">Recitation of the Holy Quran, zikr, praises, and prayers seeking divine blessings prior to the Shaadi.</p>
-              <div class="node-meta">
-                <span class="node-meta-item"><i class="meta-icon">🗓️</i> Friday, 23rd January 2026</span>
-                <span class="node-meta-item"><i class="meta-icon">⏰</i> 10:00 AM onwards</span>
-                <span class="node-meta-item"><i class="meta-icon">📍</i> Saifee Villa, Pulgaon, Maharashtra</span>
+          <!-- 1. Manak Thamb -->
+          <div class="timeline-card">
+            <div class="event-marker"><span class="marker-number">01</span></div>
+            <div class="event-details">
+              <div class="event-badge">Pre-Wedding Sacred Ritual</div>
+              <h4 class="event-title">Manak Thamb (Sacred Pillar Installation)</h4>
+              <p class="event-meaning">Auspicious installation of the sacred pillar to welcome barakaat, health, and prosperity for the new household.</p>
+              <div class="event-meta">
+                <span class="meta-item"><i class="meta-icon">🗓️</i> Friday, 23rd January 2026</span>
+                <span class="meta-item"><i class="meta-icon">⏰</i> 10:00 AM onwards</span>
+                <span class="meta-item"><i class="meta-icon">📍</i> Saifee Villa, Pulgaon, Maharashtra</span>
               </div>
               <a href="https://maps.google.com/?q=Pulgaon+Maharashtra" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
             </div>
           </div>
 
-          <!-- 2. Mithi Shitabi & Mandvo (Left) -->
-          <div class="timeline-node node-left" data-node="2">
-            <div class="node-badge-wrap">
-              <div class="circular-badge-frame">
-                <img src="assets/rusumat_shitabi.png" alt="Mithi Shitabi &amp; Mandvo" class="badge-round-img" />
-              </div>
-            </div>
-            <div class="node-content">
-              <h3 class="node-script-title">Mithi Shitabi</h3>
-              <p class="node-desc">Auspicious canopy blessings, traditional sweets, and family prayers celebrating the wedding threshold.</p>
-              <div class="node-meta">
-                <span class="node-meta-item"><i class="meta-icon">🗓️</i> Friday, 23rd January 2026</span>
-                <span class="node-meta-item"><i class="meta-icon">⏰</i> 04:30 PM</span>
-                <span class="node-meta-item"><i class="meta-icon">📍</i> Courtyard, Pulgaon, Maharashtra</span>
+          <!-- 2. Mandvo & Peethi -->
+          <div class="timeline-card">
+            <div class="event-marker"><span class="marker-number">02</span></div>
+            <div class="event-details">
+              <div class="event-badge">Haldi &amp; Canopy Blessings</div>
+              <h4 class="event-title">Mandvo &amp; Peethi (Haldi Ceremony)</h4>
+              <p class="event-meaning">Blessing the ceremonial canopy with fragrant turmeric, auspicious wedding songs, and traditional hymns.</p>
+              <div class="event-meta">
+                <span class="meta-item"><i class="meta-icon">🗓️</i> Friday, 23rd January 2026</span>
+                <span class="meta-item"><i class="meta-icon">⏰</i> 04:30 PM</span>
+                <span class="meta-item"><i class="meta-icon">📍</i> Courtyard, Pulgaon, Maharashtra</span>
               </div>
               <a href="https://maps.google.com/?q=Pulgaon+Maharashtra" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
             </div>
           </div>
 
-          <!-- 3. Aqd al-Nikah & Zafaf (Right) -->
-          <div class="timeline-node node-right" data-node="3">
-            <div class="node-badge-wrap">
-              <div class="circular-badge-frame">
-                <img src="assets/rusumat_nikah.png" alt="Nikah &amp; Zafaf" class="badge-round-img" />
-              </div>
-            </div>
-            <div class="node-content">
-              <h3 class="node-script-title">Nikah &amp; Zafaf</h3>
-              <p class="node-desc">Sacred blessings under the pious Raza Mubarak of His Holiness Syedna Mufaddal Saifuddin (TUS), followed by joyful wedding festivities.</p>
-              <div class="node-meta">
-                <span class="node-meta-item"><i class="meta-icon">🗓️</i> Monday, 26th January 2026</span>
-                <span class="node-meta-item"><i class="meta-icon">⏰</i> 12:00 PM Sharp</span>
-                <span class="node-meta-item"><i class="meta-icon">📍</i> Pulgaon Mawaid, Maharashtra</span>
+          <!-- 3. Mama Mosala & Kanthi -->
+          <div class="timeline-card">
+            <div class="event-marker"><span class="marker-number">03</span></div>
+            <div class="event-details">
+              <div class="event-badge">Family Tradition &amp; Honors</div>
+              <h4 class="event-title">Mama Mosala &amp; Kanthi (Family Presentation)</h4>
+              <p class="event-meaning">Ceremonial presentation of festive bridal gifts, auspicious sweets, and honors from maternal uncles.</p>
+              <div class="event-meta">
+                <span class="meta-item"><i class="meta-icon">🗓️</i> Saturday, 24th January 2026</span>
+                <span class="meta-item"><i class="meta-icon">⏰</i> 06:30 PM</span>
+                <span class="meta-item"><i class="meta-icon">📍</i> Terrace Garden, Pulgaon, Maharashtra</span>
               </div>
               <a href="https://maps.google.com/?q=Pulgaon+Maharashtra" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
             </div>
           </div>
 
-          <!-- 4. Valima Celebration (Left) -->
-          <div class="timeline-node node-left" data-node="4">
-            <div class="node-badge-wrap">
-              <div class="circular-badge-frame">
-                <img src="assets/rusumat_valima.png" alt="Valima Celebration" class="badge-round-img" />
+          <!-- 4. Darees & Majlis -->
+          <div class="timeline-card">
+            <div class="event-marker"><span class="marker-number">04</span></div>
+            <div class="event-details">
+              <div class="event-badge">Spiritual Gathering &amp; Prayers</div>
+              <h4 class="event-title">Darees &amp; Majlis (Sacred Prayers)</h4>
+              <p class="event-meaning">Recitation of the Holy Quran, zikr, praises, and prayers seeking divine blessings prior to the Nikah.</p>
+              <div class="event-meta">
+                <span class="meta-item"><i class="meta-icon">🗓️</i> Sunday, 25th January 2026</span>
+                <span class="meta-item"><i class="meta-icon">⏰</i> 11:00 AM</span>
+                <span class="meta-item"><i class="meta-icon">📍</i> Al-Masjid al-Saifee Markaz, Pulgaon, Maharashtra</span>
               </div>
+              <a href="https://maps.google.com/?q=Pulgaon+Maharashtra" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
             </div>
-            <div class="node-content">
-              <h3 class="node-script-title">Valima</h3>
-              <p class="node-desc">Traditional Bohra wedding feast served in the Thaal followed by an enchanting evening of congratulations and joy celebrating the newlyweds.</p>
-              <div class="node-meta">
-                <span class="node-meta-item"><i class="meta-icon">🗓️</i> Monday, 26th January 2026</span>
-                <span class="node-meta-item"><i class="meta-icon">⏰</i> 07:30 PM onwards</span>
-                <span class="node-meta-item"><i class="meta-icon">📍</i> Grand Hall, Pulgaon, Maharashtra</span>
+          </div>
+
+          <!-- 5. Nikah Ceremony & Procession -->
+          <div class="timeline-card featured-event">
+            <div class="event-marker"><span class="marker-number highlight">05</span></div>
+            <div class="event-details">
+              <div class="event-badge gold-badge">Aqd al-Nikah (Sacred Ceremony)</div>
+              <h4 class="event-title">Aqd al-Nikah &amp; Wedding Procession</h4>
+              <p class="event-meaning">Solemnization of marriage under the pious Raza Mubarak of His Holiness Syedna Mufaddal Saifuddin (TUS), followed by the joyful wedding procession.</p>
+              <div class="event-meta">
+                <span class="meta-item"><i class="meta-icon">🗓️</i> Monday, 26th January 2026</span>
+                <span class="meta-item"><i class="meta-icon">⏰</i> 12:00 PM Sharp</span>
+                <span class="meta-item"><i class="meta-icon">📍</i> Pulgaon Mawaid, Maharashtra</span>
+              </div>
+              <a href="https://maps.google.com/?q=Pulgaon+Maharashtra" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
+            </div>
+          </div>
+
+          <!-- 6. Khushi nu Jaman -->
+          <div class="timeline-card">
+            <div class="event-marker"><span class="marker-number">06</span></div>
+            <div class="event-details">
+              <div class="event-badge">Traditional Bohra Wedding Feast</div>
+              <h4 class="event-title">Khushi nu Jaman (Wedding Feast)</h4>
+              <p class="event-meaning">Traditional communal feast served in the Thaal, beginning with salt and sweet tasting, royal savories &amp; festive dishes, concluding with paan and ittar.</p>
+              <div class="event-meta">
+                <span class="meta-item"><i class="meta-icon">🗓️</i> Monday, 26th January 2026</span>
+                <span class="meta-item"><i class="meta-icon">⏰</i> 01:30 PM onwards</span>
+                <span class="meta-item"><i class="meta-icon">📍</i> Pulgaon Mawaid, Maharashtra</span>
+              </div>
+              <a href="https://maps.google.com/?q=Pulgaon+Maharashtra" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
+            </div>
+          </div>
+
+          <!-- 7. Reception Gala -->
+          <div class="timeline-card">
+            <div class="event-marker"><span class="marker-number">07</span></div>
+            <div class="event-details">
+              <div class="event-badge">Evening Gala Celebration</div>
+              <h4 class="event-title">Walima &amp; Reception Gala</h4>
+              <p class="event-meaning">An enchanting evening of congratulations, celebration, and joy celebrating the newlyweds.</p>
+              <div class="event-meta">
+                <span class="meta-item"><i class="meta-icon">🗓️</i> Monday, 26th January 2026</span>
+                <span class="meta-item"><i class="meta-icon">⏰</i> 07:30 PM onwards</span>
+                <span class="meta-item"><i class="meta-icon">📍</i> Grand Hall, Pulgaon, Maharashtra</span>
               </div>
               <a href="https://maps.google.com/?q=Pulgaon+Maharashtra" target="_blank" class="btn-mini-map">📍 View on Google Maps</a>
             </div>
@@ -577,17 +526,54 @@
         </div>
       </article>
 
-      <!-- Royal Section Separator -->
-      <div class="royal-section-divider">
-        <span class="div-line"></span>
-        <span class="div-ornament"><span class="div-gem">✦</span><span class="div-rosette">❖</span><span class="div-gem">✦</span></span>
-        <span class="div-line rev"></span>
-      </div>
-
-      <!-- CHAPTER V: RSVP & MUBARAKI DUA -->
-      <article class="story-chapter" id="chapter-rsvp">
+      <!-- CHAPTER V: LIBAAS & HOSPITALITY -->
+      <article class="story-chapter" id="chapter-attire">
         <div class="chapter-header">
           <span class="chapter-roman">Chapter V</span>
+          <h2 class="chapter-title">Libaas &amp; Hospitality</h2>
+          <div class="ornate-separator">
+            <span class="sep-line"></span>
+            <span class="sep-gem">✦</span>
+            <span class="sep-line"></span>
+          </div>
+        </div>
+
+        <div class="luxury-card-box dresscode-box">
+          <span class="section-eyebrow">Etiquette &amp; Attire</span>
+          <h3 class="card-title">Libaas al-Anwar (Dress Code)</h3>
+          <p class="dresscode-intro">We kindly encourage our honorable guests to grace the celebrations in traditional Dawoodi Bohra attire:</p>
+
+          <div class="dresscode-grid">
+            <div class="attire-col">
+              <div class="attire-icon">👔</div>
+              <h4 class="attire-title">Gents</h4>
+              <p class="attire-spec">Traditional White Saya Kurta &amp; Golden embroidered Topi with celebratory Shawl.</p>
+            </div>
+            <div class="attire-divider"></div>
+            <div class="attire-col">
+              <div class="attire-icon">🌸</div>
+              <h4 class="attire-title">Ladies</h4>
+              <p class="attire-spec">Traditional Graceful Rida (Pastel lavender, lilac, blush, and champagne gold shades warmly welcomed).</p>
+            </div>
+          </div>
+
+          <div class="color-palette-swatches">
+            <span class="swatch-label">Theme Palette Inspiration:</span>
+            <div class="swatches-row">
+              <span class="swatch s1" title="Misty Lavender"></span>
+              <span class="swatch s2" title="Royal Lilac"></span>
+              <span class="swatch s3" title="Pure Ivory Pearl"></span>
+              <span class="swatch s4" title="Warm Gold Foil"></span>
+              <span class="swatch s5" title="Deep Plum"></span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CHAPTER VI: RSVP & MUBARAKI DUA -->
+      <article class="story-chapter" id="chapter-rsvp">
+        <div class="chapter-header">
+          <span class="chapter-roman">Chapter VI</span>
           <h2 class="chapter-title">RSVP &amp; Mubaraki Dua</h2>
           <div class="ornate-separator">
             <span class="sep-line"></span>
@@ -662,38 +648,20 @@
               <h4>Warm Wishes &amp; Dua Board</h4>
             </div>
             <div class="wishes-list" id="wishes-list">
-              <!-- Dynamically populated only when real wishes exist -->
+              <!-- Dynamically populated -->
             </div>
           </div>
         </div>
       </article>
 
-      <!-- Royal Section Separator -->
-      <div class="royal-section-divider">
-        <span class="div-line"></span>
-        <span class="div-ornament"><span class="div-gem">✦</span><span class="div-rosette">❖</span><span class="div-gem">✦</span></span>
-        <span class="div-line rev"></span>
-      </div>
-
       <!-- EPILOGUE: IN DIVINE GRATITUDE -->
       <footer class="invite-footer">
         <div class="footer-seal-emblem">
-          <img src="assets/seal.png" alt="Royal Gold Wax Seal" class="footer-mini-seal" />
+          <img src="assets/seal.png" alt="Wax Seal Emblem (MT / م ت)" class="footer-mini-seal" />
         </div>
-
-        <div class="footer-family-gratitude">
-          <h3 class="footer-gratitude-title">With Deepest Gratitude</h3>
-          <p class="footer-gratitude-text">
-            With profound gratitude in our hearts, we thank the Almighty for this joyous occasion.<br>
-            Your esteemed presence, warmth, and heartfelt prayers will illuminate our celebration and deeply honor our families as we unite Mustafa &amp; Tasneem in love and barakat.<br>
-            We would be truly blessed to have you celebrate with us.
-          </p>
-          <div class="footer-family-signatures">
-            <p class="family-sign-line">Saifee &amp; Vajhi Families</p>
-            <p class="footer-year">26th January 2026 • Pulgaon, Maharashtra</p>
-          </div>
-        </div>
-
+        <h3 class="footer-couple-name">Mustafa &amp; Tasneem</h3>
+        <p class="footer-salutation">عبيد سيدنا المنعام ط ع وامائه</p>
+        <p class="footer-year">2026 • With Dua &amp; Gratitude</p>
         <div class="footer-back-to-top">
           <button id="back-to-top-btn" class="back-to-top-link">↑ Back to Top</button>
         </div>

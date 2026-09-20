@@ -620,77 +620,6 @@ body {
   pointer-events: none;
 }
 
-/* Inner Pocket Gold Liner */
-.envelope-pocket-liner {
-  position: absolute;
-  top: 15%;
-  bottom: 0;
-  left: 8%;
-  right: 8%;
-  background: linear-gradient(180deg, #9C7215 0%, #D4AF37 35%, #F0D488 65%, #AA7C11 100%);
-  border-radius: 12px 12px 0 0;
-  box-shadow: inset 0 10px 30px rgba(0, 0, 0, 0.35);
-  z-index: 1;
-}
-
-/* Emerging Card Peek behind Flaps (Rises smoothly on unseal as in reference video) */
-.envelope-card-peek {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -42%) scale(0.85);
-  width: min(88%, 380px);
-  height: 520px;
-  background: radial-gradient(circle at 50% 30%, #FFFDF8 0%, #FAF4E8 60%, #EFE5D0 100%);
-  border: 1.5px solid rgba(212, 175, 55, 0.6);
-  border-radius: 16px;
-  box-shadow: 0 12px 35px rgba(45, 20, 70, 0.25), 0 0 25px rgba(255, 235, 140, 0.5);
-  z-index: 2;
-  overflow: hidden;
-  opacity: 0.95;
-  transition: transform 2.2s cubic-bezier(0.18, 0.9, 0.25, 1) 0.3s, opacity 1.8s ease;
-}
-
-.fullscreen-envelope-container.open .envelope-card-peek {
-  transform: translate(-50%, -75%) scale(1.05);
-  box-shadow: 0 20px 60px rgba(45, 20, 70, 0.4), 0 0 60px rgba(255, 235, 140, 0.9);
-}
-
-.peek-inner-card {
-  padding: 30px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.peek-rosette-logo,
-.peek-logo-img {
-  width: 90px;
-  height: 90px;
-  object-fit: contain;
-  margin-bottom: 14px;
-  filter: drop-shadow(0 4px 12px rgba(184, 126, 24, 0.4));
-}
-
-.peek-couple-title {
-  font-family: var(--font-display);
-  font-size: 1.45rem;
-  color: #3E2469;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-
-.peek-ceremony-tag {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #C58B1B;
-  font-weight: 700;
-}
-
 /* Pure Authentic Gold Wax Seal (Direct Cutout, No Paper Circle) */
 .wax-seal-macro-wrap {
   position: absolute;
@@ -1352,277 +1281,26 @@ body {
   background: transparent;
 }
 
-/* Royal Section Dividers between Chapters */
-.royal-section-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  width: 90%;
-  max-width: 580px;
-  margin: 60px auto;
-  position: relative;
-  z-index: 10;
+.bohra-stage-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
-.royal-section-divider .div-line {
-  flex: 1;
-  height: 1.5px;
-  background: linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.75) 50%, rgba(197, 139, 27, 0.9) 100%);
-  border-radius: 2px;
-}
-
-.royal-section-divider .div-line.rev {
-  background: linear-gradient(90deg, rgba(197, 139, 27, 0.9) 0%, rgba(212, 175, 55, 0.75) 50%, transparent 100%);
-}
-
-.royal-section-divider .div-ornament {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--gold-primary);
-  text-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
-  user-select: none;
-}
-
-.royal-section-divider .div-gem {
-  font-size: 0.9rem;
+.bohra-stage-decor .flourish-corner {
+  position: absolute;
+  width: 44px;
+  height: 70px;
+  background-image: url('assets/asset_20.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
   opacity: 0.85;
+  pointer-events: none;
 }
-
-.royal-section-divider .div-rosette {
-  font-size: 1.4rem;
-  color: #C58B1B;
-  filter: drop-shadow(0 2px 6px rgba(197, 139, 27, 0.4));
-}
-
-/* Card Customizer Toolbar & Live Editing System */
-.card-customizer-bar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 auto 24px;
-  max-width: 780px;
-  width: 100%;
-  z-index: 20;
-  position: relative;
-}
-
-.btn-customizer-toggle {
-  background: linear-gradient(135deg, #FAF4E6 0%, #F5E8C8 100%);
-  border: 1.5px solid rgba(212, 175, 55, 0.8);
-  border-radius: 30px;
-  padding: 10px 24px;
-  color: #5A3508;
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  box-shadow: 0 4px 16px rgba(184, 126, 24, 0.18);
-  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.btn-customizer-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(184, 126, 24, 0.3);
-  background: linear-gradient(135deg, #FFFDF8 0%, #FAE9C4 100%);
-}
-
-.card-editor-panel {
-  width: 100%;
-  background: rgba(255, 253, 248, 0.98);
-  border: 1.5px solid rgba(212, 175, 55, 0.7);
-  border-radius: 20px;
-  padding: 22px 24px;
-  box-shadow: 0 14px 40px rgba(70, 35, 90, 0.12), 0 0 20px rgba(212, 175, 55, 0.2);
-  margin-top: 14px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: all 0.4s ease;
-  animation: slideDownEditor 0.35s ease;
-}
-
-@keyframes slideDownEditor {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.card-editor-panel.hidden {
-  display: none;
-}
-
-.editor-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 16px;
-  border-bottom: 1px dashed rgba(212, 175, 55, 0.4);
-  padding-bottom: 10px;
-}
-
-.editor-title {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  color: #3E2469;
-  font-weight: 700;
-  display: block;
-}
-
-.editor-subtext {
-  font-size: 0.82rem;
-  color: #6A4E80;
-  display: block;
-  margin-top: 2px;
-}
-
-.editor-close-x {
-  background: transparent;
-  border: none;
-  font-size: 1.2rem;
-  color: #8C5E14;
-  cursor: pointer;
-  padding: 4px 8px;
-  line-height: 1;
-}
-
-.editor-controls-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: space-between;
-  margin-bottom: 18px;
-}
-
-.control-unit {
-  flex: 1;
-  min-width: 180px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.control-unit label {
-  font-family: var(--font-sans);
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: #5A3508;
-  letter-spacing: 0.5px;
-}
-
-.slider-with-val {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.slider-with-val input[type="range"] {
-  flex: 1;
-  accent-color: var(--gold-primary);
-  cursor: pointer;
-}
-
-.slider-with-val span {
-  font-family: var(--font-sans);
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #3E2469;
-  min-width: 45px;
-}
-
-.btn-font-group {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.btn-mini-tool {
-  background: #FFFFFF;
-  border: 1px solid rgba(212, 175, 55, 0.6);
-  border-radius: 8px;
-  padding: 5px 12px;
-  font-family: var(--font-sans);
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: #5A3508;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.btn-mini-tool:hover {
-  background: rgba(212, 175, 55, 0.2);
-  transform: translateY(-1px);
-}
-
-#font-size-indicator {
-  font-size: 0.8rem;
-  color: #6A4E80;
-  font-weight: 600;
-}
-
-.editor-actions-row {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.btn-editor-action {
-  padding: 8px 18px;
-  border-radius: 12px;
-  font-family: var(--font-sans);
-  font-size: 0.82rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border: none;
-}
-
-.btn-editor-action.save-btn {
-  background: var(--gold-gradient);
-  color: #351C05;
-  box-shadow: 0 4px 12px rgba(184, 126, 24, 0.25);
-}
-
-.btn-editor-action.reset-btn {
-  background: rgba(164, 142, 212, 0.18);
-  color: #4A3560;
-  border: 1px solid rgba(164, 142, 212, 0.4);
-}
-
-.btn-editor-action.done-btn {
-  background: #2D1A3E;
-  color: #FFFFFF;
-  margin-left: auto;
-}
-
-.editor-tip {
-  font-size: 0.76rem;
-  color: #7A5E95;
-  margin-top: 10px;
-  font-style: italic;
-}
-
-/* Editing active visual indicators on parchment */
-.editing-card-active [contenteditable="true"] {
-  outline: 1.5px dashed rgba(212, 175, 55, 0.6) !important;
-  outline-offset: 4px;
-  cursor: text;
-  transition: outline 0.2s ease, background 0.2s ease;
-}
-
-.editing-card-active [contenteditable="true"]:hover {
-  outline-color: var(--gold-primary) !important;
-  background: rgba(255, 250, 235, 0.5);
-}
-
-.editing-card-active [contenteditable="true"]:focus {
-  outline: 2px solid #C58B1B !important;
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 0 12px rgba(212, 175, 55, 0.3);
-}
+.bohra-stage-decor .flourish-corner.tl { top: 0; left: 0; }
+.bohra-stage-decor .flourish-corner.tr { top: 0; right: 0; transform: scaleX(-1); }
+.bohra-stage-decor .flourish-corner.bl { bottom: 0; left: 0; transform: scaleY(-1); }
+.bohra-stage-decor .flourish-corner.br { bottom: 0; right: 0; transform: scale(-1); }
 
 .parchment-body {
   text-align: center;
@@ -1959,29 +1637,37 @@ body {
   margin-bottom: 18px;
 }
 
-/* 3-Block Scratch Grid Styling (Date, Month, Year) */
-.scratch-grid-3 {
+/* 4-Block Scratch Grid Styling (Date, Month, Year, Venue) */
+.scratch-grid-4 {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
-  max-width: 780px;
+  max-width: 880px;
   margin: 24px auto 18px;
   width: 100%;
 }
 
-@media (max-width: 640px) {
-  .scratch-grid-3 {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 10px !important;
+.tile-venue-text {
+  font-size: 1.65rem !important;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+  .scratch-grid-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
   }
   .scratch-tile-block {
-    height: 125px !important;
+    height: 130px !important;
   }
   .tile-val-huge {
-    font-size: 1.7rem !important;
+    font-size: 1.6rem !important;
+  }
+  .tile-venue-text {
+    font-size: 1.25rem !important;
   }
   .tile-category-tag {
-    font-size: 0.75rem !important;
+    font-size: 0.72rem !important;
   }
 }
 
@@ -2202,160 +1888,140 @@ body {
   font-style: italic;
 }
 
-/* ==========================================================================
-   SERPENTINE WEDDING TIMELINE (RUSUMAT)
-   Matching Reference: Winding dashed path, circular photo badges, script typography
-   ========================================================================== */
-.script-timeline-title {
-  font-family: 'Great Vibes', cursive !important;
-  font-size: 3.4rem !important;
-  background: linear-gradient(135deg, #B83B5E 0%, #D4AF37 50%, #B83B5E 100%) !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  color: transparent !important;
-  filter: drop-shadow(0 2px 8px rgba(184, 59, 94, 0.25));
-}
-
-.serpentine-timeline-container {
-  position: relative;
-  max-width: 760px;
-  margin: 30px auto;
-  padding: 30px 14px;
-  min-height: 880px;
+/* CHAPTER IV: Timeline Rusumat (Bright, Clean, High-Contrast) */
+.events-timeline {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 16px;
+  position: relative;
 }
 
-.timeline-winding-svg {
+.events-timeline::before {
+  content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
+  top: 20px;
+  bottom: 20px;
+  left: 20px;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(212, 175, 55, 0.6) 0%, rgba(164, 142, 212, 0.4) 100%);
 }
 
-.winding-dashed-line {
-  animation: dashMarch 30s linear infinite;
+.timeline-card {
+  display: flex;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 20px;
+  padding: 20px 18px;
+  border: 1.5px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 8px 24px rgba(60, 30, 80, 0.04);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-@keyframes dashMarch {
-  to {
-    stroke-dashoffset: -100;
-  }
+.timeline-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(60, 30, 80, 0.08), 0 0 20px rgba(212, 175, 55, 0.18);
+  border-color: rgba(212, 175, 55, 0.7);
 }
 
-.timeline-node {
+.timeline-card.featured-event {
+  border: 1.5px solid #C58B1B;
+  background: linear-gradient(135deg, rgba(255, 253, 248, 0.75) 0%, rgba(250, 244, 232, 0.7) 100%);
+  box-shadow: 0 12px 32px rgba(70, 35, 90, 0.06), 0 0 20px rgba(212, 175, 55, 0.2);
+}
+
+.event-marker {
   position: relative;
   z-index: 2;
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  max-width: 600px;
-  width: 100%;
-  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.timeline-node:hover {
-  transform: scale(1.02);
-}
-
-.timeline-node.node-right {
-  margin-left: auto;
-  flex-direction: row-reverse;
-  text-align: right;
-}
-
-.timeline-node.node-left {
-  margin-right: auto;
-  flex-direction: row;
-  text-align: left;
-}
-
-.node-badge-wrap {
   flex-shrink: 0;
-  position: relative;
 }
 
-.circular-badge-frame {
-  width: 135px;
-  height: 135px;
+.marker-number {
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  border: 3px dashed #B83B5E;
-  padding: 5px;
-  background: radial-gradient(circle, #FFFDF8 0%, #FAF0E6 100%);
-  box-shadow: 0 10px 28px rgba(184, 59, 94, 0.2), 0 0 20px rgba(212, 175, 55, 0.35);
+  background: #FFFFFF;
+  border: 1.5px solid var(--gold-primary);
+  color: #8C5E14;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
 }
 
-.timeline-node:hover .circular-badge-frame {
-  transform: rotate(4deg) scale(1.06);
-  box-shadow: 0 14px 36px rgba(184, 59, 94, 0.3), 0 0 26px rgba(212, 175, 55, 0.55);
-  border-color: #D4AF37;
+.marker-number.highlight {
+  background: var(--gold-gradient);
+  border-color: var(--gold-dark);
+  color: #351C05;
+  box-shadow: 0 0 16px rgba(212, 175, 55, 0.6);
 }
 
-.badge-round-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  display: block;
-}
-
-.node-content {
+.event-details {
   flex: 1;
-  background: rgba(255, 253, 248, 0.72);
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  border-radius: 18px;
-  padding: 16px 22px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 6px 20px rgba(70, 35, 90, 0.05);
 }
 
-.node-script-title {
-  font-family: 'Great Vibes', cursive;
-  font-size: 2.3rem;
-  color: #992847;
+.event-badge {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.64rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 8px;
+  background: rgba(164, 142, 212, 0.15);
+  color: #5E3D8E;
+  border: 1px solid rgba(164, 142, 212, 0.4);
   margin-bottom: 6px;
-  line-height: 1.2;
-  filter: drop-shadow(0 1px 4px rgba(153, 40, 71, 0.2));
 }
 
-.node-desc {
-  font-size: 0.94rem;
+.event-badge.gold-badge {
+  background: var(--gold-gradient);
+  color: #351C05;
+  font-family: 'Kanz al Marjaan', var(--font-arabic);
+  font-size: 0.92rem;
+  padding: 3px 12px;
+  border: none;
+  font-weight: bold;
+}
+
+.event-title {
+  font-family: 'Kanz al Marjaan', var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #3E2469;
+  line-height: 1.3;
+}
+
+.event-meaning {
+  font-size: 0.95rem;
   color: #4A3560;
   line-height: 1.5;
-  margin-bottom: 10px;
+  margin: 5px 0 10px;
 }
 
-.node-meta {
+.event-meta {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
   margin-bottom: 12px;
 }
 
-.node-meta-item {
-  font-size: 0.88rem;
+.meta-item {
+  font-size: 0.9rem;
   color: #5E3D8E;
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
-.node-right .node-meta-item {
-  justify-content: flex-end;
-}
-
-.node-left .node-meta-item {
-  justify-content: flex-start;
+.meta-icon {
+  font-style: normal;
 }
 
 .btn-mini-map {
@@ -2378,26 +2044,99 @@ body {
   transform: translateX(2px);
 }
 
-@media (max-width: 640px) {
-  .serpentine-timeline-container {
-    gap: 36px;
-    padding: 20px 6px;
-  }
-  .timeline-node {
-    max-width: 100%;
-    gap: 14px;
-  }
-  .circular-badge-frame {
-    width: 100px;
-    height: 100px;
-  }
-  .node-script-title {
-    font-size: 1.8rem;
-  }
-  .node-content {
-    padding: 12px 14px;
-  }
+/* CHAPTER V: Dress Code (Seamless Luxury) */
+.dresscode-box {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none;
+  box-shadow: none;
+  padding: 24px 0;
 }
+
+.dresscode-intro {
+  font-size: 0.95rem;
+  color: #4A3560;
+  margin-bottom: 22px;
+}
+
+.dresscode-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.attire-col {
+  flex: 1;
+  text-align: center;
+}
+
+.attire-icon {
+  font-size: 2.2rem;
+  margin-bottom: 8px;
+}
+
+.attire-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: #3E2469;
+  margin-bottom: 6px;
+}
+
+.attire-spec {
+  font-size: 0.92rem;
+  color: #4A3560;
+  line-height: 1.5;
+}
+
+.attire-divider {
+  width: 1px;
+  height: 90px;
+  background: rgba(212, 175, 55, 0.35);
+}
+
+.color-palette-swatches {
+  padding-top: 14px;
+  border-top: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.swatch-label {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: #8C5E14;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.swatches-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.swatch:hover {
+  transform: scale(1.15);
+}
+
+.swatch.s1 { background: #E8E2F5; }
+.swatch.s2 { background: #9D88C5; }
+.swatch.s3 { background: #FAF8F5; }
+.swatch.s4 { background: linear-gradient(135deg, #F6E29F, #D4AF37); }
+.swatch.s5 { background: #351C52; }
 
 /* CHAPTER VI: RSVP & Form (Ultra-Readable Luxury Inputs) */
 .rsvp-subtext {
@@ -2620,76 +2359,38 @@ body {
   font-style: italic;
 }
 
-.empty-wishes-prompt {
-  text-align: center;
-  padding: 24px 16px;
-  background: rgba(255, 255, 255, 0.45);
-  border: 1px dashed rgba(212, 175, 55, 0.45);
-  border-radius: 14px;
-}
-
-.empty-wishes-text {
-  font-family: var(--font-sans);
-  font-size: 0.88rem;
-  color: #6E5388;
-  font-style: italic;
-}
-
 /* EPILOGUE FOOTER */
 .invite-footer {
   text-align: center;
-  padding: 70px 20px 45px;
+  padding: 60px 20px 40px;
   background: linear-gradient(180deg, transparent 0%, rgba(248, 243, 235, 0.95) 100%);
 }
 
 .footer-mini-seal {
-  width: 115px;
-  height: 115px;
+  width: 65px;
+  height: 65px;
   border-radius: 50%;
-  box-shadow: 0 8px 28px rgba(184, 126, 24, 0.3), 0 0 25px rgba(212, 175, 55, 0.4);
-  margin-bottom: 20px;
-  border: 2px solid rgba(212, 175, 55, 0.75);
-  transition: transform 0.4s ease;
+  box-shadow: 0 4px 16px rgba(184, 126, 24, 0.25), 0 0 15px rgba(212, 175, 55, 0.3);
+  margin-bottom: 14px;
+  border: 1.5px solid rgba(212, 175, 55, 0.6);
 }
 
-.footer-mini-seal:hover {
-  transform: scale(1.08) rotate(3deg);
+.footer-couple-name {
+  font-family: var(--font-script);
+  font-size: 2.6rem;
+  background: var(--gold-foil-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.2;
 }
 
-.footer-family-gratitude {
-  max-width: 660px;
-  margin: 0 auto 24px;
-  padding: 0 16px;
-}
-
-.footer-gratitude-title {
-  font-family: var(--font-display);
-  font-size: 1.7rem;
-  color: #C58B1B;
-  margin-bottom: 12px;
-  letter-spacing: 0.5px;
-}
-
-.footer-gratitude-text {
-  font-family: var(--font-serif);
-  font-size: 1.15rem;
-  color: #3E2469;
-  line-height: 1.75;
-  margin-bottom: 20px;
-  font-style: italic;
-}
-
-.footer-family-signatures {
-  padding-top: 14px;
-  border-top: 1px dashed rgba(212, 175, 55, 0.45);
-}
-
-.family-sign-line {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  color: #5E3D8E;
+.footer-salutation {
+  font-family: 'Kanz al Marjaan', serif;
+  font-size: 1.45rem;
   font-weight: 700;
-  margin-bottom: 4px;
+  color: #8C5E14;
+  margin: 8px 0;
 }
 
 .footer-year {
