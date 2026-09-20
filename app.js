@@ -491,6 +491,8 @@ function initCardCustomizer() {
 
   const widthSlider = document.getElementById('card-width-slider');
   const widthVal = document.getElementById('card-width-val');
+  const textBoxWidthSlider = document.getElementById('text-box-width-slider');
+  const textBoxWidthVal = document.getElementById('text-box-width-val');
   const paddingSlider = document.getElementById('card-padding-slider');
   const paddingVal = document.getElementById('card-padding-val');
 
@@ -540,9 +542,16 @@ function initCardCustomizer() {
         el.setAttribute('spellcheck', 'false');
 
         el.addEventListener('focus', () => {
+          if (activeElement) activeElement.classList.remove('active-editing-target');
           activeElement = el;
+          activeElement.classList.add('active-editing-target');
+
           const currentSize = window.getComputedStyle(el).fontSize;
           if (fontSizeIndicator) fontSizeIndicator.innerText = Math.round(parseFloat(currentSize)) + 'px';
+
+          const currentWidth = Math.round(el.getBoundingClientRect().width);
+          if (textBoxWidthSlider) textBoxWidthSlider.value = Math.min(900, Math.max(200, currentWidth));
+          if (textBoxWidthVal) textBoxWidthVal.innerText = currentWidth + 'px';
         });
       });
     } else {
@@ -550,6 +559,11 @@ function initCardCustomizer() {
       cardStage.classList.remove('editing-card-active');
       toggleBtn.classList.remove('active');
       toggleBtn.querySelector('.btn-text').innerText = 'Customize Card Content';
+
+      if (activeElement) {
+        activeElement.classList.remove('active-editing-target');
+        activeElement = null;
+      }
 
       // Disable editable
       const textNodes = parchmentBody.querySelectorAll('[contenteditable="true"]');
@@ -561,12 +575,26 @@ function initCardCustomizer() {
   if (closeBtnX) closeBtnX.addEventListener('click', () => setEditingMode(false));
   if (closeBtnDone) closeBtnDone.addEventListener('click', () => setEditingMode(false));
 
-  // Width Slider
+  // Card Frame Width Slider
   if (widthSlider) {
     widthSlider.addEventListener('input', (e) => {
       const val = `${e.target.value}px`;
       cardStage.style.maxWidth = val;
       if (widthVal) widthVal.innerText = val;
+    });
+  }
+
+  // Selected Text Box Width / Length Slider
+  if (textBoxWidthSlider) {
+    textBoxWidthSlider.addEventListener('input', (e) => {
+      const val = `${e.target.value}px`;
+      if (textBoxWidthVal) textBoxWidthVal.innerText = val;
+      if (activeElement) {
+        activeElement.style.maxWidth = val;
+        activeElement.style.display = 'block';
+        activeElement.style.marginLeft = 'auto';
+        activeElement.style.marginRight = 'auto';
+      }
     });
   }
 
@@ -944,14 +972,19 @@ function initRsvpAndGuestbook() {
   }
 
   function renderWishes() {
+    const wishesBoard = document.getElementById('wishes-board') || document.querySelector('.wishes-board');
     wishesList.innerHTML = '';
     if (!storedWishes || storedWishes.length === 0) {
-      wishesList.innerHTML = `
-        <div class="empty-wishes-prompt">
-          <p class="empty-wishes-text">Be the first to share your heartfelt congratulations and dua for Mustafa &amp; Tasneem ✨</p>
-        </div>
-      `;
+      if (wishesBoard) {
+        wishesBoard.classList.add('hidden');
+        wishesBoard.style.display = 'none';
+      }
       return;
+    }
+
+    if (wishesBoard) {
+      wishesBoard.classList.remove('hidden');
+      wishesBoard.style.display = 'block';
     }
 
     storedWishes.forEach((item) => {

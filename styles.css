@@ -414,7 +414,7 @@ body {
   }
 }
 
-/* Radiant Golden Light Burst behind Seal on Tap (Soft & Slow) */
+/* Radiant Golden Light Burst behind Seal on Tap (Soft & Slow, positioned behind card) */
 .seal-light-burst {
   position: absolute;
   top: 50%;
@@ -423,17 +423,18 @@ body {
   width: 380px;
   height: 380px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 245, 200, 0.95) 25%, rgba(212, 175, 55, 0.8) 55%, transparent 75%);
-  box-shadow: 0 0 90px rgba(255, 245, 200, 0.95), 0 0 160px rgba(212, 175, 55, 0.8);
+  background: radial-gradient(circle, rgba(255, 255, 240, 0.9) 0%, rgba(255, 235, 160, 0.75) 30%, rgba(212, 175, 55, 0.35) 60%, transparent 80%);
+  box-shadow: 0 0 70px rgba(255, 240, 170, 0.8), 0 0 120px rgba(212, 175, 55, 0.45);
   opacity: 0;
   pointer-events: none;
-  z-index: 8;
+  z-index: 2;
+  mix-blend-mode: screen;
   transition: transform 2.2s cubic-bezier(0.15, 0.85, 0.25, 1), opacity 1.8s ease;
 }
 
 .seal-light-burst.active {
-  transform: translate(-50%, -50%) scale(4.2);
-  opacity: 1;
+  transform: translate(-50%, -50%) scale(2.6);
+  opacity: 0.88;
 }
 
 .fullscreen-envelope-container.light-active .flap-embossed-flourish {
@@ -590,22 +591,26 @@ body {
 /* State when envelope opens (Exact mechanics matching reference video) */
 .fullscreen-envelope-container.open .panel-top {
   transform: perspective(1400px) rotateX(175deg);
-  opacity: 0.2;
+  opacity: 0;
+  transition: transform 2.2s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.4s ease 0.3s;
 }
 
 .fullscreen-envelope-container.open .panel-left {
   transform: perspective(1400px) rotateY(-170deg);
-  opacity: 0.15;
+  opacity: 0;
+  transition: transform 2.1s cubic-bezier(0.22, 1, 0.36, 1) 0.05s, opacity 1.4s ease 0.3s;
 }
 
 .fullscreen-envelope-container.open .panel-right {
   transform: perspective(1400px) rotateY(170deg);
-  opacity: 0.15;
+  opacity: 0;
+  transition: transform 2.1s cubic-bezier(0.22, 1, 0.36, 1) 0.05s, opacity 1.4s ease 0.3s;
 }
 
 .fullscreen-envelope-container.open .panel-bottom {
   transform: perspective(1400px) rotateX(-175deg);
-  opacity: 0.2;
+  opacity: 0;
+  transition: transform 2.2s cubic-bezier(0.22, 1, 0.36, 1) 0.1s, opacity 1.4s ease 0.3s;
 }
 
 .fullscreen-envelope-container.open .wax-seal-macro-wrap {
@@ -638,40 +643,62 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -42%) scale(0.85);
-  width: min(88%, 380px);
-  height: 520px;
-  background: radial-gradient(circle at 50% 30%, #FFFDF8 0%, #FAF4E8 60%, #EFE5D0 100%);
-  border: 1.5px solid rgba(212, 175, 55, 0.6);
-  border-radius: 16px;
-  box-shadow: 0 12px 35px rgba(45, 20, 70, 0.25), 0 0 25px rgba(255, 235, 140, 0.5);
-  z-index: 2;
+  transform: translate(-50%, -46%) scale(0.88);
+  width: min(90%, 390px);
+  height: 560px;
+  background-color: #FFFDF8;
+  background-image: url('assets/arch_bg.jpg');
+  background-size: cover;
+  background-position: center top;
+  border: 1.5px solid rgba(212, 175, 55, 0.65);
+  border-radius: 20px;
+  box-shadow: 0 14px 40px rgba(45, 20, 70, 0.25), 0 0 30px rgba(255, 235, 140, 0.45);
+  z-index: 3;
   overflow: hidden;
   opacity: 0.95;
-  transition: transform 2.2s cubic-bezier(0.18, 0.9, 0.25, 1) 0.3s, opacity 1.8s ease;
+  transition: transform 2.2s cubic-bezier(0.18, 0.9, 0.25, 1) 0.25s, opacity 1.8s ease, box-shadow 1.8s ease;
 }
 
 .fullscreen-envelope-container.open .envelope-card-peek {
-  transform: translate(-50%, -75%) scale(1.05);
-  box-shadow: 0 20px 60px rgba(45, 20, 70, 0.4), 0 0 60px rgba(255, 235, 140, 0.9);
+  transform: translate(-50%, -64%) scale(1.02);
+  box-shadow: 0 20px 60px rgba(45, 20, 70, 0.35), 0 0 50px rgba(255, 235, 140, 0.7);
+  opacity: 1;
 }
 
 .peek-inner-card {
-  padding: 30px 20px;
+  position: relative;
+  height: 100%;
+  padding: 36px 20px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: center;
+  background: radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.82) 0%, rgba(253, 250, 245, 0.88) 60%, rgba(245, 238, 226, 0.92) 100%);
+}
+
+.peek-bismillah-img {
+  width: 130px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 2px 4px rgba(184, 126, 24, 0.3));
 }
 
 .peek-rosette-logo,
 .peek-logo-img {
-  width: 90px;
-  height: 90px;
+  width: 95px;
+  height: 95px;
   object-fit: contain;
-  margin-bottom: 14px;
-  filter: drop-shadow(0 4px 12px rgba(184, 126, 24, 0.4));
+  margin-bottom: 12px;
+  filter: drop-shadow(0 4px 14px rgba(184, 126, 24, 0.45));
+}
+
+.peek-cursive-prefix {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.25rem;
+  color: #7A5813;
+  margin-bottom: 2px;
 }
 
 .peek-couple-title {
@@ -679,16 +706,42 @@ body {
   font-size: 1.45rem;
   color: #3E2469;
   font-weight: 700;
+  letter-spacing: 1px;
   margin-bottom: 4px;
 }
 
-.peek-ceremony-tag {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+.peek-thuluth-title {
+  font-family: 'Thuluth', serif;
+  font-size: 1.35rem;
+  color: #A06815;
+  margin-bottom: 16px;
+  direction: rtl;
+}
+
+.peek-scroll-indicator {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  animation: peekBounce 2s infinite ease-in-out;
+}
+
+.peek-scroll-text {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.15rem;
+  color: #8C5E14;
+}
+
+.peek-scroll-chevron {
+  font-size: 1.1rem;
   color: #C58B1B;
-  font-weight: 700;
+  line-height: 1;
+}
+
+@keyframes peekBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
 }
 
 /* Pure Authentic Gold Wax Seal (Direct Cutout, No Paper Circle) */
@@ -1342,6 +1395,36 @@ body {
   line-height: 1.6;
 }
 
+/* Chapter I Scroll Down Prompt (Matching Video Frame 280) */
+.chapter-scroll-prompt {
+  margin: 32px auto 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  animation: promptFloat 2.2s infinite ease-in-out;
+  cursor: pointer;
+}
+
+.scroll-prompt-text {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.45rem;
+  color: #8C5E14;
+  letter-spacing: 0.5px;
+}
+
+.scroll-prompt-chevron {
+  font-size: 1.3rem;
+  color: #C58B1B;
+  line-height: 0.9;
+}
+
+@keyframes promptFloat {
+  0%, 100% { transform: translateY(0); opacity: 0.85; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+
 /* CHAPTER II: Traditional Bohra Sacred Invitation Stage (Seamless Full-Bleed) */
 .bohra-invitation-stage {
   position: relative;
@@ -1618,10 +1701,13 @@ body {
   background: rgba(255, 250, 235, 0.5);
 }
 
-.editing-card-active [contenteditable="true"]:focus {
+.editing-card-active [contenteditable="true"]:focus,
+.editing-card-active .active-editing-target {
   outline: 2px solid #C58B1B !important;
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 0 12px rgba(212, 175, 55, 0.3);
+  outline-offset: 4px !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  box-shadow: 0 0 16px rgba(212, 175, 55, 0.45) !important;
+  border-radius: 6px;
 }
 
 .parchment-body {
@@ -2218,13 +2304,17 @@ body {
 
 .serpentine-timeline-container {
   position: relative;
-  max-width: 760px;
+  max-width: 780px;
   margin: 30px auto;
-  padding: 30px 14px;
+  padding: 40px 18px;
   min-height: 880px;
   display: flex;
   flex-direction: column;
   gap: 50px;
+  background: radial-gradient(circle at 50% 40%, rgba(255, 245, 248, 0.75) 0%, rgba(254, 236, 243, 0.88) 60%, rgba(255, 246, 250, 0.6) 100%);
+  border-radius: 28px;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 12px 36px rgba(184, 59, 94, 0.08), inset 0 0 40px rgba(255, 255, 255, 0.6);
 }
 
 .timeline-winding-svg {
@@ -2562,6 +2652,10 @@ body {
   padding-top: 24px;
   border-top: 1px solid rgba(212, 175, 55, 0.35);
   text-align: left;
+}
+
+.wishes-board.hidden {
+  display: none !important;
 }
 
 .wishes-title-bar {

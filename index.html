@@ -65,10 +65,15 @@
         <!-- Emerging Card Peek (Slides gracefully up when flap opens, matching reference video) -->
         <div class="envelope-card-peek" id="envelope-card-peek">
           <div class="peek-inner-card">
-            <div class="peek-arch-decor"></div>
-            <img src="assets/rosette_logo.png" alt="Monogram Emblem" class="peek-logo-img" />
+            <img src="assets/calligraphy/Asset 12.png" alt="بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ" class="peek-bismillah-img" />
+            <img src="assets/rosette_logo.png" alt="Mustafa &amp; Tasneem Calligraphy Rosette Medallion" class="peek-logo-img" />
+            <span class="peek-cursive-prefix">Together with their families</span>
             <div class="peek-couple-title">Mustafa &amp; Tasneem</div>
-            <div class="peek-ceremony-tag">The Wedding Invitation</div>
+            <div class="peek-thuluth-title">مُصْطَفَى وَ تَسْنِيم</div>
+            <div class="peek-scroll-indicator">
+              <span class="peek-scroll-text">Scroll down</span>
+              <span class="peek-scroll-chevron">⌄</span>
+            </div>
           </div>
         </div>
 
@@ -158,6 +163,12 @@
             <p class="couple-tagline">Celebrate with us as we embark on this sacred journey of companionship and barakat.</p>
           </div>
         </div>
+
+        <!-- Scroll Down Motion Prompt (Matching Video Frame 280) -->
+        <div class="chapter-scroll-prompt">
+          <span class="scroll-prompt-text">Scroll down</span>
+          <span class="scroll-prompt-chevron">⌄</span>
+        </div>
       </article>
 
       <!-- Royal Section Separator -->
@@ -198,10 +209,18 @@
 
             <div class="editor-controls-row">
               <div class="control-unit">
-                <label for="card-width-slider">Card Width / Frame:</label>
+                <label for="card-width-slider">Card Frame Width:</label>
                 <div class="slider-with-val">
                   <input type="range" id="card-width-slider" min="540" max="950" value="780" step="10">
                   <span id="card-width-val">780px</span>
+                </div>
+              </div>
+
+              <div class="control-unit">
+                <label for="text-box-width-slider">Text Box Length / Width:</label>
+                <div class="slider-with-val">
+                  <input type="range" id="text-box-width-slider" min="200" max="900" value="720" step="10">
+                  <span id="text-box-width-val">Full</span>
                 </div>
               </div>
 
@@ -656,7 +675,7 @@
           </div>
 
           <!-- Live Mubaraki & Wishes Wall -->
-          <div class="wishes-board">
+          <div class="wishes-board" id="wishes-board">
             <div class="wishes-title-bar">
               <span class="wishes-crown">👑</span>
               <h4>Warm Wishes &amp; Dua Board</h4>
