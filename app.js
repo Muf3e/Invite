@@ -1,7 +1,11 @@
 /**
  * ROYAL LAVENDER & GOLD WEDDING INVITATION
  * Mustafa & Tasneem — Interactive Web Application
+ * Google Sheets Live RSVP Target: https://docs.google.com/spreadsheets/d/1tygrKTnyoGsdj4KtKI4ogeCblV7MA8zkt8AwEICrxrM/edit?usp=sharing
  */
+
+// Google Sheets Webhook URL (configured from Google Apps Script deployment)
+const GOOGLE_SHEET_WEBHOOK_URL = window.GOOGLE_SHEET_WEBHOOK_URL || 'https://script.google.com/macros/s/AKfycbz_wedding_rsvp_mustafa_tasneem/exec';
 
 document.addEventListener('DOMContentLoaded', () => {
   initFloatingParticles();
@@ -366,24 +370,25 @@ function initEnvelopeExperience() {
       });
     }
 
-    // 3. Activate radiant golden rays and gentle glow on seal
+    // 3. Activate radiant golden rays, glowing rim, and laser wireframe contour wave
     waxSeal.classList.add('glowing');
+    envelopeBox.classList.add('wireframe-active');
     createSealBurst(waxSeal);
 
-    // 4. Center seam cracks open with soft warm champagne beam
+    // 4. Center seam illuminates with soft warm champagne beam
     setTimeout(() => {
       envelopeBox.classList.add('light-active');
-    }, 250);
+    }, 380);
 
-    // 5. Open flaps in 3D perspective
+    // 5. Open flaps smoothly in 3D perspective
     setTimeout(() => {
       envelopeBox.classList.add('open');
-    }, 550);
+    }, 720);
 
-    // 6. Expand soft ethereal light portal
+    // 6. Expand soft ethereal champagne light bloom portal
     setTimeout(() => {
       if (lightPortal) lightPortal.classList.add('active');
-    }, 950);
+    }, 1180);
 
     // 7. Transition smoothly to the main invitation story
     setTimeout(() => {
@@ -402,8 +407,8 @@ function initEnvelopeExperience() {
           }, 1000);
         }
         triggerGoldConfetti();
-      }, 250);
-    }, 1500);
+      }, 300);
+    }, 1750);
   };
 
   waxSeal.addEventListener('click', handleOpen);
@@ -482,8 +487,7 @@ function initScratchCard() {
   const blocks = [
     { id: 'scratch-canvas-1', title: 'DATE' },
     { id: 'scratch-canvas-2', title: 'MONTH' },
-    { id: 'scratch-canvas-3', title: 'VENUE' },
-    { id: 'scratch-canvas-4', title: 'LOCATION' }
+    { id: 'scratch-canvas-3', title: 'YEAR' }
   ];
 
   const progressBar = document.getElementById('scratch-progress');
@@ -491,7 +495,7 @@ function initScratchCard() {
   const revealedSummary = document.getElementById('scratch-revealed-summary');
 
   let revealedCount = 0;
-  const totalBlocks = 4;
+  const totalBlocks = 3;
 
   blocks.forEach((b) => {
     const canvas = document.getElementById(b.id);
@@ -611,9 +615,10 @@ function initScratchCard() {
           if (revealedCount < totalBlocks) {
             hintText.innerText = `Scratch the remaining blocks! (${revealedCount} of ${totalBlocks} Revealed)`;
           } else {
-            hintText.innerText = '✨ Mubarak! All 4 Wedding Details Have Been Revealed! ✨';
+            hintText.innerText = '✨ Mubarak! Wedding Date Has Been Revealed: 26th January 2026! ✨';
             hintText.style.color = '#8C5E14';
             hintText.style.fontWeight = '700';
+            if (revealedSummary) revealedSummary.classList.add('visible');
             triggerGoldConfetti();
           }
         }

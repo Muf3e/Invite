@@ -105,6 +105,13 @@
         </svg>
         <div class="soft-center-beam" id="center-light-beam"></div>
 
+        <!-- Laser Wireframe Ripple Rings Radiating Outward on Tap (Matching Reference Video) -->
+        <div class="laser-ripple-container" id="laser-ripple-container">
+          <div class="laser-ripple-ring ring-1"></div>
+          <div class="laser-ripple-ring ring-2"></div>
+          <div class="laser-ripple-ring ring-3"></div>
+        </div>
+
         <!-- Envelope Flap Layers: 4 Authentic Triangular Flaps Meeting at Center -->
         <div class="envelope-panel panel-bottom" id="panel-bottom">
           <div class="flap-embossed-flourish bouquet-bottom"></div>
@@ -150,6 +157,23 @@
 
       <!-- CHAPTER I: THE ROYAL PROCESSION & UNION (Living Archway & Walking Couple) -->
       <article class="story-chapter hero-arch-chapter" id="chapter-union">
+        <!-- Living Motion Canvas Elements (Flying Birds in Sky & Ambient Swaying Foliage) -->
+        <div class="chapter-sky-backdrop">
+          <div class="flying-birds-container" aria-hidden="true">
+            <div class="bird bird-1">
+              <svg viewBox="0 0 24 16" class="bird-svg"><path d="M0,8 Q6,0 12,8 Q18,0 24,8 Q18,14 12,8 Q6,14 0,8 Z" fill="rgba(88, 55, 120, 0.45)"/></svg>
+            </div>
+            <div class="bird bird-2">
+              <svg viewBox="0 0 24 16" class="bird-svg"><path d="M0,8 Q6,0 12,8 Q18,0 24,8 Q18,14 12,8 Q6,14 0,8 Z" fill="rgba(88, 55, 120, 0.38)"/></svg>
+            </div>
+            <div class="bird bird-3">
+              <svg viewBox="0 0 24 16" class="bird-svg"><path d="M0,8 Q6,0 12,8 Q18,0 24,8 Q18,14 12,8 Q6,14 0,8 Z" fill="rgba(88, 55, 120, 0.3)"/></svg>
+            </div>
+          </div>
+          <div class="swaying-foliage foliage-left" aria-hidden="true"></div>
+          <div class="swaying-foliage foliage-right" aria-hidden="true"></div>
+        </div>
+
         <div class="chapter-header">
           <span class="chapter-roman">Chapter I</span>
           <h2 class="chapter-title">The Royal Union</h2>
@@ -179,7 +203,7 @@
         </div>
       </article>
 
-      <!-- CHAPTER II: THE SACRED COVENANT (Exact Traditional Bohra Invitation Card) -->
+      <!-- CHAPTER II: THE SACRED COVENANT (Exact Traditional Bohra Invitation Card with Royal Arch Frame) -->
       <article class="story-chapter" id="chapter-invitation">
         <div class="chapter-header">
           <span class="chapter-roman">Chapter II</span>
@@ -330,54 +354,44 @@
         <div class="luxury-card-box scratch-container">
           <div class="card-ornament top-center">❖</div>
           <span class="section-eyebrow">Interactive Milestone</span>
-          <h3 class="card-title">Scratch to Reveal the Date &amp; Venue</h3>
-          <p class="scratch-instructions">Rub the golden shimmering foil across each of the 4 blocks below with your finger or cursor to unveil the wedding details!</p>
+          <h3 class="card-title">Scratch to Reveal the Wedding Date</h3>
+          <p class="scratch-instructions">Rub the golden shimmering foil across all 3 blocks below to unveil the auspicious date!</p>
 
-          <div class="scratch-grid-4">
+          <div class="scratch-grid-3">
             <!-- Block 1: Date -->
             <div class="scratch-tile-block" data-block="1">
               <div class="tile-reveal-content">
-                <span class="tile-category-tag">Auspicious Date</span>
+                <span class="tile-category-tag">Auspicious Day</span>
                 <span class="tile-val-huge">26th</span>
                 <span class="tile-val-sub">Monday</span>
               </div>
               <canvas id="scratch-canvas-1" class="tile-scratch-canvas" width="220" height="150"></canvas>
             </div>
 
-            <!-- Block 2: Month & Year -->
+            <!-- Block 2: Month -->
             <div class="scratch-tile-block" data-block="2">
               <div class="tile-reveal-content">
-                <span class="tile-category-tag">Month &amp; Year</span>
+                <span class="tile-category-tag">Wedding Month</span>
                 <span class="tile-val-huge">January</span>
-                <span class="tile-val-sub">2026</span>
+                <span class="tile-val-sub">Rajab al-Asab</span>
               </div>
               <canvas id="scratch-canvas-2" class="tile-scratch-canvas" width="220" height="150"></canvas>
             </div>
 
-            <!-- Block 3: Venue -->
+            <!-- Block 3: Year -->
             <div class="scratch-tile-block" data-block="3">
               <div class="tile-reveal-content">
-                <span class="tile-category-tag">Wedding Venue</span>
-                <span class="tile-val-huge">Pulgaon</span>
-                <span class="tile-val-sub">Mawaid</span>
+                <span class="tile-category-tag">Year</span>
+                <span class="tile-val-huge">2026</span>
+                <span class="tile-val-sub">1447 Hijri</span>
               </div>
               <canvas id="scratch-canvas-3" class="tile-scratch-canvas" width="220" height="150"></canvas>
-            </div>
-
-            <!-- Block 4: State / Location -->
-            <div class="scratch-tile-block" data-block="4">
-              <div class="tile-reveal-content">
-                <span class="tile-category-tag">Location</span>
-                <span class="tile-val-huge">Maharashtra</span>
-                <span class="tile-val-sub">India</span>
-              </div>
-              <canvas id="scratch-canvas-4" class="tile-scratch-canvas" width="220" height="150"></canvas>
             </div>
           </div>
 
           <div class="scratch-progress-wrap">
             <div class="scratch-progress-bar" id="scratch-progress"></div>
-            <span class="scratch-hint" id="scratch-hint">Scratch the 4 blocks to unveil all details! (0 of 4 Revealed)</span>
+            <span class="scratch-hint" id="scratch-hint">Scratch the 3 blocks to unveil the date! (0 of 3 Revealed)</span>
           </div>
 
           <!-- Revealed Complete Summary & Calendar Action -->
@@ -684,18 +698,6 @@
             <div class="wishes-list" id="wishes-list">
               <!-- Dynamically populated -->
             </div>
-          </div>
-
-          <!-- Link to Physical Print Suite & High-Res PDF -->
-          <div class="physical-suite-callout" style="margin-top: 28px; text-align: center; border-top: 1px dashed rgba(212, 175, 55, 0.4); padding-top: 20px;">
-            <a href="physical_invitation/index.html" class="btn-physical-suite" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #FBF6E9 0%, #D4AF37 50%, #AA7C11 100%); color: #1A0E28; padding: 12px 26px; border-radius: 30px; font-family: var(--font-sans); font-size: 0.85rem; font-weight: 700; text-decoration: none; letter-spacing: 1px; text-transform: uppercase; box-shadow: 0 4px 18px rgba(212, 175, 55, 0.4); transition: transform 0.2s ease;">
-              <span>📜</span>
-              <span>Open Physical Print Suite (PDF / Tri-Fold)</span>
-              <span>✨</span>
-            </a>
-            <p style="font-size: 0.8rem; color: var(--clr-text-secondary); margin-top: 8px; font-style: italic;">
-              Print-ready 300 DPI Tri-Fold Gatefold Invitation &amp; Ceremony Welcome Board with live guest personalization.
-            </p>
           </div>
         </div>
       </article>
